@@ -7,9 +7,9 @@ export const ConstantsSchema = z.object({
     .min(20, 'App description must be at least 20 characters long'),
   SERVER_URL: z.string().min(3, 'Sever URL must be at least 3 characters long'),
   LATEST_PRODUCTS_LIMIT: z
-    .number()
-    .nonnegative()
-    .min(4, 'Latest products limit must be at least 4'),
+    .string()
+    .min(1, 'Latest products limit must be at least 1')
+    .transform(value => Number(value)),
   PAYMENT_METHODS: z.array(z.string()),
   DEFAULT_PAYMENT_METHOD: z
     .string()

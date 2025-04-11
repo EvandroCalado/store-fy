@@ -2,7 +2,6 @@
 
 import { prisma } from '@/db/prisma';
 import { CONSTANTS } from '@/utils/constants';
-import { convertToPlainObject } from '@/utils/convertToPlainObject';
 
 export const getLatestProducts = async () => {
   const products = await prisma.product.findMany({
@@ -12,5 +11,5 @@ export const getLatestProducts = async () => {
     },
   });
 
-  return convertToPlainObject(products);
+  return products;
 };

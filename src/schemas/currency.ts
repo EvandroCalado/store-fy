@@ -1,8 +1,9 @@
-import { formatNumberWithDecimal } from '@/utils/formatNumberWithDecimal';
 import { z } from 'zod';
 
+import { formatNumberWithDecimal } from '@/utils/formatNumberWithDecimal';
+
 export const currencySchema = z
-  .string()
+  .number()
   .refine(
     value => /^\d+(\.\d{2})?$/.test(formatNumberWithDecimal(Number(value))),
     'Price must be exactly 2 decimal places',

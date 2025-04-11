@@ -1,6 +1,6 @@
 generator client {
   provider = "prisma-client-js"
-  output   = "../src/app/generated/prisma"
+  output   = "../prisma/generated"
 }
 
 datasource db {
@@ -18,8 +18,8 @@ model Product {
   description String
   details     String
   stock       Int
-  price       Decimal  @default(0) @db.Decimal(12, 2)
-  rating      Decimal  @default(0) @db.Decimal(3, 2)
+  price       Float    @default(0)
+  rating      Float    @default(0)
   numReviews  Int      @default(0) @map("num_reviews")
   isFeatured  Boolean  @default(false) @map("is_featured")
   banner      String?
@@ -90,10 +90,10 @@ model Cart {
   userId        String?  @map("user_id")
   sessionCartId String   @map("session_cart_id")
   items         Json[]   @default([]) @db.Json
-  itemsPrice    Decimal  @default(0) @map("items_price") @db.Decimal(12, 2)
-  totalPrice    Decimal  @default(0) @map("total_price") @db.Decimal(12, 2)
-  shippingPrice Decimal  @default(0) @map("shipping_price") @db.Decimal(12, 2)
-  taxPrice      Decimal  @default(0) @map("tax_price") @db.Decimal(12, 2)
+  itemsPrice    Float    @default(0) @map("items_price")
+  totalPrice    Float    @default(0) @map("total_price")
+  shippingPrice Float    @default(0) @map("shipping_price")
+  taxPrice      Float    @default(0) @map("tax_price")
   createdAt     DateTime @default(now()) @map("created_at")
   updatedAt     DateTime @updatedAt
 

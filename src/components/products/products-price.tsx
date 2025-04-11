@@ -3,7 +3,7 @@ import { ComponentProps } from 'react';
 import { cn } from '@/lib/utils';
 
 type ProductsPriceProps = {
-  value: string;
+  value: number;
 } & ComponentProps<'p'>;
 
 export const ProductsPrice = ({
