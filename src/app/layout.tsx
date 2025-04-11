@@ -5,7 +5,7 @@ import { Toaster } from '@/components/ui/sonner';
 
 import '@/styles/globals.css';
 
-import { APP_DESCRIPTION, APP_NAME, SERVER_URL } from '@/utils/constants';
+import { CONSTANTS } from '@/utils/constants';
 
 import { ThemeProvider } from './theme-provider';
 
@@ -17,12 +17,12 @@ const primary = Jost({
 export const metadata: Metadata = {
   title: {
     template: `%s | StoreFy`,
-    default: APP_NAME,
+    default: CONSTANTS.APP_NAME,
   },
-  description: APP_DESCRIPTION,
-  metadataBase: new URL(SERVER_URL),
+  description: CONSTANTS.APP_DESCRIPTION,
+  metadataBase: new URL(CONSTANTS.SERVER_URL),
   appleWebApp: {
-    title: APP_NAME,
+    title: CONSTANTS.APP_NAME,
   },
 };
 
