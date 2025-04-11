@@ -13,7 +13,7 @@ import { z } from 'zod';
 import { updateUserPaymentMethod } from '@/actions/update-user-payment-method';
 import { paymentMethodSchema } from '@/schemas/payment-method';
 import { PaymentMethod } from '@/types/payment-method';
-import { CONSTANTS } from '@/utils/constants';
+import { DEFAULT_PAYMENT_METHOD, PAYMENT_METHODS } from '@/utils/constants';
 
 import { Button } from '../ui/button';
 import {
@@ -38,7 +38,7 @@ export const PaymentForm = ({ preferredPaymentMethod }: PaymentFormProps) => {
   const form = useForm<z.infer<typeof paymentMethodSchema>>({
     resolver: zodResolver(paymentMethodSchema),
     defaultValues: {
-      type: preferredPaymentMethod || CONSTANTS.DEFAULT_PAYMENT_METHOD,
+      type: preferredPaymentMethod || DEFAULT_PAYMENT_METHOD,
     },
   });
 
@@ -75,7 +75,7 @@ export const PaymentForm = ({ preferredPaymentMethod }: PaymentFormProps) => {
                     defaultValue={field.value}
                     className='flex flex-col space-y-2'
                   >
-                    {CONSTANTS.PAYMENT_METHODS.map(paymentMethod => (
+                    {PAYMENT_METHODS?.map(paymentMethod => (
                       <FormItem
                         key={paymentMethod}
                         className='flex items-center space-y-0 space-x-3'
