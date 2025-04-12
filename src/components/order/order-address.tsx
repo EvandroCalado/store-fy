@@ -1,9 +1,18 @@
 import Link from 'next/link';
 
+import { Pencil } from 'lucide-react';
+
 import { ShippingAddress } from '@/types/shipping-address';
 
 import { Button } from '../ui/button';
-import { Card, CardContent, CardHeader, CardTitle } from '../ui/card';
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from '../ui/table';
 
 type OrderAddressProps = {
   address: ShippingAddress;
@@ -11,24 +20,38 @@ type OrderAddressProps = {
 
 export const OrderAddress = ({ address }: OrderAddressProps) => {
   return (
-    <Card className='gap-2 p-5'>
-      <CardHeader className='p-0'>
-        <CardTitle>Endereço de entrega</CardTitle>
-      </CardHeader>
-
-      <CardContent className='text-muted-foreground flex items-center justify-between p-0'>
-        <div>
-          <p>{address.fullName}</p>
-          <p>
-            {address.streetAddress}, {address.city}, {address.postalCode},{' '}
-            {address.country}
-          </p>
-        </div>
-
-        <Button variant='outline' asChild>
-          <Link href='/shipping-address'>Alterar Endereço</Link>
-        </Button>
-      </CardContent>
-    </Card>
+    <div className='rounded-md border'>
+      <Table>
+        <TableHeader>
+          <TableRow>
+            <TableHead>Nome Completo</TableHead>
+            <TableHead>Endereço</TableHead>
+            <TableHead className='text-right'>Ação</TableHead>
+          </TableRow>
+        </TableHeader>
+        <TableBody>
+          <TableRow>
+            <TableCell>{address.fullName}</TableCell>
+            <TableCell>
+              {address.streetAddress}, {address.city}, {address.postalCode},{' '}
+              {address.country}
+            </TableCell>
+            <TableCell className='text-right'>
+              <Button
+                variant='outline'
+                size='icon'
+                title='Editar'
+                aria-label='Editar'
+                asChild
+              >
+                <Link href='/shipping-address'>
+                  <Pencil />
+                </Link>
+              </Button>
+            </TableCell>
+          </TableRow>
+        </TableBody>
+      </Table>
+    </div>
   );
 };

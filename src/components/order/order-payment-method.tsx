@@ -1,7 +1,16 @@
 import Link from 'next/link';
 
+import { Pencil } from 'lucide-react';
+
 import { Button } from '../ui/button';
-import { Card, CardContent, CardHeader, CardTitle } from '../ui/card';
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from '../ui/table';
 
 type OrderPaymentMethodProps = {
   paymentMethod: string;
@@ -11,18 +20,33 @@ export const OrderPaymentMethod = ({
   paymentMethod,
 }: OrderPaymentMethodProps) => {
   return (
-    <Card className='gap-2 p-5'>
-      <CardHeader className='p-0'>
-        <CardTitle>Forma de pagamento</CardTitle>
-      </CardHeader>
-
-      <CardContent className='text-muted-foreground flex items-center justify-between p-0'>
-        <p>{paymentMethod}</p>
-
-        <Button variant='outline' asChild>
-          <Link href='/payment-method'>Alterar Pagamento</Link>
-        </Button>
-      </CardContent>
-    </Card>
+    <div className='rounded-md border'>
+      <Table>
+        <TableHeader>
+          <TableRow>
+            <TableHead>Forma de pagamento</TableHead>
+            <TableHead className='text-right'>Ação</TableHead>
+          </TableRow>
+        </TableHeader>
+        <TableBody>
+          <TableRow>
+            <TableCell>{paymentMethod}</TableCell>
+            <TableCell className='text-right'>
+              <Button
+                variant='outline'
+                size='icon'
+                title='Editar'
+                aria-label='Editar'
+                asChild
+              >
+                <Link href='/payment-method'>
+                  <Pencil />
+                </Link>
+              </Button>
+            </TableCell>
+          </TableRow>
+        </TableBody>
+      </Table>
+    </div>
   );
 };

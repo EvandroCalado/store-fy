@@ -51,6 +51,10 @@ const PlaceOrderPage = async () => {
       <Container className='my-8'>
         <CheckoutSteps current={3} />
         <div className='grid gap-5 md:grid-cols-3'>
+          <h2 className='text-xl font-semibold md:col-span-3'>
+            Resumo do pedido
+          </h2>
+
           <div className='col-span-2 flex flex-col gap-3'>
             <OrderAddress address={userAddress} />
             <OrderPaymentMethod paymentMethod={user.paymentMethod} />
