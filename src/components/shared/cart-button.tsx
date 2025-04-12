@@ -21,7 +21,7 @@ export const CartButton = ({ totalItems }: CartButtonProps) => {
       <Link href='/cart'>
         <ShoppingCartIcon />
         {!!totalItems && totalItems > 0 && (
-          <span className='bg-primary absolute -top-[2px] -right-[2px] flex size-4 items-center justify-center rounded-full text-xs text-white'>
+          <span className='bg-primary absolute -top-[2px] -right-[2px] flex size-4 items-center justify-center rounded-full p-0.5 text-xs text-white'>
             {totalItems}
           </span>
         )}
