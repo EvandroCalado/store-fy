@@ -25,6 +25,7 @@ export const SectionTitle = ({ title }: SectionTitleProps) => {
     cart: 'Carrinho',
     'shipping-address': 'Endereço de entrega',
     'payment-method': 'Forma de pagamento',
+    'place-order': 'Finalizar compra',
   };
 
   return (
