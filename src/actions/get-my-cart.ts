@@ -5,7 +5,6 @@ import { cookies } from 'next/headers';
 import { auth } from '@/auth';
 import { prisma } from '@/db/prisma';
 import { CartItem } from '@/types/cart-item';
-import { convertToPlainObject } from '@/utils/convertToPlainObject';
 
 export const getMyCart = async () => {
   const sessionCartId = (await cookies()).get('sessionCartId')?.value;
@@ -21,12 +20,12 @@ export const getMyCart = async () => {
 
   if (!cart) return undefined;
 
-  return convertToPlainObject({
+  return {
     ...cart,
     items: cart.items as CartItem[],
     itemsPrice: cart.itemsPrice,
     totalPrice: cart.totalPrice,
     shippingPrice: cart.shippingPrice,
     taxPrice: cart.taxPrice,
-  });
+  };
 };
