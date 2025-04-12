@@ -8,22 +8,23 @@ datasource db {
 }
 
 model Product {
-  id          String   @id @default(cuid())
+  id          String      @id @default(cuid())
   name        String
-  slug        String   @unique()
+  slug        String      @unique()
   category    String
   images      String[]
   brand       String
   description String
   details     String
   stock       Int
-  price       Float    @default(0)
-  rating      Float    @default(0)
-  numReviews  Int      @default(0) @map("num_reviews")
-  isFeatured  Boolean  @default(false) @map("is_featured")
+  price       Float       @default(0)
+  rating      Float       @default(0)
+  numReviews  Int         @default(0) @map("num_reviews")
+  isFeatured  Boolean     @default(false) @map("is_featured")
   banner      String?
-  createdAt   DateTime @default(now()) @map("created_at")
-  updatedAt   DateTime @updatedAt @map("updated_at")
+  createdAt   DateTime    @default(now()) @map("created_at")
+  updatedAt   DateTime    @updatedAt @map("updated_at")
+  OrderItem   OrderItem[]
 
   @@map("products")
 }
@@ -71,6 +72,7 @@ model User {
   accounts      Account[]
   sessions      Session[]
   Cart          Cart[]
+  Order         Order[]
 
   @@map("users")
 }
@@ -99,4 +101,42 @@ model Cart {
   user User? @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   @@map("carts")
+}
+
+model Order {
+  id              String      @id @default(cuid())
+  userId          String      @map("user_id")
+  shippingAddress Json        @map("shipping_address") @db.Json
+  paymentMethod   String      @map("payment_method")
+  paymentResult   Json?       @map("payment_result") @db.Json
+  itemsPrice      Float       @default(0) @map("items_price")
+  shippingPrice   Float       @default(0) @map("shipping_price")
+  taxPrice        Float       @default(0) @map("tax_price")
+  totalPrice      Float       @default(0) @map("total_price")
+  isPaid          Boolean     @default(false) @map("is_paid")
+  paidAt          DateTime?   @map("paid_at")
+  isDelivered     Boolean     @default(false) @map("is_delivered")
+  deliveredAt     DateTime?   @map("delivered_at")
+  createdAt       DateTime    @default(now()) @map("created_at")
+  updatedAt       DateTime    @updatedAt @map("updated_at")
+  OrderItem       OrderItem[]
+
+  user User? @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@map("orders")
+}
+
+model OrderItem {
+  orderId   String @map("order_id")
+  productId String @map("product_id")
+  quantity  Int
+  price     Float  @default(0)
+  name      String
+  slug      String
+  image     String
+
+  order   Order?   @relation(fields: [orderId], references: [id], onDelete: Cascade)
+  product Product? @relation(fields: [productId], references: [id], onDelete: Cascade)
+
+  @@id([orderId, productId])
 }
