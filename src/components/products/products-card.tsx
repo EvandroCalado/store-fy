@@ -6,6 +6,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 
 import { Product } from '@/types/product';
+import { generateReviewStars } from '@/utils/generate-review-stars';
 
 import { Badge } from '../ui/badge';
 import { Card, CardContent, CardHeader } from '../ui/card';
@@ -23,7 +24,7 @@ export const ProductsCard = ({ product }: ProductCardProps) => {
       key={product.slug}
       className='animate-fade-in border-none shadow-none transition-all duration-150'
     >
-      <Link href={`/products/${product.slug}`} rel='preload'>
+      <Link href={`/products/${product.slug}`}>
         <CardHeader>
           <Image
             src={displayImage}
@@ -31,7 +32,7 @@ export const ProductsCard = ({ product }: ProductCardProps) => {
             width={300}
             height={300}
             priority
-            className='h-[280px] rounded-lg object-cover'
+            className='bg-muted h-[280px] rounded-lg object-cover'
             onMouseEnter={() => setIsDisplayImage(product.images[1])}
             onMouseLeave={() => setIsDisplayImage(product.images[0])}
           />
@@ -53,7 +54,9 @@ export const ProductsCard = ({ product }: ProductCardProps) => {
               </Badge>
             )}
 
-            <p>{product.rating} Stars</p>
+            <p className='text-xs tracking-tight'>
+              {product.rating} {generateReviewStars(Number(product.rating))}
+            </p>
           </div>
         </CardContent>
       </Link>
