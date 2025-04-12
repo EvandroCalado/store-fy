@@ -9,9 +9,9 @@ export type OrderSummaryProps = {
 
 export const OrderSummary = ({ cart }: OrderSummaryProps) => {
   return (
-    <Card className='gap-2 p-5'>
+    <Card className='gap-2 rounded-md p-5 shadow-none'>
       <CardHeader className='p-0'>
-        <CardTitle>Resumo da compra</CardTitle>
+        <CardTitle>Resumo dos valores</CardTitle>
       </CardHeader>
 
       <CardContent className='text-muted-foreground p-0'>
