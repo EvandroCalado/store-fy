@@ -43,7 +43,7 @@ export const OrderItems = ({ cartItems }: OrderItemsProps) => {
                   priority
                   className='size-12 object-contain'
                 />
-                <span>{item.name}</span>
+                <span className='line-clamp-1'>{item.name}</span>
               </Link>
             </TableCell>
             <TableCell className='text-center'>{item.quantity}</TableCell>
