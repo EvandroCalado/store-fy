@@ -1,7 +1,7 @@
 import { notFound } from 'next/navigation';
 
 import { getLatestProducts } from '@/actions/get-latest-products';
-import { ProductsGrid } from '@/components/products/products-grid';
+import { ProductGrid } from '@/components/product/product-grid';
 
 export const metadata = {
   title: 'Home',
@@ -14,7 +14,7 @@ const HomePage = async () => {
 
   return (
     <>
-      <ProductsGrid products={products} title='Produtos Em Destaque' />
+      <ProductGrid products={products} title='Produtos Em Destaque' />
     </>
   );
 };

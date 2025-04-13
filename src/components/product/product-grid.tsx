@@ -1,14 +1,14 @@
 import { Product } from '@/types/product';
 
 import { Container } from '../shared/container';
-import { ProductsCard } from './products-card';
+import { ProductCard } from './product-card';
 
-type ProductsListProps = {
+type ProductGridProps = {
   products: Product[];
   title?: string;
 };
 
-export const ProductsGrid = ({ products, title }: ProductsListProps) => {
+export const ProductGrid = ({ products, title }: ProductGridProps) => {
   const [firstWord, ...rest] = title?.split(' ') || [];
 
   return (
@@ -25,7 +25,7 @@ export const ProductsGrid = ({ products, title }: ProductsListProps) => {
       {products.length > 0 && (
         <div className='grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4'>
           {products.map(product => (
-            <ProductsCard product={product} key={product.slug} />
+            <ProductCard product={product} key={product.slug} />
           ))}
         </div>
       )}

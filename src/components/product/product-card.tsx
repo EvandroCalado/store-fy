@@ -10,13 +10,13 @@ import { generateReviewStars } from '@/utils/generate-review-stars';
 
 import { Badge } from '../ui/badge';
 import { Card, CardContent, CardHeader } from '../ui/card';
-import { ProductsPrice } from './products-price';
+import { ProductPrice } from './product-price';
 
 type ProductCardProps = {
   product: Product;
 };
 
-export const ProductsCard = ({ product }: ProductCardProps) => {
+export const ProductCard = ({ product }: ProductCardProps) => {
   const [displayImage, setIsDisplayImage] = useState(product.images[0]);
 
   return (
@@ -43,7 +43,7 @@ export const ProductsCard = ({ product }: ProductCardProps) => {
           </h2>
 
           <div className='flex items-center justify-between'>
-            {product.stock > 0 && <ProductsPrice value={product.price} />}
+            {product.stock > 0 && <ProductPrice value={product.price} />}
 
             {product.stock <= 0 && (
               <Badge

@@ -2,15 +2,15 @@ import { ComponentProps } from 'react';
 
 import { cn } from '@/lib/utils';
 
-type ProductsPriceProps = {
+type ProductPriceProps = {
   value: number;
 } & ComponentProps<'p'>;
 
-export const ProductsPrice = ({
+export const ProductPrice = ({
   value,
   className,
   ...props
-}: ProductsPriceProps) => {
+}: ProductPriceProps) => {
   const formatted = new Intl.NumberFormat('pt-BR', {
     style: 'currency',
     currency: 'BRL',
