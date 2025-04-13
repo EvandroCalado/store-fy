@@ -14,11 +14,11 @@ export const metadata: Metadata = {
   title: 'Detalhes do produto',
 };
 
-type ProductsPageParams = {
+type ProductDetailsPageParams = {
   params: Promise<{ slug: string }>;
 };
 
-const ProductsPage = async ({ params }: ProductsPageParams) => {
+const ProductDetailsPage = async ({ params }: ProductDetailsPageParams) => {
   const { slug } = await params;
 
   const product = await getProductBySlug(slug);
@@ -41,4 +41,4 @@ const ProductsPage = async ({ params }: ProductsPageParams) => {
   );
 };
 
-export default ProductsPage;
+export default ProductDetailsPage;
