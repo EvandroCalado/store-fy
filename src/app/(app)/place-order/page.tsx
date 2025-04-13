@@ -60,7 +60,7 @@ const PlaceOrderPage = async () => {
             <OrderPaymentMethod paymentMethod={user.paymentMethod} />
             <OrderItems cartItems={cart.items} />
           </div>
-          <div>
+          <div className='flex flex-col gap-3'>
             <OrderSummary cart={cart} />
           </div>
         </div>
