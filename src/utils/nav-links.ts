@@ -10,7 +10,7 @@ export const navLinks: NavLink[] = [
   },
   {
     name: 'Produtos',
-    href: '/products',
+    href: '/product',
   },
   {
     name: 'Sobre',
