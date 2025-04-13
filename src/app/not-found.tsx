@@ -1,7 +1,8 @@
 import Link from 'next/link';
 
-import { MoveLeftIcon, OctagonAlertIcon } from 'lucide-react';
+import { OctagonAlertIcon } from 'lucide-react';
 
+import { LinkLoader } from '@/components/shared/link-loader';
 import { Button } from '@/components/ui/button';
 
 const NotFoundPage = () => {
@@ -20,7 +21,8 @@ const NotFoundPage = () => {
 
       <Button asChild>
         <Link href='/'>
-          <MoveLeftIcon /> Voltar para home
+          <LinkLoader />
+          <p>Voltar para home</p>
         </Link>
       </Button>
     </div>
