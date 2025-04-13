@@ -22,9 +22,9 @@ export const ProductCard = ({ product }: ProductCardProps) => {
   return (
     <Card
       key={product.slug}
-      className='animate-fade-in border-none shadow-none transition-all duration-150'
+      className='animate-fade-in bg-background border-none shadow-none transition-all duration-150'
     >
-      <Link href={`/products/${product.slug}`}>
+      <Link href={`/product/${product.slug}`}>
         <CardHeader>
           <Image
             src={displayImage}

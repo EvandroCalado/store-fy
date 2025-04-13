@@ -32,7 +32,7 @@ export const OrderItems = ({ cartItems }: OrderItemsProps) => {
           <TableRow key={item.slug}>
             <TableCell className='p-0'>
               <Link
-                href={`/products/${item.slug}`}
+                href={`/product/${item.slug}`}
                 className='flex items-center gap-2'
               >
                 <Image

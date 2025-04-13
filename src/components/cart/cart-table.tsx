@@ -50,7 +50,7 @@ export const CartTable = ({ cart }: CartTableProps) => {
                 <TableRow key={item.slug}>
                   <TableCell>
                     <Link
-                      href={`/products/${item.slug}`}
+                      href={`/product/${item.slug}`}
                       className='flex items-center gap-2'
                     >
                       <Image
