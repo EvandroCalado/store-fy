@@ -18,10 +18,13 @@ type SectionTitleProps = {
 export const SectionTitle = ({ title }: SectionTitleProps) => {
   const pathname = usePathname();
 
-  const [path] = pathname.split('/').filter(Boolean);
+  const pathSegments = pathname.split('/').filter(Boolean);
 
   const pathDictionary: { [key: string]: string } = {
-    products: 'Produtos',
+    product:
+      pathSegments[0] === 'product' && pathSegments.length > 1
+        ? 'Detalhes do Produto'
+        : 'Produtos',
     cart: 'Carrinho',
     'shipping-address': 'Endereço de entrega',
     'payment-method': 'Forma de pagamento',
@@ -29,8 +32,8 @@ export const SectionTitle = ({ title }: SectionTitleProps) => {
   };
 
   return (
-    <div className='flex h-40 w-full flex-col items-center justify-center bg-[url("/breadcrumb/breadcrumb-01.jpg")]'>
-      <Container className='space-y-4'>
+    <div className='bg-muted flex h-40 w-full flex-col items-center justify-center overflow-hidden'>
+      <Container className='relative space-y-4'>
         <Breadcrumb>
           <BreadcrumbList>
             <BreadcrumbItem>
@@ -40,8 +43,8 @@ export const SectionTitle = ({ title }: SectionTitleProps) => {
             <BreadcrumbSeparator />
 
             <BreadcrumbItem>
-              <BreadcrumbLink href={`/${path}`}>
-                {pathDictionary[path]}
+              <BreadcrumbLink href={`/${pathSegments[0]}`}>
+                {pathDictionary[pathSegments[0]]}
               </BreadcrumbLink>
             </BreadcrumbItem>
           </BreadcrumbList>
@@ -50,6 +53,10 @@ export const SectionTitle = ({ title }: SectionTitleProps) => {
         <h2 className='text-muted-foreground text-2xl font-semibold tracking-tight md:text-4xl'>
           {title}
         </h2>
+
+        <span className='text-muted-foreground/[5%] absolute right-4 -bottom-20 text-[85px] font-bold tracking-tighter sm:-bottom-32 sm:text-[180px] md:right-8 md:-bottom-36 md:text-[210px]'>
+          Store<span className='text-primary/[5%]'>FY</span>
+        </span>
       </Container>
     </div>
   );
