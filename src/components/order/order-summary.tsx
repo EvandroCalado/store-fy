@@ -2,6 +2,7 @@ import { Cart } from '@/types/cart';
 import { formatCurrency } from '@/utils/formatCurrency';
 
 import { Card, CardContent, CardHeader, CardTitle } from '../ui/card';
+import { OrderForm } from './order-form';
 
 export type OrderSummaryProps = {
   cart: Cart;
@@ -14,7 +15,7 @@ export const OrderSummary = ({ cart }: OrderSummaryProps) => {
         <CardTitle>Resumo dos valores</CardTitle>
       </CardHeader>
 
-      <CardContent className='text-muted-foreground p-0'>
+      <CardContent className='text-muted-foreground space-y-2 p-0'>
         <div className='flex items-center justify-between'>
           <p>Subtotal</p>
           <p>{formatCurrency(cart.itemsPrice)}</p>
@@ -31,6 +32,7 @@ export const OrderSummary = ({ cart }: OrderSummaryProps) => {
           <p>Total</p>
           <p>{formatCurrency(cart.totalPrice)}</p>
         </div>
+        <OrderForm />
       </CardContent>
     </Card>
   );
