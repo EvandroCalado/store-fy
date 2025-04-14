@@ -1,14 +1,23 @@
-import { Cart } from '@/types/cart';
 import { formatCurrency } from '@/utils/formatCurrency';
 
 import { Card, CardContent, CardHeader, CardTitle } from '../ui/card';
 import { OrderForm } from './order-form';
 
 export type OrderSummaryProps = {
-  cart: Cart;
+  itemsPrice: number;
+  taxPrice: number;
+  shippingPrice: number;
+  totalPrice: number;
+  hasButton?: boolean;
 };
 
-export const OrderSummary = ({ cart }: OrderSummaryProps) => {
+export const OrderSummary = ({
+  itemsPrice,
+  taxPrice,
+  shippingPrice,
+  totalPrice,
+  hasButton,
+}: OrderSummaryProps) => {
   return (
     <Card className='gap-2 rounded-md p-5 shadow-none'>
       <CardHeader className='p-0'>
@@ -18,21 +27,21 @@ export const OrderSummary = ({ cart }: OrderSummaryProps) => {
       <CardContent className='text-muted-foreground space-y-2 p-0'>
         <div className='flex items-center justify-between'>
           <p>Subtotal</p>
-          <p>{formatCurrency(cart.itemsPrice)}</p>
+          <p>{formatCurrency(itemsPrice)}</p>
         </div>
         <div className='flex items-center justify-between'>
           <p>Taxas</p>
-          <p>{formatCurrency(cart.taxPrice)}</p>
+          <p>{formatCurrency(taxPrice)}</p>
         </div>
         <div className='flex items-center justify-between'>
           <p>Entrega</p>
-          <p>{formatCurrency(cart.shippingPrice)}</p>
+          <p>{formatCurrency(shippingPrice)}</p>
         </div>
         <div className='text-foreground flex items-center justify-between font-semibold'>
           <p>Total</p>
-          <p>{formatCurrency(cart.totalPrice)}</p>
+          <p>{formatCurrency(totalPrice)}</p>
         </div>
-        <OrderForm />
+        {hasButton && <OrderForm />}
       </CardContent>
     </Card>
   );
