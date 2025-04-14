@@ -58,10 +58,10 @@ const PlaceOrderPage = async () => {
           <div className='flex flex-col gap-3 overflow-x-auto md:col-span-2'>
             <OrderAddress address={userAddress} />
             <OrderPaymentMethod paymentMethod={user.paymentMethod} />
-            <OrderItems cartItems={cart.items} />
+            <OrderItems items={cart.items} />
           </div>
           <div className='flex flex-col gap-3'>
-            <OrderSummary cart={cart} />
+            <OrderSummary {...cart} />
           </div>
         </div>
       </Container>
