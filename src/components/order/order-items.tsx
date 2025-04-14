@@ -14,10 +14,10 @@ import {
 } from '../ui/table';
 
 type OrderItemsProps = {
-  cartItems: CartItem[];
+  items: CartItem[];
 };
 
-export const OrderItems = ({ cartItems }: OrderItemsProps) => {
+export const OrderItems = ({ items }: OrderItemsProps) => {
   return (
     <Table>
       <TableHeader>
@@ -28,7 +28,7 @@ export const OrderItems = ({ cartItems }: OrderItemsProps) => {
         </TableRow>
       </TableHeader>
       <TableBody>
-        {cartItems.map(item => (
+        {items.map(item => (
           <TableRow key={item.slug}>
             <TableCell className='p-0'>
               <Link
