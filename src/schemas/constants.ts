@@ -14,4 +14,8 @@ export const constantsSchema = z.object({
   DEFAULT_PAYMENT_METHOD: z
     .string()
     .min(3, 'Default payment method must be at least 3 characters long'),
+  PAGE_SIZE: z
+    .string()
+    .min(1, 'Page size must be at least 1')
+    .transform(value => Number(value)),
 });
