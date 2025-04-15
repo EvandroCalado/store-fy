@@ -5,6 +5,7 @@ import { getOrderById } from '@/actions/get-order-by-id';
 import { OrderDetailsAddress } from '@/components/order/order-details-address';
 import { OrderDetailsPaymentMethod } from '@/components/order/order-details-payment-method';
 import { OrderItems } from '@/components/order/order-items';
+import { OrderPayPalPayment } from '@/components/order/order-paypal-payment';
 import { OrderSummary } from '@/components/order/order-summary';
 import { Container } from '@/components/shared/container';
 import { SectionTitle } from '@/components/shared/section-title';
@@ -24,6 +25,8 @@ const OrderPage = async ({ params }: OrderPageParams) => {
   const order = await getOrderById(id);
 
   if (!order) notFound();
+
+  const paypalClientId = process.env.PAYPAL_CLIENT_ID || '';
 
   return (
     <>
@@ -48,8 +51,14 @@ const OrderPage = async ({ params }: OrderPageParams) => {
             />
             <OrderItems items={order.OrderItem} />
           </div>
-          <div>
+          <div className='flex flex-col gap-3'>
             <OrderSummary {...order} hasButton={false} />
+            <OrderPayPalPayment
+              paypalClientId={paypalClientId}
+              isPaid={order.isPaid}
+              paymentMethod={order.paymentMethod}
+              orderId={order.id}
+            />
           </div>
         </div>
       </Container>
