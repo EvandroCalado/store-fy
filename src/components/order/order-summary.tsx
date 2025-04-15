@@ -16,7 +16,7 @@ export const OrderSummary = ({
   taxPrice,
   shippingPrice,
   totalPrice,
-  hasButton,
+  hasButton = true,
 }: OrderSummaryProps) => {
   return (
     <Card className='gap-2 rounded-md p-5 shadow-none'>
