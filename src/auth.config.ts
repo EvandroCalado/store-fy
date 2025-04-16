@@ -55,7 +55,7 @@ export default {
       }
 
       // Handle session updates
-      if (session?.user.name && trigger === 'update') {
+      if (trigger === 'update' && session?.user.name) {
         token.name = session.user.name;
       }
 
