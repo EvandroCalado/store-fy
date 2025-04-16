@@ -24,7 +24,7 @@ type OrderListProps = {
 export const OrderList = ({ orders }: OrderListProps) => {
   return (
     <div className='flex-1 overflow-x-auto'>
-      <h2 className='text-xl font-semibold md:col-span-3'>Pedidos</h2>
+      <h2 className='text-xl font-semibold'>Pedidos</h2>
 
       <Table>
         <TableCaption>Lista de pedidos.</TableCaption>
