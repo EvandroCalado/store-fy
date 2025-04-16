@@ -1,7 +1,11 @@
+'use client';
+
+import { useEffect } from 'react';
+
 import Link from 'next/link';
 
-import { signOutUser } from '@/actions/sign-out-user';
-import { auth } from '@/auth';
+import { signOut, useSession } from 'next-auth/react';
+
 import { userMenuLinks } from '@/utils/userMenuLinks';
 
 import { Avatar, AvatarFallback, AvatarImage } from '../ui/avatar';
@@ -15,10 +19,29 @@ import {
   DropdownMenuTrigger,
 } from '../ui/dropdown-menu';
 
-export const UserMenu = async () => {
-  const session = await auth();
+export const UserMenu = () => {
+  const { data: session, update } = useSession();
 
   const firstInitial = session?.user?.name?.charAt(0);
+
+  useEffect(() => {
+    const interval = setInterval(
+      () => {
+        if (window.navigator.onLine) update();
+      },
+      1000 * 60 * 60,
+    );
+    return () => clearInterval(interval);
+  }, [update]);
+
+  useEffect(() => {
+    const nameUpdatedEventHandler = () => update();
+
+    window.addEventListener('nameUpdated', nameUpdatedEventHandler, false);
+    return () => {
+      window.removeEventListener('nameUpdated', nameUpdatedEventHandler);
+    };
+  }, [update]);
 
   return (
     <>
@@ -57,14 +80,13 @@ export const UserMenu = async () => {
             ))}
 
             <DropdownMenuItem className='p-0'>
-              <form action={signOutUser} className='h-full w-full'>
-                <button
-                  type='submit'
-                  className='h-full w-full cursor-pointer px-2 py-1.5 text-left'
-                >
-                  Sair
-                </button>
-              </form>
+              <button
+                type='submit'
+                className='h-full w-full cursor-pointer px-2 py-1.5 text-left'
+                onClick={() => signOut({ callbackUrl: '/' })}
+              >
+                Sair
+              </button>
             </DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>

@@ -1,4 +1,7 @@
+import { SessionProvider } from 'next-auth/react';
+
 import { getMyCart } from '@/actions/get-my-cart';
+import { auth } from '@/auth';
 
 import { CartButton } from './cart-button';
 import { Container } from './container';
@@ -9,6 +12,7 @@ import { Navbar } from './navbar';
 import { UserMenu } from './user-menu';
 
 export const Header = async () => {
+  const session = await auth();
   const cart = await getMyCart();
 
   const totalItems = cart?.items.reduce((acc, item) => acc + item.quantity, 0);
@@ -25,7 +29,10 @@ export const Header = async () => {
         <div className='flex items-center md:gap-2'>
           <DarkMode />
           <CartButton totalItems={totalItems} />
-          <UserMenu />
+
+          <SessionProvider session={session} refetchOnWindowFocus>
+            <UserMenu />
+          </SessionProvider>
         </div>
       </Container>
     </header>
