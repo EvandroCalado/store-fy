@@ -19,12 +19,11 @@ import {
 
 type OrderListProps = {
   orders: Order[];
-  totalPages: number;
 };
 
-export const OrderList = ({ orders, totalPages }: OrderListProps) => {
+export const OrderList = ({ orders }: OrderListProps) => {
   return (
-    <div className='overflow-x-auto'>
+    <div className='flex-1 overflow-x-auto'>
       <h2 className='text-xl font-semibold md:col-span-3'>Pedidos</h2>
 
       <Table>
