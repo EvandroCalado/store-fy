@@ -21,7 +21,7 @@ import {
   SidebarMenuItem,
 } from '../ui/sidebar';
 
-export const SideMenu = () => {
+export const AdminSideMenu = () => {
   const path = usePathname();
 
   return (
