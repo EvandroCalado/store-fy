@@ -9,6 +9,7 @@ export const AdminHeader = () => {
         <SidebarTrigger
           title='Abir menu lateral'
           aria-label='Abir menu lateral'
+          className='size-9 rounded-full'
         />
         <DarkMode />
       </div>
