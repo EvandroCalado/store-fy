@@ -29,6 +29,7 @@ export const SectionTitle = ({ title }: SectionTitleProps) => {
     'shipping-address': 'Endereço de entrega',
     'payment-method': 'Forma de pagamento',
     'place-order': 'Finalizar compra',
+    orders: 'Meus Pedidos',
   };
 
   return (
