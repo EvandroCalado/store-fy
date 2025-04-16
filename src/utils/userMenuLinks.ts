@@ -12,8 +12,4 @@ export const userMenuLinks: UserMenuLink[] = [
     name: 'Pedidos',
     href: '/orders',
   },
-  {
-    name: 'Administração',
-    href: '/admin',
-  },
 ];
