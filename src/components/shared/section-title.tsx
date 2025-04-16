@@ -1,13 +1,10 @@
-'use client';
-
-import { usePathname } from 'next/navigation';
+import { MoveRight } from 'lucide-react';
 
 import {
   Breadcrumb,
   BreadcrumbItem,
   BreadcrumbLink,
   BreadcrumbList,
-  BreadcrumbSeparator,
 } from '../ui/breadcrumb';
 import { Container } from './container';
 
@@ -16,22 +13,6 @@ type SectionTitleProps = {
 };
 
 export const SectionTitle = ({ title }: SectionTitleProps) => {
-  const pathname = usePathname();
-
-  const pathSegments = pathname.split('/').filter(Boolean);
-
-  const pathDictionary: { [key: string]: string } = {
-    product:
-      pathSegments[0] === 'product' && pathSegments.length > 1
-        ? 'Detalhes do Produto'
-        : 'Produtos',
-    cart: 'Carrinho',
-    'shipping-address': 'Endereço de entrega',
-    'payment-method': 'Forma de pagamento',
-    'place-order': 'Finalizar compra',
-    orders: 'Meus Pedidos',
-  };
-
   return (
     <div className='bg-muted flex h-40 w-full flex-col items-center justify-center overflow-hidden'>
       <Container className='relative space-y-4'>
@@ -41,13 +22,7 @@ export const SectionTitle = ({ title }: SectionTitleProps) => {
               <BreadcrumbLink href='/'>Home</BreadcrumbLink>
             </BreadcrumbItem>
 
-            <BreadcrumbSeparator />
-
-            <BreadcrumbItem>
-              <BreadcrumbLink href={`/${pathSegments[0]}`}>
-                {pathDictionary[pathSegments[0]]}
-              </BreadcrumbLink>
-            </BreadcrumbItem>
+            <MoveRight className='size-4' />
           </BreadcrumbList>
         </Breadcrumb>
 
