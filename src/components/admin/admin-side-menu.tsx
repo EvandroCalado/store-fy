@@ -29,7 +29,11 @@ export const AdminSideMenu = () => {
       <SidebarHeader>
         <SidebarMenu>
           <SidebarMenuItem title='Storefy' aria-label='Storefy'>
-            <SidebarMenuButton asChild>
+            <SidebarMenuButton
+              asChild
+              tooltip='Ir para home'
+              aria-label='Ir para home'
+            >
               <Link href='/'>
                 <div className='text-primary font-bold'>FY</div>
                 <span>Storefy</span>
@@ -46,14 +50,11 @@ export const AdminSideMenu = () => {
           <SidebarGroupContent>
             <SidebarMenu>
               {adminLinks.map(link => (
-                <SidebarMenuItem
-                  key={link.name}
-                  title={link.name}
-                  aria-label={link.name}
-                >
+                <SidebarMenuItem key={link.name} aria-label={link.name}>
                   <SidebarMenuButton
                     asChild
                     isActive={path.includes(link.href)}
+                    tooltip={link.name}
                   >
                     <Link href={link.href}>
                       <link.icon />
@@ -69,9 +70,11 @@ export const AdminSideMenu = () => {
 
       <SidebarFooter>
         <SidebarMenu>
-          <SidebarMenuItem title='Sair' aria-label='Sair'>
+          <SidebarMenuItem>
             <SidebarMenuButton
               className='cursor-pointer'
+              aria-label='Sair'
+              tooltip='Sair'
               onClick={() => signOut({ callbackUrl: '/' })}
             >
               <LogOut />
