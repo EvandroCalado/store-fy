@@ -1,4 +1,4 @@
-import { generateAccessToken, paypal } from '../src/utils/paypal';
+import { generateAccessToken, paypal } from '../utils/paypal';
 
 describe('paypal', () => {
   it('should generates token from paypal', async () => {
