@@ -79,6 +79,14 @@ export const UserMenu = () => {
               </DropdownMenuItem>
             ))}
 
+            {session.user?.role === 'admin' && (
+              <DropdownMenuItem key='administração' asChild>
+                <Link href='/admin' className='cursor-pointer'>
+                  Administração
+                </Link>
+              </DropdownMenuItem>
+            )}
+
             <DropdownMenuItem className='p-0'>
               <button
                 type='submit'
