@@ -1,7 +1,8 @@
 import { cookies } from 'next/headers';
 
+import { AdminHeader } from '@/components/admin/admin-header';
 import { AdminSideMenu } from '@/components/admin/admin-side-menu';
-import { SidebarProvider, SidebarTrigger } from '@/components/ui/sidebar';
+import { SidebarProvider } from '@/components/ui/sidebar';
 
 const AdminLayout = async ({
   children,
@@ -16,10 +17,7 @@ const AdminLayout = async ({
     <SidebarProvider defaultOpen={defaultOpen}>
       <AdminSideMenu />
       <main className='flex flex-1 flex-col'>
-        <SidebarTrigger
-          title='Abir menu lateral'
-          aria-label='Abir menu lateral'
-        />
+        <AdminHeader />
         {children}
       </main>
     </SidebarProvider>
