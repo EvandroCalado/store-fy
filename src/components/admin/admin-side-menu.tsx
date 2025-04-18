@@ -53,7 +53,7 @@ export const AdminSideMenu = () => {
                 <SidebarMenuItem key={link.name} aria-label={link.name}>
                   <SidebarMenuButton
                     asChild
-                    isActive={path.includes(link.href)}
+                    isActive={path === link.href}
                     tooltip={link.name}
                   >
                     <Link href={link.href}>
