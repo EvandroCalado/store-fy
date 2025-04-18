@@ -1,18 +1,26 @@
 import { NextRequest, NextResponse } from 'next/server';
 
 import NextAuth from 'next-auth';
+import { getToken } from 'next-auth/jwt';
 
 import authConfig from './auth.config';
 
 const { auth } = NextAuth(authConfig);
 
 export default auth(async function middleware(request: NextRequest) {
+  const token = await getToken({
+    req: request,
+    secret: process.env.AUTH_SECRET,
+  });
   const { pathname } = request.nextUrl;
 
-  const session = await auth();
-
-  if (!session) {
+  if (!token) {
     const loginUrl = new URL(`/sign-in?callbackUrl=${pathname}`, request.url);
+    return NextResponse.redirect(loginUrl);
+  }
+
+  if (pathname.startsWith('/admin') && token?.role !== 'admin') {
+    const loginUrl = new URL('/', request.url);
     return NextResponse.redirect(loginUrl);
   }
 
