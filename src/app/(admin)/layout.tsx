@@ -14,7 +14,10 @@ const AdminLayout = async ({
   const defaultOpen = cookieStore.get('sidebar_state')?.value === 'true';
 
   return (
-    <SidebarProvider defaultOpen={defaultOpen}>
+    <SidebarProvider
+      defaultOpen={defaultOpen}
+      className='flex flex-col md:flex-row'
+    >
       <AdminSideMenu />
       <main className='flex flex-1 flex-col'>
         <AdminHeader />
