@@ -1,12 +1,16 @@
 import Link from 'next/link';
 
 import { deleteOrder } from '@/actions/delete-order';
+import { deliverOrder } from '@/actions/deliver-order';
+import { updateOrderToPaidCOD } from '@/actions/update-order-to-paid-COD';
 import { Order } from '@/types/order';
 import { formatCurrency } from '@/utils/formatCurrency';
 import { formatDate } from '@/utils/formatDate';
 
 import { DeleteDialog } from '../shared/delete-dialog';
+import { DeliverDialog } from '../shared/deliver-dialog';
 import { LinkLoader } from '../shared/link-loader';
+import { UpdateDialog } from '../shared/update-dialog';
 import { Button } from '../ui/button';
 import {
   Table,
@@ -80,7 +84,21 @@ export const AdminOrders = ({ orders }: AdminOrdersProps) => {
                   </Link>
                 </Button>
 
-                <DeleteDialog orderId={order.id} action={deleteOrder} />
+                <DeleteDialog
+                  orderId={order.id}
+                  action={deleteOrder}
+                  isDelivered={order.isDelivered}
+                />
+                <UpdateDialog
+                  orderId={order.id}
+                  action={updateOrderToPaidCOD}
+                  isDelivered={order.isDelivered}
+                />
+                <DeliverDialog
+                  orderId={order.id}
+                  action={deliverOrder}
+                  isDelivered={order.isDelivered}
+                />
               </TableCell>
             </TableRow>
           ))}
