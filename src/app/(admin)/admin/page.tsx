@@ -7,6 +7,7 @@ import { auth } from '@/auth';
 import { DashboardCard } from '@/components/dashboard/dashboard-card';
 import { DashboardChart } from '@/components/dashboard/dashboard-chart';
 import { DashboardLastSales } from '@/components/dashboard/dashboard-last-sales';
+import { Container } from '@/components/shared/container';
 import { formatCurrency } from '@/utils/formatCurrency';
 
 export const metadata: Metadata = {
@@ -23,7 +24,7 @@ const AdminPage = async () => {
   const summary = await getOrderSummary();
 
   return (
-    <div className='space-y-4 p-4'>
+    <Container className='space-y-4 p-4'>
       <h2 className='text-xl font-semibold md:col-span-3'>Painel</h2>
 
       <div className='grid gap-4 md:grid-cols-2 lg:grid-cols-4'>
@@ -53,7 +54,7 @@ const AdminPage = async () => {
         <DashboardChart salesByMonth={summary.salesByMonth} />
         <DashboardLastSales latestSales={summary.latestSales} />
       </div>
-    </div>
+    </Container>
   );
 };
 
