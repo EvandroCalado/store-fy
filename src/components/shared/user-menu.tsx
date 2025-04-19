@@ -51,6 +51,8 @@ export const UserMenu = () => {
             <Button
               variant='ghost'
               className='h-8 w-8 rounded-full p-0 duration-150 hover:brightness-90'
+              title='Abrir menu de usuário'
+              aria-label='Abrir menu de usuário'
             >
               <Avatar>
                 <AvatarImage src={session?.user?.image || ''} />
