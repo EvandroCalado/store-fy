@@ -20,9 +20,14 @@ import { Button } from '../ui/button';
 type DeleteDialogProps = {
   orderId: string;
   action: (orderId: string) => Promise<{ success?: boolean; message: string }>;
+  isDelivered?: boolean;
 };
 
-export const DeleteDialog = ({ orderId, action }: DeleteDialogProps) => {
+export const DeleteDialog = ({
+  orderId,
+  action,
+  isDelivered,
+}: DeleteDialogProps) => {
   const [isOpen, setIsOpen] = useState(false);
   const [isPending, startTransition] = useTransition();
 
@@ -46,9 +51,10 @@ export const DeleteDialog = ({ orderId, action }: DeleteDialogProps) => {
       <AlertDialogTrigger asChild>
         <Button
           size='icon'
-          variant='destructive'
+          variant='outline'
           title='Excluir'
           aria-label='Excluir'
+          disabled={isDelivered}
         >
           <Trash />
         </Button>
