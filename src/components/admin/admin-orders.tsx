@@ -1,9 +1,11 @@
 import Link from 'next/link';
 
+import { deleteOrder } from '@/actions/delete-order';
 import { Order } from '@/types/order';
 import { formatCurrency } from '@/utils/formatCurrency';
 import { formatDate } from '@/utils/formatDate';
 
+import { DeleteDialog } from '../shared/delete-dialog';
 import { LinkLoader } from '../shared/link-loader';
 import { Button } from '../ui/button';
 import {
@@ -37,7 +39,7 @@ export const AdminOrders = ({ orders }: AdminOrdersProps) => {
             <TableHead>Total</TableHead>
             <TableHead>Pagamento</TableHead>
             <TableHead>Entrega</TableHead>
-            <TableHead className='text-right'>Ação</TableHead>
+            <TableHead className='text-right'>Ações</TableHead>
           </TableRow>
         </TableHeader>
         <TableBody>
@@ -62,7 +64,7 @@ export const AdminOrders = ({ orders }: AdminOrdersProps) => {
                   <p className='text-muted-foreground'>Aguardando</p>
                 )}
               </TableCell>
-              <TableCell className='text-right'>
+              <TableCell className='flex items-center justify-end gap-2'>
                 <Button
                   asChild
                   variant={'outline'}
@@ -77,6 +79,8 @@ export const AdminOrders = ({ orders }: AdminOrdersProps) => {
                     <LinkLoader iconName='Search' />
                   </Link>
                 </Button>
+
+                <DeleteDialog orderId={order.id} action={deleteOrder} />
               </TableCell>
             </TableRow>
           ))}

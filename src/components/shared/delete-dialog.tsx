@@ -1,0 +1,80 @@
+'use client';
+
+import { useState, useTransition } from 'react';
+
+import { Trash } from 'lucide-react';
+import { toast } from 'sonner';
+
+import {
+  AlertDialog,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+  AlertDialogTrigger,
+} from '../ui/alert-dialog';
+import { Button } from '../ui/button';
+
+type DeleteDialogProps = {
+  orderId: string;
+  action: (orderId: string) => Promise<{ success?: boolean; message: string }>;
+};
+
+export const DeleteDialog = ({ orderId, action }: DeleteDialogProps) => {
+  const [isOpen, setIsOpen] = useState(false);
+  const [isPending, startTransition] = useTransition();
+
+  const handleDeleteClick = async () => {
+    startTransition(async () => {
+      const res = await action(orderId);
+
+      if (!res.success) {
+        toast.error(res.message);
+        return;
+      }
+
+      setIsOpen(false);
+
+      toast.success(res.message);
+    });
+  };
+
+  return (
+    <AlertDialog open={isOpen} onOpenChange={setIsOpen}>
+      <AlertDialogTrigger asChild>
+        <Button
+          size='icon'
+          variant='destructive'
+          title='Excluir'
+          aria-label='Excluir'
+        >
+          <Trash />
+        </Button>
+      </AlertDialogTrigger>
+
+      <AlertDialogContent>
+        <AlertDialogHeader>
+          <AlertDialogTitle>Tem certeza?</AlertDialogTitle>
+          <AlertDialogDescription>
+            Esta ação irá excluir permanentemente o pedido.
+          </AlertDialogDescription>
+        </AlertDialogHeader>
+
+        <AlertDialogFooter>
+          <AlertDialogCancel onClick={() => setIsOpen(false)}>
+            Cancelar
+          </AlertDialogCancel>
+          <Button
+            variant='destructive'
+            disabled={isPending}
+            onClick={handleDeleteClick}
+          >
+            {isPending ? 'Excluindo...' : 'Excluir'}
+          </Button>
+        </AlertDialogFooter>
+      </AlertDialogContent>
+    </AlertDialog>
+  );
+};
