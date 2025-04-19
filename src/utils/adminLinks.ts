@@ -1,4 +1,4 @@
-import { Calendar, Home, LucideIcon, PackageCheck, Users } from 'lucide-react';
+import { Home, LucideIcon, PackageCheck, Truck, Users } from 'lucide-react';
 
 type AdminLink = {
   name: string;
@@ -20,7 +20,7 @@ export const adminLinks: AdminLink[] = [
   {
     name: 'Pedidos',
     href: '/admin/orders',
-    icon: Calendar,
+    icon: Truck,
   },
   {
     name: 'Usuários',
