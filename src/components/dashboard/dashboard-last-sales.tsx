@@ -56,8 +56,8 @@ export const DashboardLastSales = ({
                       href={`/order/${sale.id}`}
                       className='flex items-center gap-2'
                     >
-                      <LinkLoader />
                       Detalhes
+                      <LinkLoader iconName='MoveRight' />
                     </Link>
                   </Button>
                 </TableCell>

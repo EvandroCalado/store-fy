@@ -1,19 +1,29 @@
 'use client';
 
+import { JSX } from 'react';
+
 import { useLinkStatus } from 'next/link';
 
-import { Link, Loader2 } from 'lucide-react';
+import { Loader, MoveLeft, MoveRight, Search } from 'lucide-react';
 
-export const LinkLoader = () => {
+type IconName = 'MoveLeft' | 'MoveRight' | 'Search';
+
+type LinkLoaderProps = {
+  iconName?: IconName;
+};
+
+export const LinkLoader = ({ iconName = 'MoveLeft' }: LinkLoaderProps) => {
   const { pending } = useLinkStatus();
 
+  const iconDictionary: { [key: string]: JSX.Element } = {
+    MoveLeft: <MoveLeft />,
+    MoveRight: <MoveRight />,
+    Search: <Search />,
+  };
+
   return (
-    <div className='flex items-center justify-center'>
-      {pending ? (
-        <Loader2 className='size-3 animate-spin' />
-      ) : (
-        <Link className='size-3' />
-      )}
-    </div>
+    <>
+      {pending ? <Loader className='animate-spin' /> : iconDictionary[iconName]}
+    </>
   );
 };
