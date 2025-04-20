@@ -8,13 +8,15 @@ import authConfig from './auth.config';
 const { auth } = NextAuth(authConfig);
 
 export default auth(async function middleware(request: NextRequest) {
+  const session = await auth();
+
   const token = await getToken({
     req: request,
     secret: process.env.AUTH_SECRET,
   });
   const { pathname } = request.nextUrl;
 
-  if (!token) {
+  if (!session) {
     const loginUrl = new URL(`/sign-in?callbackUrl=${pathname}`, request.url);
     return NextResponse.redirect(loginUrl);
   }
