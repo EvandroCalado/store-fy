@@ -18,13 +18,13 @@ import {
 import { Button } from '../ui/button';
 
 type DeleteDialogProps = {
-  orderId: string;
+  id: string;
   action: (orderId: string) => Promise<{ success?: boolean; message: string }>;
   isDelivered?: boolean;
 };
 
 export const DeleteDialog = ({
-  orderId,
+  id,
   action,
   isDelivered,
 }: DeleteDialogProps) => {
@@ -33,7 +33,7 @@ export const DeleteDialog = ({
 
   const handleDeleteClick = async () => {
     startTransition(async () => {
-      const res = await action(orderId);
+      const res = await action(id);
 
       if (!res.success) {
         toast.error(res.message);
@@ -64,7 +64,7 @@ export const DeleteDialog = ({
         <AlertDialogHeader>
           <AlertDialogTitle>Tem certeza?</AlertDialogTitle>
           <AlertDialogDescription>
-            Esta ação irá excluir permanentemente o pedido.
+            Esta ação não poderá ser desfeita.
           </AlertDialogDescription>
         </AlertDialogHeader>
 
