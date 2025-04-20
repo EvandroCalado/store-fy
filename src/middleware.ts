@@ -10,12 +10,18 @@ const { auth } = NextAuth(authConfig);
 export default auth(async function middleware(request: NextRequest) {
   const session = await auth();
 
+  const cookieKey =
+    process.env.NODE_ENV === 'production'
+      ? '__Secure-authjs.session-token'
+      : 'authjs.session-token';
+
   const token = await getToken({
     req: request,
     secret: process.env.AUTH_SECRET,
-    secureCookie: true,
-    cookieName: '__Secure-next-auth.session-token',
+    salt: cookieKey,
+    cookieName: cookieKey,
   });
+
   const { pathname } = request.nextUrl;
 
   console.log(token);
