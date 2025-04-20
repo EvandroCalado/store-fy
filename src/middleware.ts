@@ -13,6 +13,8 @@ export default auth(async function middleware(request: NextRequest) {
   const token = await getToken({
     req: request,
     secret: process.env.AUTH_SECRET,
+    secureCookie: true,
+    cookieName: '__Secure-next-auth.session-token',
   });
   const { pathname } = request.nextUrl;
 
