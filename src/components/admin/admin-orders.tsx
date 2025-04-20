@@ -85,7 +85,7 @@ export const AdminOrders = ({ orders }: AdminOrdersProps) => {
                 </Button>
 
                 <DeleteDialog
-                  orderId={order.id}
+                  id={order.id}
                   action={deleteOrder}
                   isDelivered={order.isDelivered}
                 />

@@ -1,8 +1,10 @@
 import Link from 'next/link';
 
+import { deleteProduct } from '@/actions/delete-product';
 import { Product } from '@/types/product';
 import { formatCurrency } from '@/utils/formatCurrency';
 
+import { DeleteDialog } from '../shared/delete-dialog';
 import { LinkLoader } from '../shared/link-loader';
 import { Button } from '../ui/button';
 import {
@@ -44,7 +46,7 @@ export const AdminProducts = ({ products }: AdminProductsProps) => {
               <TableCell className='capitalize'>{product.category}</TableCell>
               <TableCell>{product.stock}</TableCell>
               <TableCell>{product.rating}</TableCell>
-              <TableCell className='text-right'>
+              <TableCell className='flex items-center justify-end gap-2'>
                 <Button
                   variant={'outline'}
                   size={'icon'}
@@ -55,6 +57,8 @@ export const AdminProducts = ({ products }: AdminProductsProps) => {
                     <LinkLoader iconName='Edit' />
                   </Link>
                 </Button>
+
+                <DeleteDialog id={product.id} action={deleteProduct} />
               </TableCell>
             </TableRow>
           ))}
