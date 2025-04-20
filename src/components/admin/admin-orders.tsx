@@ -32,7 +32,7 @@ type AdminOrdersProps = {
 export const AdminOrders = ({ orders }: AdminOrdersProps) => {
   return (
     <div className='flex-1 overflow-x-auto'>
-      <h2 className='text-xl font-semibold'>Pedidos</h2>
+      <h1 className='text-xl font-semibold'>Pedidos</h1>
 
       <Table>
         <TableCaption>Lista de pedidos.</TableCaption>
