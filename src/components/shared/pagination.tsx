@@ -4,8 +4,6 @@ import { useTransition } from 'react';
 
 import { useRouter, useSearchParams } from 'next/navigation';
 
-import { ChevronLeft, ChevronRight, Loader } from 'lucide-react';
-
 import { cn } from '@/lib/utils';
 import { formatUrlQuery } from '@/utils/format-url-query';
 
@@ -51,7 +49,6 @@ export const Pagination = ({
         disabled={page <= 1 || isPending}
         onClick={() => handleClick('prev')}
       >
-        {isPending ? <Loader className='animate-spin' /> : <ChevronLeft />}
         Anterior
       </Button>
 
@@ -65,7 +62,6 @@ export const Pagination = ({
         onClick={() => handleClick('next')}
       >
         Próximo
-        {isPending ? <Loader className='animate-spin' /> : <ChevronRight />}
       </Button>
     </div>
   );
