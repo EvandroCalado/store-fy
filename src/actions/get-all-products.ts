@@ -16,6 +16,8 @@ export const getAllProducts = async ({
   query,
   category,
 }: GetAllProductsParams) => {
+  console.log(query, category);
+
   const data = await prisma.product.findMany({
     take: limit,
     skip: (page - 1) * limit,

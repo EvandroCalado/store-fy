@@ -69,7 +69,7 @@ export const DashboardChart = ({ salesByMonth }: DashboardChartProps) => {
 
   const totalSales = useMemo(() => {
     return chartData.reduce((acc, curr) => acc + curr.totalSales, 0);
-  }, []);
+  }, [chartData]);
 
   return (
     <Card className='col-span-4 flex flex-col'>

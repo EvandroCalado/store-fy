@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import { compareSync } from 'bcrypt-ts-edge';
 import NextAuth from 'next-auth';
 import Credentials from 'next-auth/providers/credentials';
