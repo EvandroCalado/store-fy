@@ -24,3 +24,19 @@ export const SHIPPING_ADDRESS_DEFAULT_VALUES: ShippingAddress = {
   postalCode: '',
   country: '',
 };
+
+export const PRODUCT_DEFAULT = {
+  name: '',
+  slug: '',
+  category: '',
+  images: [],
+  brand: '',
+  description: '',
+  details: '',
+  isFeatured: false,
+  price: 0,
+  stock: 0,
+  rating: 0,
+  numReviews: 0,
+  banner: null,
+};
