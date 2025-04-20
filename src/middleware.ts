@@ -24,9 +24,6 @@ export default auth(async function middleware(request: NextRequest) {
 
   const { pathname } = request.nextUrl;
 
-  console.log(token);
-  console.log(session);
-
   if (!session) {
     const loginUrl = new URL(`/sign-in?callbackUrl=${pathname}`, request.url);
     return NextResponse.redirect(loginUrl);
