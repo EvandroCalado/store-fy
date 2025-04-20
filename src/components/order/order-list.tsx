@@ -41,7 +41,7 @@ export const OrderList = ({ orders }: OrderListProps) => {
         <TableBody>
           {orders.map(order => (
             <TableRow key={order.id}>
-              <TableCell>{order.id}</TableCell>
+              <TableCell>{order.id.substring(0, 6)}...</TableCell>
               <TableCell>{formatDate(order.createdAt).dateTime}</TableCell>
               <TableCell>{formatCurrency(order.totalPrice)}</TableCell>
               <TableCell>
