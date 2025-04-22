@@ -92,7 +92,7 @@ export const AdminOrders = ({ orders }: AdminOrdersProps) => {
                 <UpdateDialog
                   orderId={order.id}
                   action={updateOrderToPaidCOD}
-                  isDelivered={order.isDelivered}
+                  isPaid={order.isPaid}
                 />
                 <DeliverDialog
                   orderId={order.id}
