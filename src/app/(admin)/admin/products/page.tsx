@@ -27,7 +27,7 @@ const AdminProductsPage = async ({ searchParams }: AdminProductsPageParams) => {
   const query = params.query || '';
   const category = params.category || '';
 
-  const data = await getAllProducts({ page, query, category, limit: 2 });
+  const data = await getAllProducts({ page, query, category, limit: 12 });
 
   return (
     <Container className='my-8 flex flex-1 flex-col space-y-4'>
