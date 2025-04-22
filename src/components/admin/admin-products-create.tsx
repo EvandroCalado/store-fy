@@ -2,10 +2,11 @@
 
 import { useTransition } from 'react';
 
+import dynamic from 'next/dynamic';
+import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 
 import { zodResolver } from '@hookform/resolvers/zod';
-import MDEditor from '@uiw/react-md-editor';
 import { Loader, SaveAll } from 'lucide-react';
 import { useForm } from 'react-hook-form';
 import slugify from 'slugify';
@@ -18,8 +19,10 @@ import { createProductSchema } from '@/schemas/create-product';
 import { updateProductSchema } from '@/schemas/update-product';
 import { Product } from '@/types/product';
 import { PRODUCT_DEFAULT } from '@/utils/constants';
+import { UploadButton } from '@/utils/uploadthing';
 
 import { Button } from '../ui/button';
+import { Card, CardContent } from '../ui/card';
 import {
   Form,
   FormControl,
@@ -30,6 +33,8 @@ import {
 } from '../ui/form';
 import { Input } from '../ui/input';
 import { Textarea } from '../ui/textarea';
+
+const MDEditor = dynamic(() => import('@uiw/react-md-editor'), { ssr: false });
 
 type CreateProductSchema = z.infer<typeof createProductSchema>;
 type UpdateProductSchema = z.infer<typeof updateProductSchema>;
@@ -57,7 +62,7 @@ export const AdminProductsCreate = ({
 
   const onSubmit = async (value: CreateProductSchema | UpdateProductSchema) => {
     if (type === 'create') {
-      const res = await createProduct({ ...value, price: Number(value.price) });
+      const res = await createProduct(value);
 
       if (!res.success) {
         toast.error(res.message);
@@ -72,7 +77,6 @@ export const AdminProductsCreate = ({
     if (type === 'update') {
       const res = await updateProduct({
         id: productId as string,
-        price: Number(value.price),
         ...value,
       });
 
@@ -86,6 +90,8 @@ export const AdminProductsCreate = ({
       router.push('/admin/products');
     }
   };
+
+  const images = form.watch('images');
 
   return (
     <Form {...form}>
@@ -215,6 +221,62 @@ export const AdminProductsCreate = ({
 
         <div className='upload-field flex flex-col gap-5 md:flex-row'>
           {/* Images */}
+          <FormField
+            control={form.control}
+            name='images'
+            render={() => (
+              <FormItem className='w-full'>
+                <FormLabel>Imagens</FormLabel>
+                <Card className='min-h-28 rounded-md shadow-none'>
+                  <CardContent className='flex flex-wrap items-center gap-4'>
+                    {images?.map(image => (
+                      <Image
+                        key={image}
+                        src={image}
+                        alt='Product image'
+                        width={100}
+                        height={100}
+                        priority
+                        className='h-20 w-20 rounded-sm object-cover object-center'
+                      />
+                    ))}
+
+                    <FormControl>
+                      <UploadButton
+                        endpoint='imageUploader'
+                        onClientUploadComplete={(res: { ufsUrl: string }[]) => {
+                          form.setValue('images', [...images, res[0].ufsUrl]);
+                        }}
+                        onUploadError={(error: Error) => {
+                          toast.error(`ERROR! ${error.message}`);
+                        }}
+                        // content={{
+                        //   button({ ready, isUploading }) {
+                        //     if (ready) return <div>Escolher imagem</div>;
+                        //     if (isUploading) return <div>Enviando...</div>;
+
+                        //     return 'Carregando...';
+                        //   },
+                        // }}
+                        // appearance={{
+                        //   allowedContent: 'text-foreground',
+                        //   button({ ready, isUploading }) {
+                        //     return {
+                        //       color: '#aaa',
+                        //       fontWeight: '600',
+                        //       ...(ready && { color: '#aaa' }),
+                        //       ...(isUploading && { color: '#aaa' }),
+                        //     };
+                        //   },
+                        // }}
+                      />
+                    </FormControl>
+                  </CardContent>
+                </Card>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
         </div>
 
         <div className='upload-field flex flex-col gap-5 md:flex-row'>
@@ -241,10 +303,10 @@ export const AdminProductsCreate = ({
           control={form.control}
           name='details'
           render={({ field }) => (
-            <FormItem className='w-full' data-color-mode='light'>
+            <FormItem className='w-full'>
               <FormLabel>Detalhe</FormLabel>
               <FormControl>
-                <div className='container'>
+                <div className='container' data-color-mode='light'>
                   <MDEditor
                     {...field}
                     value={field.value}

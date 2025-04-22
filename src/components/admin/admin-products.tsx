@@ -53,7 +53,7 @@ export const AdminProducts = ({ products }: AdminProductsProps) => {
                   title='Editar'
                   aria-label='Editar'
                 >
-                  <Link href={`/admin/product/${product.id}`}>
+                  <Link href={`/admin/products/update`}>
                     <LinkLoader iconName='Edit' />
                   </Link>
                 </Button>
