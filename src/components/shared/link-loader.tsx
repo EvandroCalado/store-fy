@@ -20,7 +20,7 @@ export const LinkLoader = ({ iconName = 'MoveLeft' }: LinkLoaderProps) => {
     MoveRight: <MoveRight />,
     Search: <Search />,
     Edit: <Edit />,
-    Plus: <Plus />,
+    Plus: <Plus className='stroke-4' />,
   };
 
   return (
