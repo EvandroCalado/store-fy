@@ -23,6 +23,7 @@ import { UploadButton } from '@/utils/uploadthing';
 
 import { Button } from '../ui/button';
 import { Card, CardContent } from '../ui/card';
+import { Checkbox } from '../ui/checkbox';
 import {
   Form,
   FormControl,
@@ -55,7 +56,7 @@ export const AdminProductsCreate = ({
 
   const form = useForm<CreateProductSchema | UpdateProductSchema>({
     resolver: zodResolver(
-      type === 'create' ? createProductSchema : createProductSchema,
+      type === 'create' ? createProductSchema : updateProductSchema,
     ),
     defaultValues: type === 'create' ? PRODUCT_DEFAULT : product,
   });
@@ -81,10 +82,12 @@ export const AdminProductsCreate = ({
       });
 
       if (!res.success) {
+        console.log(res.message);
         toast.error(res.message);
         return;
       }
 
+      console.log(res);
       toast.success(res.message);
 
       router.push('/admin/products');
@@ -92,10 +95,14 @@ export const AdminProductsCreate = ({
   };
 
   const images = form.watch('images');
+  const isFeatured = form.watch('isFeatured');
+  const banner = form.watch('banner');
 
   return (
     <Form {...form}>
-      <h1 className='mb-4 text-xl font-semibold'>Criar produto</h1>
+      <h1 className='mb-4 text-xl font-semibold'>
+        {type === 'create' ? 'Criar' : 'Editar'} produto
+      </h1>
 
       <form
         className='w-full space-y-12'
@@ -279,8 +286,51 @@ export const AdminProductsCreate = ({
           />
         </div>
 
-        <div className='upload-field flex flex-col gap-5 md:flex-row'>
+        <div className='upload-field flex flex-col gap-1.5'>
           {/* is featured */}
+          <p className='text-sm font-medium'>Produto em Destaque</p>
+          <Card className='min-h-28 w-full rounded-md shadow-none'>
+            <CardContent className='space-y-2'>
+              <FormField
+                control={form.control}
+                name='isFeatured'
+                render={({ field }) => (
+                  <FormItem className='flex items-center gap-2'>
+                    <FormControl>
+                      <Checkbox
+                        checked={field.value}
+                        onCheckedChange={field.onChange}
+                      />
+                    </FormControl>
+                    <FormLabel>Em Destaque?</FormLabel>
+                  </FormItem>
+                )}
+              />
+
+              {isFeatured && banner && (
+                <Image
+                  src={banner}
+                  alt='Product banner'
+                  width={1920}
+                  height={600}
+                  priority
+                  className='w-full rounded-sm object-cover object-center'
+                />
+              )}
+
+              {isFeatured && !banner && (
+                <UploadButton
+                  endpoint='imageUploader'
+                  onClientUploadComplete={(res: { ufsUrl: string }[]) => {
+                    form.setValue('banner', res[0].ufsUrl);
+                  }}
+                  onUploadError={(error: Error) => {
+                    toast.error(`ERROR! ${error.message}`);
+                  }}
+                />
+              )}
+            </CardContent>
+          </Card>
         </div>
 
         {/* description */}
