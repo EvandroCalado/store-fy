@@ -4,9 +4,9 @@ import { JSX } from 'react';
 
 import { useLinkStatus } from 'next/link';
 
-import { Edit, Loader, MoveLeft, MoveRight, Search } from 'lucide-react';
+import { Edit, Loader, MoveLeft, MoveRight, Plus, Search } from 'lucide-react';
 
-type IconName = 'MoveLeft' | 'MoveRight' | 'Search' | 'Edit';
+type IconName = 'MoveLeft' | 'MoveRight' | 'Search' | 'Edit' | 'Plus';
 
 type LinkLoaderProps = {
   iconName?: IconName;
@@ -20,6 +20,7 @@ export const LinkLoader = ({ iconName = 'MoveLeft' }: LinkLoaderProps) => {
     MoveRight: <MoveRight />,
     Search: <Search />,
     Edit: <Edit />,
+    Plus: <Plus />,
   };
 
   return (
