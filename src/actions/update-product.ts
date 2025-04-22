@@ -10,13 +10,13 @@ import { formatErrors } from '@/utils/formatErrors';
 
 type UpdateProduct = z.infer<typeof updateProductSchema>;
 
-export const updateProduct = async (productId: string, data: UpdateProduct) => {
+export const updateProduct = async (data: UpdateProduct) => {
   try {
     const product = updateProductSchema.parse(data);
 
     const productExists = await prisma.product.findFirst({
       where: {
-        id: productId,
+        id: product.id,
       },
     });
 
@@ -24,7 +24,7 @@ export const updateProduct = async (productId: string, data: UpdateProduct) => {
 
     await prisma.product.update({
       where: {
-        id: productId,
+        id: product.id,
       },
       data: product,
     });
