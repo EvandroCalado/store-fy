@@ -20,13 +20,13 @@ import { Button } from '../ui/button';
 type UpdateDialogProps = {
   orderId: string;
   action: (orderId: string) => Promise<{ success?: boolean; message: string }>;
-  isDelivered?: boolean;
+  isPaid?: boolean;
 };
 
 export const UpdateDialog = ({
   orderId,
   action,
-  isDelivered,
+  isPaid,
 }: UpdateDialogProps) => {
   const [isOpen, setIsOpen] = useState(false);
   const [isPending, startTransition] = useTransition();
@@ -54,7 +54,7 @@ export const UpdateDialog = ({
           variant='outline'
           title='Marcar como pago'
           aria-label='Marcar como pago'
-          disabled={isDelivered}
+          disabled={isPaid}
         >
           <Wallet />
         </Button>
