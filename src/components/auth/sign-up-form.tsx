@@ -1,13 +1,17 @@
 'use client';
 
-import { useActionState } from 'react';
-
 import Image from 'next/image';
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 
+import { zodResolver } from '@hookform/resolvers/zod';
 import { Loader2, MoveRight } from 'lucide-react';
+import { useForm } from 'react-hook-form';
+import { toast } from 'sonner';
 
 import { signUpUserWithCredentials } from '@/actions/sign-up-user-with-credentials';
+import { signUpUserSchema } from '@/schemas/sign-up-user';
+import { SignUpUser } from '@/types/sign-up-user';
 
 import { Button } from '../ui/button';
 import {
@@ -18,16 +22,40 @@ import {
   CardHeader,
   CardTitle,
 } from '../ui/card';
+import {
+  Form,
+  FormControl,
+  FormField,
+  FormItem,
+  FormMessage,
+} from '../ui/form';
 import { Input } from '../ui/input';
 
 export const SignUpForm = () => {
-  const [state, formAction, isPending] = useActionState(
-    signUpUserWithCredentials,
-    {
-      success: false,
-      message: '',
+  const router = useRouter();
+
+  const form = useForm<SignUpUser>({
+    resolver: zodResolver(signUpUserSchema),
+    defaultValues: {
+      name: '',
+      email: '',
+      password: '',
+      confirmPassword: '',
     },
-  );
+
+    mode: 'onChange',
+  });
+
+  const onSubmit = async (values: SignUpUser) => {
+    const res = await signUpUserWithCredentials(values);
+
+    if (!res.success) {
+      toast.error(res.message);
+      return;
+    }
+
+    router.push('/');
+  };
 
   return (
     <Card className='m-5 flex w-full items-center gap-6 border-none p-5 sm:max-w-xl sm:flex-row'>
@@ -51,55 +79,78 @@ export const SignUpForm = () => {
         </CardHeader>
 
         <CardContent className='px-2'>
-          <form className='space-y-4' action={formAction}>
-            <Input
-              id='name'
-              type='text'
-              name='name'
-              placeholder='Nome'
-              autoComplete='name'
-              defaultValue=''
-            />
-            <Input
-              id='email'
-              type='email'
-              name='email'
-              placeholder='Email'
-              autoComplete='email'
-              defaultValue=''
-            />
-            <Input
-              id='password'
-              type='password'
-              name='password'
-              placeholder='Senha'
-              autoComplete='password'
-              defaultValue=''
-            />
-            <Input
-              id='confirmPassword'
-              type='password'
-              name='confirmPassword'
-              placeholder='Confirmar senha'
-              autoComplete='confirmPassword'
-              defaultValue=''
-            />
+          <Form {...form}>
+            <form className='space-y-6' onSubmit={form.handleSubmit(onSubmit)}>
+              <FormField
+                control={form.control}
+                name='name'
+                render={({ field }) => (
+                  <FormItem className='relative w-full sm:max-w-sm'>
+                    <FormControl>
+                      <Input type='text' placeholder='Nome' {...field} />
+                    </FormControl>
+                    <FormMessage className='absolute -bottom-5 left-0' />
+                  </FormItem>
+                )}
+              />
 
-            <Button
-              type='submit'
-              className='my-2 w-full sm:justify-between'
-              disabled={isPending}
-            >
-              Cadastrar
-              {isPending ? <Loader2 className='animate-spin' /> : <MoveRight />}
-            </Button>
+              <FormField
+                control={form.control}
+                name='email'
+                render={({ field }) => (
+                  <FormItem className='relative w-full sm:max-w-sm'>
+                    <FormControl>
+                      <Input type='email' placeholder='Email' {...field} />
+                    </FormControl>
+                    <FormMessage className='absolute -bottom-5 left-0' />
+                  </FormItem>
+                )}
+              />
 
-            {state && !state.success && (
-              <p className='text-destructive text-center text-sm'>
-                {state.message}
-              </p>
-            )}
-          </form>
+              <FormField
+                control={form.control}
+                name='password'
+                render={({ field }) => (
+                  <FormItem className='relative w-full sm:max-w-sm'>
+                    <FormControl>
+                      <Input type='password' placeholder='Senha' {...field} />
+                    </FormControl>
+                    <FormMessage className='absolute -bottom-5 left-0' />
+                  </FormItem>
+                )}
+              />
+
+              <FormField
+                control={form.control}
+                name='confirmPassword'
+                render={({ field }) => (
+                  <FormItem className='relative w-full sm:max-w-sm'>
+                    <FormControl>
+                      <Input
+                        type='password'
+                        placeholder='Confirme a senha'
+                        {...field}
+                      />
+                    </FormControl>
+                    <FormMessage className='absolute -bottom-5 left-0' />
+                  </FormItem>
+                )}
+              />
+
+              <Button
+                type='submit'
+                className='my-2 w-full sm:justify-between'
+                disabled={form.formState.isSubmitting}
+              >
+                Cadastrar
+                {form.formState.isSubmitting ? (
+                  <Loader2 className='animate-spin' />
+                ) : (
+                  <MoveRight />
+                )}
+              </Button>
+            </form>
+          </Form>
         </CardContent>
 
         <CardFooter className='flex items-center justify-center px-2 sm:justify-start'>

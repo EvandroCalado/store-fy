@@ -4,17 +4,12 @@ import { isRedirectError } from 'next/dist/client/components/redirect-error';
 
 import { signIn } from '@/auth';
 import { signInUserSchema } from '@/schemas/sign-in-user';
+import { SignInUser } from '@/types/sign-in-user';
 import { formatErrors } from '@/utils/formatErrors';
 
-export const signInUserWithCredentials = async (
-  prevState: unknown,
-  formData: FormData,
-) => {
+export const signInUserWithCredentials = async (data: SignInUser) => {
   try {
-    const user = signInUserSchema.parse({
-      email: formData.get('email'),
-      password: formData.get('password'),
-    });
+    const user = signInUserSchema.parse(data);
 
     await signIn('credentials', user);
 

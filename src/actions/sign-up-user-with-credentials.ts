@@ -7,19 +7,12 @@ import { hashSync } from 'bcrypt-ts-edge';
 import { signIn } from '@/auth';
 import { prisma } from '@/db/prisma';
 import { signUpUserSchema } from '@/schemas/sign-up-user';
+import { SignUpUser } from '@/types/sign-up-user';
 import { formatErrors } from '@/utils/formatErrors';
 
-export const signUpUserWithCredentials = async (
-  prevState: unknown,
-  formData: FormData,
-) => {
+export const signUpUserWithCredentials = async (data: SignUpUser) => {
   try {
-    const user = signUpUserSchema.parse({
-      name: formData.get('name'),
-      email: formData.get('email'),
-      password: formData.get('password'),
-      confirmPassword: formData.get('confirmPassword'),
-    });
+    const user = signUpUserSchema.parse(data);
 
     const hashedPassword = hashSync(user.password);
 
