@@ -1,7 +1,5 @@
 import type { NextConfig } from 'next';
 
-import removeImports from 'next-remove-imports';
-
 const nextConfig: NextConfig = {
   images: {
     remotePatterns: [
@@ -19,4 +17,4 @@ const nextConfig: NextConfig = {
   },
 };
 
-export default removeImports()(nextConfig);
+export default nextConfig;
