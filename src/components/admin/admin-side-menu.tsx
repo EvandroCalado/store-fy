@@ -3,11 +3,12 @@
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 
-import { LogOut } from 'lucide-react';
+import { LogOut, SidebarCloseIcon } from 'lucide-react';
 import { signOut } from 'next-auth/react';
 
 import { adminLinks } from '@/utils/adminLinks';
 
+import { Button } from '../ui/button';
 import {
   Sidebar,
   SidebarContent,
@@ -19,16 +20,22 @@ import {
   SidebarMenu,
   SidebarMenuButton,
   SidebarMenuItem,
+  useSidebar,
 } from '../ui/sidebar';
 
 export const AdminSideMenu = () => {
+  const { setOpenMobile } = useSidebar();
   const path = usePathname();
 
   return (
     <Sidebar collapsible='icon'>
       <SidebarHeader>
         <SidebarMenu>
-          <SidebarMenuItem title='Storefy' aria-label='Storefy'>
+          <SidebarMenuItem
+            title='Storefy'
+            aria-label='Storefy'
+            className='flex items-center justify-between'
+          >
             <SidebarMenuButton
               asChild
               tooltip='Ir para home'
@@ -39,6 +46,15 @@ export const AdminSideMenu = () => {
                 <span>Storefy</span>
               </Link>
             </SidebarMenuButton>
+
+            <Button
+              variant='ghost'
+              size='icon'
+              onClick={() => setOpenMobile(false)}
+              className='rounded-full md:hidden'
+            >
+              <SidebarCloseIcon />
+            </Button>
           </SidebarMenuItem>
         </SidebarMenu>
       </SidebarHeader>
