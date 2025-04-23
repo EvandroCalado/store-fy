@@ -1,7 +1,5 @@
 'use client';
 
-import { useTransition } from 'react';
-
 import dynamic from 'next/dynamic';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
@@ -51,7 +49,6 @@ export const AdminProductsCreate = ({
   product,
   productId,
 }: AdminProductsCreateProps) => {
-  const [isPending, startTransition] = useTransition();
   const router = useRouter();
 
   const form = useForm<CreateProductSchema | UpdateProductSchema>({
