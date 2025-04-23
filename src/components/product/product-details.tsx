@@ -18,7 +18,11 @@ export const ProductDetails = ({ product, cart }: ProductPageProps) => {
   return (
     <div className='space-y-8 md:col-span-3'>
       <div className='flex items-center gap-4'>
-        <Badge className='bg-red-100 font-semibold text-red-500 capitalize'>
+        <Badge
+          className='bg-red-100 font-semibold text-red-500 capitalize'
+          title='Categoria'
+          aria-label='Categoria'
+        >
           {product.category}
         </Badge>
 
@@ -34,7 +38,12 @@ export const ProductDetails = ({ product, cart }: ProductPageProps) => {
         <h1 className='text-3xl font-semibold tracking-tight capitalize'>
           {product.name}
         </h1>
-        <Badge variant={'outline'} className='font-semibold text-red-500'>
+        <Badge
+          variant={'outline'}
+          className='font-semibold text-red-500'
+          title='Em estoque ou sem estoque'
+          aria-label='Em estoque ou sem estoque'
+        >
           {product.stock > 0 ? 'Em estoque' : 'Sem estoque'}
         </Badge>
       </div>
@@ -59,7 +68,12 @@ export const ProductDetails = ({ product, cart }: ProductPageProps) => {
             cart={cart}
           />
 
-          <Button variant='outline' size={'icon'}>
+          <Button
+            variant='outline'
+            size={'icon'}
+            title='Favoritar'
+            aria-label='Favoritar'
+          >
             <HeartIcon />
           </Button>
         </div>
