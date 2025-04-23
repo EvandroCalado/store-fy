@@ -48,10 +48,11 @@ export const AdminProducts = ({ products }: AdminProductsProps) => {
               <TableCell>{product.rating}</TableCell>
               <TableCell className='flex items-center justify-end gap-2'>
                 <Button
-                  variant={'outline'}
-                  size={'icon'}
+                  variant='outline'
+                  size='icon'
                   title='Editar'
                   aria-label='Editar'
+                  asChild
                 >
                   <Link href={`/admin/products/${product.id}`}>
                     <LinkLoader iconName='Edit' />
