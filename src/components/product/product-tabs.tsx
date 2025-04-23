@@ -1,3 +1,5 @@
+import { marked } from 'marked';
+
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '../ui/tabs';
 
 type ProductTabsProps = {
@@ -5,6 +7,8 @@ type ProductTabsProps = {
 };
 
 export const ProductTabs = ({ details }: ProductTabsProps) => {
+  const htmlContent = marked.parse(details);
+
   return (
     <div className='flex items-center justify-center md:col-span-5 xl:col-span-8'>
       <Tabs defaultValue='details' className='w-full'>
@@ -23,7 +27,10 @@ export const ProductTabs = ({ details }: ProductTabsProps) => {
           </TabsTrigger>
         </TabsList>
         <TabsContent value='details' className='text-muted-foreground my-4'>
-          {details}
+          <div
+            dangerouslySetInnerHTML={{ __html: htmlContent }}
+            className='info'
+          />
         </TabsContent>
         <TabsContent value='reviews'>Avaliações</TabsContent>
       </Tabs>
