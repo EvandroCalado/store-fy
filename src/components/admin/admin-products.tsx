@@ -55,7 +55,7 @@ export const AdminProducts = ({ products }: AdminProductsProps) => {
                   asChild
                 >
                   <Link href={`/admin/products/${product.id}`}>
-                    <LinkLoader iconName='Edit' />
+                    <LinkLoader iconName='edit' />
                   </Link>
                 </Button>
 

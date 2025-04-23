@@ -73,7 +73,7 @@ export const OrderList = ({ orders }: OrderListProps) => {
                     className='flex items-center gap-2'
                   >
                     Detalhes
-                    <LinkLoader iconName='MoveRight' />
+                    <LinkLoader />
                   </Link>
                 </Button>
               </TableCell>

@@ -80,7 +80,7 @@ export const AdminOrders = ({ orders }: AdminOrdersProps) => {
                     href={`/order/${order.id}`}
                     className='flex items-center justify-center gap-1'
                   >
-                    <LinkLoader iconName='Search' />
+                    <LinkLoader iconName='search' />
                   </Link>
                 </Button>
 

@@ -35,7 +35,7 @@ const AdminProductsPage = async ({ searchParams }: AdminProductsPageParams) => {
         <h1 className='text-xl font-semibold'>Produtos</h1>
         <Button asChild>
           <Link href='/admin/products/create'>
-            <LinkLoader iconName='Plus' />
+            <LinkLoader iconName='plus' />
             Criar produto
           </Link>
         </Button>
