@@ -79,12 +79,10 @@ export const AdminProductsCreate = ({
       });
 
       if (!res.success) {
-        console.log(res.message);
         toast.error(res.message);
         return;
       }
 
-      console.log(res);
       toast.success(res.message);
 
       router.push('/admin/products');
