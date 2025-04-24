@@ -1,3 +1,4 @@
+import { revalidateTag } from 'next/cache';
 import { cookies } from 'next/headers';
 
 import { AdminHeader } from '@/components/admin/admin-header';
@@ -13,6 +14,12 @@ const AdminLayout = async ({
 
   const defaultOpen = cookieStore.get('sidebar_state')?.value === 'true';
 
+  const refetchAction = async (tag: string) => {
+    'use server';
+
+    revalidateTag(tag);
+  };
+
   return (
     <SidebarProvider
       defaultOpen={defaultOpen}
@@ -20,7 +27,7 @@ const AdminLayout = async ({
     >
       <AdminSideMenu />
       <main className='flex flex-1 flex-col'>
-        <AdminHeader />
+        <AdminHeader refetchAction={refetchAction} />
         {children}
       </main>
     </SidebarProvider>

@@ -1,8 +1,12 @@
 import { DarkMode } from '../shared/dark-mode';
-import { Input } from '../ui/input';
 import { SidebarTrigger } from '../ui/sidebar';
+import { AdminSearch } from './admin-search';
 
-export const AdminHeader = () => {
+type AdminHeaderProps = {
+  refetchAction: (tag: string) => Promise<void>;
+};
+
+export const AdminHeader = ({ refetchAction }: AdminHeaderProps) => {
   return (
     <header className='flex items-center justify-between gap-4 border-b p-4'>
       <div className='flex items-center gap-4'>
@@ -14,11 +18,7 @@ export const AdminHeader = () => {
         <DarkMode />
       </div>
 
-      <Input
-        type='search'
-        placeholder='Procurar produtos...'
-        className='w-full max-w-sm'
-      />
+      <AdminSearch refetchAction={refetchAction} />
     </header>
   );
 };
