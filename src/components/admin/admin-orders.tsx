@@ -32,12 +32,11 @@ type AdminOrdersProps = {
 export const AdminOrders = ({ orders }: AdminOrdersProps) => {
   return (
     <div className='flex-1 overflow-x-auto'>
-      <h1 className='text-xl font-semibold'>Pedidos</h1>
-
       <Table>
         <TableCaption>Lista de pedidos.</TableCaption>
         <TableHeader>
           <TableRow>
+            <TableHead>Id</TableHead>
             <TableHead>Cliente</TableHead>
             <TableHead>Data</TableHead>
             <TableHead>Total</TableHead>
@@ -49,6 +48,7 @@ export const AdminOrders = ({ orders }: AdminOrdersProps) => {
         <TableBody>
           {orders.map(order => (
             <TableRow key={order.id}>
+              <TableCell>{order.id.substring(0, 6)}...</TableCell>
               <TableCell>{order.user?.name}</TableCell>
               <TableCell>{formatDate(order.createdAt).dateTime}</TableCell>
               <TableCell>{formatCurrency(order.totalPrice)}</TableCell>

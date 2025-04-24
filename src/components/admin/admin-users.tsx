@@ -25,8 +25,6 @@ type AdminUsersProps = {
 export const AdminUsers = ({ users }: AdminUsersProps) => {
   return (
     <div className='flex-1 overflow-x-auto'>
-      <h1 className='text-xl font-semibold'>Usuários</h1>
-
       <Table>
         <TableCaption>Lista de usuários.</TableCaption>
         <TableHeader>
