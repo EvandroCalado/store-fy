@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import { Jost } from 'next/font/google';
+import { NuqsAdapter } from 'nuqs/adapters/next/app';
 
 import { Toaster } from '@/components/ui/sonner';
 
@@ -36,15 +37,17 @@ const RootLayout = ({
       <body
         className={`${primary.variable} flex min-h-screen flex-col antialiased`}
       >
-        <ThemeProvider
-          attribute='class'
-          defaultTheme='light'
-          enableSystem
-          disableTransitionOnChange
-        >
-          {children}
-          <Toaster invert />
-        </ThemeProvider>
+        <NuqsAdapter>
+          <ThemeProvider
+            attribute='class'
+            defaultTheme='light'
+            enableSystem
+            disableTransitionOnChange
+          >
+            {children}
+            <Toaster invert />
+          </ThemeProvider>
+        </NuqsAdapter>
       </body>
     </html>
   );
