@@ -2,6 +2,9 @@ import Link from 'next/link';
 
 import { User } from '@prisma/client';
 
+import { deleteUser } from '@/actions/delete-user';
+
+import { DeleteDialog } from '../shared/delete-dialog';
 import { LinkLoader } from '../shared/link-loader';
 import { Badge } from '../ui/badge';
 import { Button } from '../ui/button';
@@ -64,21 +67,7 @@ export const AdminUsers = ({ users }: AdminUsersProps) => {
                   </Link>
                 </Button>
 
-                {/* <DeleteDialog
-                  id={order.id}
-                  action={deleteOrder}
-                  isDelivered={order.isDelivered}
-                />
-                <UpdateDialog
-                  orderId={order.id}
-                  action={updateOrderToPaidCOD}
-                  isPaid={order.isPaid}
-                />
-                <DeliverDialog
-                  orderId={order.id}
-                  action={deliverOrder}
-                  isDelivered={order.isDelivered}
-                /> */}
+                <DeleteDialog id={user.id} action={deleteUser} />
               </TableCell>
             </TableRow>
           ))}
