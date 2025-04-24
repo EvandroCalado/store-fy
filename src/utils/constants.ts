@@ -10,6 +10,7 @@ export const CONSTANTS = constantsSchema.parse({
   PAYMENT_METHODS: process.env.NEXT_PUBLIC_PAYMENT_METHODS?.split(','),
   DEFAULT_PAYMENT_METHOD: process.env.NEXT_PUBLIC_DEFAULT_PAYMENT_METHOD,
   PAGE_SIZE: process.env.NEXT_PUBLIC_PAGE_SIZE,
+  USER_ROLES: process.env.NEXT_PUBLIC_USER_ROLES?.split(','),
 });
 
 export const SIGN_IN_DEFAULT_VALUES: SignInUser = {
