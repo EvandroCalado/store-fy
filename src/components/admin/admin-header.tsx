@@ -1,12 +1,10 @@
+import { refetchAction } from '@/actions/refetch-action';
+
 import { DarkMode } from '../shared/dark-mode';
 import { SidebarTrigger } from '../ui/sidebar';
 import { AdminSearch } from './admin-search';
 
-type AdminHeaderProps = {
-  refetchAction: (tag: string) => Promise<void>;
-};
-
-export const AdminHeader = ({ refetchAction }: AdminHeaderProps) => {
+export const AdminHeader = () => {
   return (
     <header className='flex items-center justify-between gap-4 border-b p-4'>
       <div className='flex items-center gap-4'>
