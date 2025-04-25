@@ -1,10 +1,12 @@
 import { Metadata } from 'next';
+import { revalidateTag } from 'next/cache';
 import Link from 'next/link';
 
 import { SearchParams } from 'nuqs/server';
 
 import { getAllProducts } from '@/actions/get-all-products';
 import { AdminProducts } from '@/components/admin/admin-products';
+import { AdminProductsCategory } from '@/components/admin/admin-products-category';
 import { Container } from '@/components/shared/container';
 import { LinkLoader } from '@/components/shared/link-loader';
 import { Pagination } from '@/components/shared/pagination';
@@ -25,10 +27,19 @@ const AdminProductsPage = async ({ searchParams }: AdminProductsPageParams) => {
 
   const data = await getAllProducts({ page, query, category, limit: 12 });
 
+  const refetchAction = async (tag: string) => {
+    'use server';
+
+    revalidateTag(tag);
+  };
+
   return (
     <Container className='my-8 flex flex-1 flex-col space-y-4'>
       <div className='flex items-center justify-between gap-4'>
-        <h1 className='text-xl font-semibold'>Produtos</h1>
+        <div className='flex items-center gap-2'>
+          <h1 className='text-xl font-semibold'>Produtos</h1>
+          <AdminProductsCategory refetchAction={refetchAction} />
+        </div>
 
         <Button asChild>
           <Link href='/admin/products/create'>

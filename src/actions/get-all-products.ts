@@ -23,7 +23,7 @@ export const getAllProducts = unstable_cache(
       where: {
         AND: [
           query ? { name: { contains: query, mode: 'insensitive' } } : {},
-          category
+          category && category !== 'Todos'
             ? { category: { contains: category, mode: 'insensitive' } }
             : {},
         ],
