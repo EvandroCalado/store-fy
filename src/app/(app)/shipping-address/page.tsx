@@ -20,10 +20,7 @@ const ShippingAddressPage = async () => {
   if (!cart || cart.items.length === 0) redirect('/');
 
   const session = await auth();
-
   const userId = session?.user?.id;
-
-  if (!userId) redirect('/sign-in?callbackUrl=/shipping-address');
 
   const user = await getUserById(userId);
 

@@ -1,6 +1,10 @@
 import { Metadata } from 'next';
 
+import { SearchParams } from 'nuqs';
+
 import { getMyOrders } from '@/actions/get-my-orders';
+import { refetchAction } from '@/actions/refetch-action';
+import { loadSearchParams } from '@/app/search-params';
 import { OrderList } from '@/components/order/order-list';
 import { Container } from '@/components/shared/container';
 import { Pagination } from '@/components/shared/pagination';
@@ -11,13 +15,13 @@ export const metadata: Metadata = {
 };
 
 type OrdersPageParams = {
-  searchParams: Promise<{ page: string }>;
+  searchParams: Promise<SearchParams>;
 };
 
 const OrdersPage = async ({ searchParams }: OrdersPageParams) => {
-  const { page } = await searchParams;
+  const { page } = await loadSearchParams(searchParams);
 
-  const ordersData = await getMyOrders({ page: Number(page) || 1 });
+  const ordersData = await getMyOrders({ page });
 
   return (
     <>
@@ -25,8 +29,8 @@ const OrdersPage = async ({ searchParams }: OrdersPageParams) => {
       <Container className='my-8 flex flex-1 flex-col'>
         <OrderList orders={ordersData.orders} />
         <Pagination
-          page={Number(page) || 1}
           totalPages={ordersData.totalPages}
+          refetchAction={refetchAction}
           className='ml-auto'
         />
       </Container>
