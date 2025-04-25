@@ -11,7 +11,6 @@ import { z } from 'zod';
 
 import { updateUser } from '@/actions/update-user';
 import { updateUserSchema } from '@/schemas/update-user';
-import { CONSTANTS } from '@/utils/constants';
 
 import { Button } from '../ui/button';
 import {
@@ -106,20 +105,17 @@ export const AdminUsersUpdate = ({ user }: AdminUsersUpdateProps) => {
             render={({ field }) => (
               <FormItem className='relative'>
                 <FormLabel>Cargo</FormLabel>
-                <FormControl>
-                  <Select value={field.value} onValueChange={field.onChange}>
+                <Select value={field.value} onValueChange={field.onChange}>
+                  <FormControl>
                     <SelectTrigger>
                       <SelectValue placeholder='Selecione um cargo' />
                     </SelectTrigger>
-                    <SelectContent>
-                      {CONSTANTS.USER_ROLES.map(role => (
-                        <SelectItem key={role} value={role}>
-                          {role === 'admin' ? 'Administrador' : 'Usuário'}
-                        </SelectItem>
-                      ))}
-                    </SelectContent>
-                  </Select>
-                </FormControl>
+                  </FormControl>
+                  <SelectContent>
+                    <SelectItem value='admin'>Administrador</SelectItem>
+                    <SelectItem value='user'>Usuário</SelectItem>
+                  </SelectContent>
+                </Select>
                 <FormMessage className='absolute -bottom-5 left-0' />
               </FormItem>
             )}
