@@ -4,11 +4,10 @@ import { SearchParams } from 'nuqs/server';
 
 import { getAllOrders } from '@/actions/get-all-orders';
 import { refetchAction } from '@/actions/refetch-action';
+import { loadSearchParams } from '@/app/search-params';
 import { AdminOrders } from '@/components/admin/admin-orders';
 import { Container } from '@/components/shared/container';
 import { Pagination } from '@/components/shared/pagination';
-
-import { loadSearchParams } from '../../search-params';
 
 export const metadata: Metadata = {
   title: 'Administração de Pedidos',

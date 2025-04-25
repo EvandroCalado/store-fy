@@ -5,11 +5,10 @@ import { SearchParams } from 'nuqs';
 
 import { getAllUsers } from '@/actions/get-all-users';
 import { refetchAction } from '@/actions/refetch-action';
+import { loadSearchParams } from '@/app/search-params';
 import { AdminUsers } from '@/components/admin/admin-users';
 import { Container } from '@/components/shared/container';
 import { Pagination } from '@/components/shared/pagination';
-
-import { loadSearchParams } from '../../search-params';
 
 export const metadata: Metadata = {
   title: 'Administração de Usuários',
