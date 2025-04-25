@@ -1,10 +1,10 @@
 import { Metadata } from 'next';
-import { revalidateTag } from 'next/cache';
 import Link from 'next/link';
 
 import { SearchParams } from 'nuqs/server';
 
 import { getAllProducts } from '@/actions/get-all-products';
+import { refetchAction } from '@/actions/refetch-action';
 import { AdminProducts } from '@/components/admin/admin-products';
 import { AdminProductsCategory } from '@/components/admin/admin-products-category';
 import { Container } from '@/components/shared/container';
@@ -27,12 +27,6 @@ const AdminProductsPage = async ({ searchParams }: AdminProductsPageParams) => {
 
   const data = await getAllProducts({ page, query, category, limit: 12 });
 
-  const refetchAction = async (tag: string) => {
-    'use server';
-
-    revalidateTag(tag);
-  };
-
   return (
     <Container className='my-8 flex flex-1 flex-col space-y-4'>
       <div className='flex items-center justify-between gap-4'>
@@ -50,8 +44,8 @@ const AdminProductsPage = async ({ searchParams }: AdminProductsPageParams) => {
       </div>
       <AdminProducts products={data.products} />
       <Pagination
-        page={page}
         totalPages={data.totalPages}
+        refetchAction={refetchAction}
         className='ml-auto'
       />
     </Container>

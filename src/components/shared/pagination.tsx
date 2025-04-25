@@ -2,43 +2,36 @@
 
 import { useTransition } from 'react';
 
-import { useRouter, useSearchParams } from 'next/navigation';
+import { parseAsInteger, useQueryState } from 'nuqs';
 
 import { cn } from '@/lib/utils';
-import { formatUrlQuery } from '@/utils/format-url-query';
 
 import { Button } from '../ui/button';
 
 type PaginationProps = {
-  page: number;
   totalPages: number;
-  urlParams?: string;
+  refetchAction: (tag: string) => Promise<void>;
   className?: string;
 };
 
 export const Pagination = ({
-  page,
   totalPages,
-  urlParams,
+  refetchAction,
   className,
 }: PaginationProps) => {
+  const [page, setPage] = useQueryState('page', parseAsInteger.withDefault(1));
+
   const [isPending, startTransition] = useTransition();
-  const searchParams = useSearchParams();
-  const router = useRouter();
 
   if (totalPages <= 1) return null;
 
-  const handleClick = (type: 'prev' | 'next') => {
+  const handleClick = (value: number) => {
     startTransition(() => {
-      const pageValue = type === 'prev' ? page - 1 : page + 1;
+      setPage(value);
 
-      const newUrl = formatUrlQuery({
-        params: searchParams.toString(),
-        key: urlParams || 'page',
-        value: pageValue.toString(),
+      setTimeout(() => {
+        refetchAction('products');
       });
-
-      router.push(newUrl);
     });
   };
 
@@ -47,7 +40,7 @@ export const Pagination = ({
       <Button
         variant='outline'
         disabled={page <= 1 || isPending}
-        onClick={() => handleClick('prev')}
+        onClick={() => handleClick(page - 1)}
       >
         Anterior
       </Button>
@@ -59,7 +52,7 @@ export const Pagination = ({
       <Button
         variant='outline'
         disabled={page >= totalPages || isPending}
-        onClick={() => handleClick('next')}
+        onClick={() => handleClick(page + 1)}
       >
         Próximo
       </Button>

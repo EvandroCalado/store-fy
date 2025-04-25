@@ -3,6 +3,7 @@ import { Metadata } from 'next';
 import { SearchParams } from 'nuqs/server';
 
 import { getAllOrders } from '@/actions/get-all-orders';
+import { refetchAction } from '@/actions/refetch-action';
 import { AdminOrders } from '@/components/admin/admin-orders';
 import { Container } from '@/components/shared/container';
 import { Pagination } from '@/components/shared/pagination';
@@ -28,8 +29,8 @@ const AdminOrdersPage = async ({ searchParams }: AdminOrdersPageParams) => {
 
       <AdminOrders orders={orders.data} />
       <Pagination
-        page={page}
         totalPages={orders.totalPages}
+        refetchAction={refetchAction}
         className='ml-auto'
       />
     </Container>
