@@ -9,6 +9,7 @@ import { DarkMode } from './dark-mode';
 import { Logo } from './logo';
 import { MenuMobile } from './menu-mobile';
 import { Navbar } from './navbar';
+import { Search } from './search';
 import { UserMenu } from './user-menu';
 
 export const Header = async () => {
@@ -19,22 +20,30 @@ export const Header = async () => {
 
   return (
     <header>
-      <Container className='relative flex items-center justify-between gap-2 py-8'>
-        <MenuMobile />
+      <div>
+        <Container className='relative flex items-center justify-between gap-2 py-4'>
+          <MenuMobile />
 
-        <Logo className='max-md:absolute max-md:left-1/2 max-md:-translate-x-1/2' />
+          <Logo className='max-md:absolute max-md:left-1/2 max-md:-translate-x-1/2' />
 
-        <Navbar />
+          <Search />
 
-        <div className='flex items-center md:gap-2'>
-          <DarkMode />
-          <CartButton totalItems={totalItems} />
+          <div className='flex items-center md:gap-2'>
+            <DarkMode />
+            <CartButton totalItems={totalItems} />
 
-          <SessionProvider session={session} refetchOnWindowFocus>
-            <UserMenu />
-          </SessionProvider>
-        </div>
-      </Container>
+            <SessionProvider session={session} refetchOnWindowFocus>
+              <UserMenu />
+            </SessionProvider>
+          </div>
+        </Container>
+      </div>
+
+      <div className='bg-secondary border-background border-y-2 py-2'>
+        <Container>
+          <Navbar />
+        </Container>
+      </div>
     </header>
   );
 };
