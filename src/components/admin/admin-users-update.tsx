@@ -126,12 +126,12 @@ export const AdminUsersUpdate = ({ user }: AdminUsersUpdateProps) => {
             className='my-2'
             disabled={form.formState.isSubmitting}
           >
-            Salvar
             {form.formState.isSubmitting ? (
               <Loader2 className='animate-spin' />
             ) : (
               <SaveAll />
             )}
+            Salvar
           </Button>
         </form>
       </Form>
