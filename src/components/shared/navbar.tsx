@@ -10,7 +10,7 @@ export const Navbar = () => {
   const pathname = usePathname();
 
   return (
-    <nav className='hidden items-center gap-4 md:flex'>
+    <nav className='flex items-center gap-4'>
       {navLinks.map(link => (
         <Link
           key={link.name}
