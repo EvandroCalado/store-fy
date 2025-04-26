@@ -1,0 +1,61 @@
+'use client';
+
+import { parseAsString, useQueryState } from 'nuqs';
+
+import { Checkbox } from '../ui/checkbox';
+import { Label } from '../ui/label';
+import { ProductFilterTitle } from './product-filter-title';
+
+type ProductCategoryFilterProps = {
+  categories: {
+    category: string;
+  }[];
+  refetchAction: (tag: string) => Promise<void>;
+};
+
+export const ProductCategoryFilter = ({
+  categories,
+  refetchAction,
+}: ProductCategoryFilterProps) => {
+  const [category, setCategory] = useQueryState(
+    'category',
+    parseAsString.withDefault(''),
+  );
+
+  const handleOnChange = (
+    checked: boolean | string,
+    item: { category: string },
+  ) => {
+    const isChecked = checked === true;
+
+    if (isChecked) {
+      setCategory(item.category);
+    } else {
+      setCategory(null);
+    }
+
+    setTimeout(() => {
+      refetchAction('products');
+    });
+  };
+
+  return (
+    <div className='space-y-4'>
+      <ProductFilterTitle>Categorias</ProductFilterTitle>
+
+      {categories.map(item => (
+        <div key={item.category} className='flex items-center gap-2'>
+          <Checkbox
+            id={item.category}
+            checked={category === item.category}
+            onCheckedChange={checked => handleOnChange(checked, item)}
+            className='cursor-pointer'
+          />
+          <Label htmlFor={item.category} className='cursor-pointer'>
+            {item.category}
+          </Label>
+        </div>
+      ))}
+    </div>
+  );
+};
