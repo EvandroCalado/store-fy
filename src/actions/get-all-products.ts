@@ -2,6 +2,8 @@
 
 import { unstable_cache } from 'next/cache';
 
+import { Prisma } from '@prisma/client';
+
 import { prisma } from '@/db/prisma';
 import { CONSTANTS } from '@/utils/constants';
 
@@ -10,6 +12,9 @@ type GetAllProductsParams = {
   limit?: number;
   query?: string;
   category?: string;
+  price?: number;
+  rating?: number;
+  sort?: string;
 };
 
 export const getAllProducts = unstable_cache(
@@ -18,24 +23,38 @@ export const getAllProducts = unstable_cache(
     limit = CONSTANTS.PAGE_SIZE,
     query,
     category,
+    price,
+    rating,
+    sort,
   }: GetAllProductsParams) => {
+    const where = {
+      AND: [
+        query ? { name: { contains: query, mode: 'insensitive' } } : {},
+        category && category !== 'all'
+          ? { category: { contains: category, mode: 'insensitive' } }
+          : {},
+        price ? { price: { lte: price } } : {},
+        rating ? { rating: { gte: rating } } : {},
+      ],
+    } as Prisma.ProductWhereInput;
+
+    const sortOptions = {
+      lowest: { price: 'asc' as Prisma.SortOrder },
+      highest: { price: 'desc' as Prisma.SortOrder },
+      rating: { rating: 'desc' as Prisma.SortOrder },
+      newest: { createdAt: 'desc' as Prisma.SortOrder },
+    };
+
     const data = await prisma.product.findMany({
-      where: {
-        AND: [
-          query ? { name: { contains: query, mode: 'insensitive' } } : {},
-          category && category !== 'Todos'
-            ? { category: { contains: category, mode: 'insensitive' } }
-            : {},
-        ],
-      },
+      where,
       take: limit,
       skip: (page - 1) * limit,
-      orderBy: {
-        createdAt: 'desc',
-      },
+      orderBy: sortOptions[sort as keyof typeof sortOptions],
     });
 
-    const dataCount = await prisma.product.count();
+    const dataCount = await prisma.product.count({
+      where,
+    });
 
     return {
       products: data,
