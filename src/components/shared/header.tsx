@@ -9,7 +9,7 @@ import { DarkMode } from './dark-mode';
 import { Logo } from './logo';
 import { MenuMobile } from './menu-mobile';
 import { Navbar } from './navbar';
-import { Search } from './search';
+import { SearchBar } from './search-bar';
 import { UserMenu } from './user-menu';
 
 export const Header = async () => {
@@ -24,9 +24,9 @@ export const Header = async () => {
         <Container className='relative flex items-center justify-between gap-2 py-4'>
           <MenuMobile />
 
-          <Logo className='max-md:absolute max-md:left-1/2 max-md:-translate-x-1/2' />
+          <Logo className='hidden max-md:absolute max-md:left-1/2 max-md:-translate-x-1/2 md:block' />
 
-          <Search />
+          <SearchBar />
 
           <div className='flex items-center md:gap-2'>
             <DarkMode />
@@ -39,7 +39,7 @@ export const Header = async () => {
         </Container>
       </div>
 
-      <div className='bg-secondary border-background border-y-2 py-2'>
+      <div className='border-muted hidden border-t py-2 md:block'>
         <Container>
           <Navbar />
         </Container>
