@@ -9,7 +9,7 @@ import { DarkMode } from './dark-mode';
 import { Logo } from './logo';
 import { MenuMobile } from './menu-mobile';
 import { Navbar } from './navbar';
-import { SearchBar } from './search-bar';
+import { Search } from './search';
 import { UserMenu } from './user-menu';
 
 export const Header = async () => {
@@ -26,7 +26,7 @@ export const Header = async () => {
 
           <Logo className='hidden max-md:absolute max-md:left-1/2 max-md:-translate-x-1/2 md:block' />
 
-          <SearchBar />
+          <Search />
 
           <div className='flex items-center md:gap-2'>
             <DarkMode />
