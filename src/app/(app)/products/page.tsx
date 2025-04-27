@@ -1,4 +1,3 @@
-import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 
 import { SearchParams } from 'nuqs';
@@ -15,13 +14,32 @@ import { ProductFilterSort } from '@/components/product/product-filter-sort';
 import { Container } from '@/components/shared/container';
 import { Pagination } from '@/components/shared/pagination';
 import { SectionTitle } from '@/components/shared/section-title';
-
-export const metadata: Metadata = {
-  title: 'Produtos',
-};
+import { formatCurrency } from '@/utils/formatCurrency';
 
 type ProductsPageParams = {
   searchParams: Promise<SearchParams>;
+};
+
+export const generateMetadata = async ({
+  searchParams,
+}: ProductsPageParams) => {
+  const { query, category, price, rating } =
+    await loadSearchParams(searchParams);
+
+  const queryTitle = query && `Busca: ${query}`;
+  const queryCategory = category && `Categoria: ${category}`;
+  const queryPrice = price === 0 ? '' : `Preço: ${formatCurrency(price)}`;
+  const queryRating = rating === 0 ? '' : `Avaliação: ${rating} estrelas`;
+
+  if (query || category || price || rating) {
+    return {
+      title: `${queryTitle} ${queryCategory} ${queryPrice} ${queryRating}`,
+    };
+  }
+
+  return {
+    title: 'Produtos',
+  };
 };
 
 const ProductsPage = async ({ searchParams }: ProductsPageParams) => {
