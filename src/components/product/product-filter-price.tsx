@@ -1,5 +1,8 @@
 'use client';
 
+import { useTransition } from 'react';
+
+import { Loader } from 'lucide-react';
 import { parseAsInteger, useQueryState } from 'nuqs';
 
 import { formatCurrency } from '@/utils/formatCurrency';
@@ -7,16 +10,18 @@ import { formatCurrency } from '@/utils/formatCurrency';
 import { Slider } from '../ui/slider';
 import { ProductFilterTitle } from './product-filter-title';
 
-type ProductPriceFilterProps = {
+type ProductFilterPriceProps = {
   refetchAction: (tag: string) => Promise<void>;
 };
 
-export const ProductPriceFilter = ({
+export const ProductFilterPrice = ({
   refetchAction,
-}: ProductPriceFilterProps) => {
+}: ProductFilterPriceProps) => {
+  const [isPending, startTransition] = useTransition();
+
   const [price, setPrice] = useQueryState(
     'price',
-    parseAsInteger.withDefault(0),
+    parseAsInteger.withDefault(0).withOptions({ startTransition }),
   );
 
   const maxPrice = 10000;
@@ -31,7 +36,9 @@ export const ProductPriceFilter = ({
 
   return (
     <div className='space-y-4'>
-      <ProductFilterTitle>Preço</ProductFilterTitle>
+      <ProductFilterTitle>
+        Preço {isPending && <Loader className='size-4 animate-spin' />}
+      </ProductFilterTitle>
 
       <Slider
         max={10000}

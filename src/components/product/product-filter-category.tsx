@@ -1,5 +1,8 @@
 'use client';
 
+import { useTransition } from 'react';
+
+import { Loader } from 'lucide-react';
 import { parseAsString, useQueryState } from 'nuqs';
 
 import { Checkbox } from '../ui/checkbox';
@@ -17,9 +20,11 @@ export const ProductFilterCategory = ({
   categories,
   refetchAction,
 }: ProductFilterCategoryProps) => {
+  const [isPending, startTransition] = useTransition();
+
   const [category, setCategory] = useQueryState(
     'category',
-    parseAsString.withDefault(''),
+    parseAsString.withDefault('').withOptions({ startTransition }),
   );
 
   const handleOnChange = (
@@ -41,7 +46,9 @@ export const ProductFilterCategory = ({
 
   return (
     <div className='space-y-4'>
-      <ProductFilterTitle>Categorias</ProductFilterTitle>
+      <ProductFilterTitle>
+        Categorias {isPending && <Loader className='size-4 animate-spin' />}
+      </ProductFilterTitle>
 
       {categories.map(item => (
         <div key={item.category} className='flex items-center gap-2'>

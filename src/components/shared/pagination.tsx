@@ -20,6 +20,7 @@ export const Pagination = ({
   className,
 }: PaginationProps) => {
   const [isPending, startTransition] = useTransition();
+
   const [page, setPage] = useQueryState(
     'page',
     parseAsInteger.withDefault(1).withOptions({ startTransition }),

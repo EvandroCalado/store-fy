@@ -1,5 +1,8 @@
 'use client';
 
+import { useTransition } from 'react';
+
+import { Loader } from 'lucide-react';
 import { parseAsInteger, useQueryState } from 'nuqs';
 
 import { generateReviewStars } from '@/utils/generate-review-stars';
@@ -16,16 +19,18 @@ const ratingOptions = [
   { label: '5 estrelas', value: 5 },
 ];
 
-type ProductRatingFilterProps = {
+type ProductFilterRatingProps = {
   refetchAction: (tag: string) => Promise<void>;
 };
 
-export const ProductRatingFilter = ({
+export const ProductFilterRating = ({
   refetchAction,
-}: ProductRatingFilterProps) => {
+}: ProductFilterRatingProps) => {
+  const [isPending, startTransition] = useTransition();
+
   const [rating, setRating] = useQueryState(
     'rating',
-    parseAsInteger.withDefault(0),
+    parseAsInteger.withDefault(0).withOptions({ startTransition }),
   );
 
   const handleOnChange = (
@@ -45,7 +50,9 @@ export const ProductRatingFilter = ({
 
   return (
     <div className='space-y-4'>
-      <ProductFilterTitle>Avaliações</ProductFilterTitle>
+      <ProductFilterTitle>
+        Avaliações {isPending && <Loader className='size-4 animate-spin' />}
+      </ProductFilterTitle>
 
       {ratingOptions.map(item => (
         <div key={item.value} className='flex items-center gap-2'>

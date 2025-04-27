@@ -9,9 +9,9 @@ import { refetchAction } from '@/actions/refetch-action';
 import { loadSearchParams } from '@/app/search-params';
 import { ProductCard } from '@/components/product/product-card';
 import { ProductFilterCategory } from '@/components/product/product-filter-category';
+import { ProductFilterPrice } from '@/components/product/product-filter-price';
+import { ProductFilterRating } from '@/components/product/product-filter-rating';
 import { ProductFilterSort } from '@/components/product/product-filter-sort';
-import { ProductPriceFilter } from '@/components/product/product-price-filter';
-import { ProductRatingFilter } from '@/components/product/product-rating-filter';
 import { Container } from '@/components/shared/container';
 import { Pagination } from '@/components/shared/pagination';
 import { SectionTitle } from '@/components/shared/section-title';
@@ -52,8 +52,8 @@ const ProductsPage = async ({ searchParams }: ProductsPageParams) => {
             categories={categories}
             refetchAction={refetchAction}
           />
-          <ProductPriceFilter refetchAction={refetchAction} />
-          <ProductRatingFilter refetchAction={refetchAction} />
+          <ProductFilterPrice refetchAction={refetchAction} />
+          <ProductFilterRating refetchAction={refetchAction} />
         </div>
 
         <div className='col-span-4 flex flex-col space-y-4'>
