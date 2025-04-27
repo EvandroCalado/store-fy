@@ -2,7 +2,7 @@ import Link from 'next/link';
 
 import { ShoppingCartIcon } from 'lucide-react';
 
-import { Button } from '../ui/button';
+import { Button } from '../../ui/button';
 
 type CartButtonProps = {
   totalItems: number | undefined;

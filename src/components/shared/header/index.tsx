@@ -3,10 +3,10 @@ import { SessionProvider } from 'next-auth/react';
 import { getMyCart } from '@/actions/get-my-cart';
 import { auth } from '@/auth';
 
+import { Container } from '../container';
+import { Logo } from '../logo';
 import { CartButton } from './cart-button';
-import { Container } from './container';
 import { DarkMode } from './dark-mode';
-import { Logo } from './logo';
 import { MenuMobile } from './menu-mobile';
 import { Navbar } from './navbar';
 import { Search } from './search';

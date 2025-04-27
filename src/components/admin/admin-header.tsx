@@ -1,6 +1,6 @@
 import { refetchAction } from '@/actions/refetch-action';
 
-import { DarkMode } from '../shared/dark-mode';
+import { DarkMode } from '../shared/header/dark-mode';
 import { SidebarTrigger } from '../ui/sidebar';
 import { AdminSearch } from './admin-search';
 

@@ -5,10 +5,7 @@ import { usePathname } from 'next/navigation';
 
 import { MenuIcon } from 'lucide-react';
 
-import { cn } from '@/lib/utils';
-import { navLinks } from '@/utils/nav-links';
-
-import { Button } from '../ui/button';
+import { Button } from '@/components/ui/button';
 import {
   Sheet,
   SheetContent,
@@ -16,8 +13,11 @@ import {
   SheetHeader,
   SheetTitle,
   SheetTrigger,
-} from '../ui/sheet';
-import { GlobalLoader } from './global-loader';
+} from '@/components/ui/sheet';
+import { cn } from '@/lib/utils';
+import { navLinks } from '@/utils/nav-links';
+
+import { GlobalLoader } from '../global-loader';
 
 export function MenuMobile() {
   const pathname = usePathname();

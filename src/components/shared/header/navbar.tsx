@@ -6,7 +6,7 @@ import { usePathname } from 'next/navigation';
 import { cn } from '@/lib/utils';
 import { navLinks } from '@/utils/nav-links';
 
-import { GlobalLoader } from './global-loader';
+import { GlobalLoader } from '../global-loader';
 
 export function Navbar() {
   const pathname = usePathname();
