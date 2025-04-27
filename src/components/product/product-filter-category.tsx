@@ -16,10 +16,10 @@ type ProductFilterCategoryProps = {
   refetchAction: (tag: string) => Promise<void>;
 };
 
-export const ProductFilterCategory = ({
+export function ProductFilterCategory({
   categories,
   refetchAction,
-}: ProductFilterCategoryProps) => {
+}: ProductFilterCategoryProps) {
   const [isPending, startTransition] = useTransition();
 
   const [category, setCategory] = useQueryState(
@@ -67,4 +67,4 @@ export const ProductFilterCategory = ({
       ))}
     </div>
   );
-};
+}

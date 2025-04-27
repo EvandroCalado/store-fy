@@ -18,7 +18,7 @@ type OrderAddressProps = {
   address: ShippingAddress;
 };
 
-export const OrderAddress = ({ address }: OrderAddressProps) => {
+export function OrderAddress({ address }: OrderAddressProps) {
   return (
     <Table>
       <TableHeader>
@@ -52,4 +52,4 @@ export const OrderAddress = ({ address }: OrderAddressProps) => {
       </TableBody>
     </Table>
   );
-};
+}

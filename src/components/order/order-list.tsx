@@ -21,7 +21,7 @@ type OrderListProps = {
   orders: Order[];
 };
 
-export const OrderList = ({ orders }: OrderListProps) => {
+export function OrderList({ orders }: OrderListProps) {
   return (
     <div className='flex-1 overflow-x-auto'>
       <h2 className='text-xl font-semibold'>Pedidos</h2>
@@ -83,4 +83,4 @@ export const OrderList = ({ orders }: OrderListProps) => {
       </Table>
     </div>
   );
-};
+}

@@ -3,7 +3,7 @@ import Link from 'next/link';
 
 import { Container } from './container';
 
-export const Footer = () => {
+export function Footer() {
   const year = new Date().getFullYear();
 
   return (
@@ -41,4 +41,4 @@ export const Footer = () => {
       </Container>
     </footer>
   );
-};
+}

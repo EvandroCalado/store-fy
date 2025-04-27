@@ -22,7 +22,7 @@ type AdminUsersProps = {
   users: User[];
 };
 
-export const AdminUsers = ({ users }: AdminUsersProps) => {
+export function AdminUsers({ users }: AdminUsersProps) {
   return (
     <div className='flex-1 overflow-x-auto'>
       <Table>
@@ -73,4 +73,4 @@ export const AdminUsers = ({ users }: AdminUsersProps) => {
       </Table>
     </div>
   );
-};
+}

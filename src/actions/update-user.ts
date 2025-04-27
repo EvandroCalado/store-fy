@@ -10,7 +10,7 @@ import { formatErrors } from '@/utils/formatErrors';
 
 type UpdateUserSchema = z.infer<typeof updateUserSchema>;
 
-export const updateUser = async (data: UpdateUserSchema) => {
+export async function updateUser(data: UpdateUserSchema) {
   try {
     const user = updateUserSchema.parse(data);
 
@@ -36,4 +36,4 @@ export const updateUser = async (data: UpdateUserSchema) => {
       message: formatErrors(error),
     };
   }
-};
+}

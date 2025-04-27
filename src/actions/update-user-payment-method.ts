@@ -6,7 +6,7 @@ import { paymentMethodSchema } from '@/schemas/payment-method';
 import { PaymentMethod } from '@/types/payment-method';
 import { formatErrors } from '@/utils/formatErrors';
 
-export const updateUserPaymentMethod = async (data: PaymentMethod) => {
+export async function updateUserPaymentMethod(data: PaymentMethod) {
   try {
     const session = await auth();
 
@@ -39,4 +39,4 @@ export const updateUserPaymentMethod = async (data: PaymentMethod) => {
       message: formatErrors(error),
     };
   }
-};
+}

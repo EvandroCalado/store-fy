@@ -8,11 +8,11 @@ type DashboardCardProps = {
   icon: LucideIcon;
 };
 
-export const DashboardCard = ({
+export function DashboardCard({
   title,
   value,
   icon: Icon,
-}: DashboardCardProps) => {
+}: DashboardCardProps) {
   return (
     <Card>
       <CardHeader className='flex items-center justify-between'>
@@ -25,4 +25,4 @@ export const DashboardCard = ({
       </CardContent>
     </Card>
   );
-};
+}

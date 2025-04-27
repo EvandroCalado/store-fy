@@ -18,7 +18,7 @@ type GetAllProductsParams = {
 };
 
 export const getAllProducts = unstable_cache(
-  async ({
+  async function ({
     page,
     limit = CONSTANTS.PAGE_SIZE,
     query,
@@ -26,7 +26,7 @@ export const getAllProducts = unstable_cache(
     price,
     rating,
     sort,
-  }: GetAllProductsParams) => {
+  }: GetAllProductsParams) {
     const where = {
       AND: [
         query ? { name: { contains: query, mode: 'insensitive' } } : {},

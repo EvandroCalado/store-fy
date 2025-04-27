@@ -32,7 +32,7 @@ type CheckoutStepsProps = {
   current?: number;
 };
 
-export const CheckoutSteps = ({ current = 0 }: CheckoutStepsProps) => {
+export function CheckoutSteps({ current = 0 }: CheckoutStepsProps) {
   return (
     <div className='mb-10 flex items-center justify-between gap-2'>
       {steps.map((step, index) => (
@@ -60,4 +60,4 @@ export const CheckoutSteps = ({ current = 0 }: CheckoutStepsProps) => {
       ))}
     </div>
   );
-};
+}

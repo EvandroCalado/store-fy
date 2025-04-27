@@ -13,7 +13,7 @@ type AdminUserPageParams = {
   params: Promise<{ id: string }>;
 };
 
-const AdminUserPage = async ({ params }: AdminUserPageParams) => {
+export default async function AdminUserPage({ params }: AdminUserPageParams) {
   const { id } = await params;
 
   const user = await getUserById(id);
@@ -25,6 +25,4 @@ const AdminUserPage = async ({ params }: AdminUserPageParams) => {
       <AdminUsersUpdate user={user} />
     </Container>
   );
-};
-
-export default AdminUserPage;
+}

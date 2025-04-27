@@ -11,7 +11,7 @@ import {
   DropdownMenuTrigger,
 } from '../ui/dropdown-menu';
 
-export const DarkMode = () => {
+export function DarkMode() {
   const { setTheme } = useTheme();
 
   return (
@@ -42,4 +42,4 @@ export const DarkMode = () => {
       </DropdownMenuContent>
     </DropdownMenu>
   );
-};
+}

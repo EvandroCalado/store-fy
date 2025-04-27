@@ -10,7 +10,7 @@ type updateProfileParams = {
   email: string;
 };
 
-export const updateProfile = async ({ name, email }: updateProfileParams) => {
+export async function updateProfile({ name, email }: updateProfileParams) {
   try {
     const session = await auth();
 
@@ -47,4 +47,4 @@ export const updateProfile = async ({ name, email }: updateProfileParams) => {
       message: formatErrors(error),
     };
   }
-};
+}

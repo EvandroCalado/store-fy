@@ -23,9 +23,9 @@ type ProductFilterRatingProps = {
   refetchAction: (tag: string) => Promise<void>;
 };
 
-export const ProductFilterRating = ({
+export function ProductFilterRating({
   refetchAction,
-}: ProductFilterRatingProps) => {
+}: ProductFilterRatingProps) {
   const [isPending, startTransition] = useTransition();
 
   const [rating, setRating] = useQueryState(
@@ -71,4 +71,4 @@ export const ProductFilterRating = ({
       ))}
     </div>
   );
-};
+}

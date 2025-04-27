@@ -24,9 +24,7 @@ type DashboardLastSalesProps = {
   >[];
 };
 
-export const DashboardLastSales = ({
-  latestSales,
-}: DashboardLastSalesProps) => {
+export function DashboardLastSales({ latestSales }: DashboardLastSalesProps) {
   return (
     <Card className='col-span-4 overflow-x-auto lg:col-span-3'>
       <CardHeader>
@@ -68,4 +66,4 @@ export const DashboardLastSales = ({
       </CardContent>
     </Card>
   );
-};
+}

@@ -12,7 +12,7 @@ type AdminSearchProps = {
   refetchAction: (tag: string) => Promise<void>;
 };
 
-export const AdminSearch = ({ refetchAction }: AdminSearchProps) => {
+export function AdminSearch({ refetchAction }: AdminSearchProps) {
   const pathname = usePathname();
 
   const [query, setQuery] = useQueryState(
@@ -43,4 +43,4 @@ export const AdminSearch = ({ refetchAction }: AdminSearchProps) => {
       className='max-w-xs'
     />
   );
-};
+}

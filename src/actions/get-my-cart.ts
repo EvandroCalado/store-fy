@@ -6,7 +6,7 @@ import { auth } from '@/auth';
 import { prisma } from '@/db/prisma';
 import { CartItem } from '@/types/cart-item';
 
-export const getMyCart = async () => {
+export async function getMyCart() {
   const sessionCartId = (await cookies()).get('sessionCartId')?.value;
 
   if (!sessionCartId) return undefined;
@@ -28,4 +28,4 @@ export const getMyCart = async () => {
     shippingPrice: cart.shippingPrice,
     taxPrice: cart.taxPrice,
   };
-};
+}

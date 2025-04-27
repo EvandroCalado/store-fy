@@ -8,7 +8,7 @@ type ProductGridProps = {
   title?: string;
 };
 
-export const ProductGrid = ({ products, title }: ProductGridProps) => {
+export function ProductGrid({ products, title }: ProductGridProps) {
   const [firstWord, ...rest] = title?.split(' ') || [];
 
   return (
@@ -31,4 +31,4 @@ export const ProductGrid = ({ products, title }: ProductGridProps) => {
       )}
     </Container>
   );
-};
+}

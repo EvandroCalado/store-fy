@@ -6,7 +6,7 @@ import { formatErrors } from '@/utils/formatErrors';
 
 import { updateOrderToPaid } from './update-order-to-paid';
 
-export const updateOrderToPaidCOD = async (orderId: string) => {
+export async function updateOrderToPaidCOD(orderId: string) {
   try {
     await updateOrderToPaid({ orderId });
 
@@ -22,4 +22,4 @@ export const updateOrderToPaidCOD = async (orderId: string) => {
       message: formatErrors(error),
     };
   }
-};
+}

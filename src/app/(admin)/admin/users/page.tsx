@@ -18,7 +18,9 @@ type AdminUsersPageParams = {
   searchParams: Promise<SearchParams>;
 };
 
-const AdminUsersPage = async ({ searchParams }: AdminUsersPageParams) => {
+export default async function AdminUsersPage({
+  searchParams,
+}: AdminUsersPageParams) {
   const { page, query } = await loadSearchParams(searchParams);
 
   const data = await getAllUsers({ page, query, limit: 12 });
@@ -33,6 +35,4 @@ const AdminUsersPage = async ({ searchParams }: AdminUsersPageParams) => {
       <Pagination totalPages={data.totalPages} refetchAction={refetchAction} />
     </Container>
   );
-};
-
-export default AdminUsersPage;
+}

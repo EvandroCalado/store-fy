@@ -2,6 +2,6 @@
 
 import { revalidateTag } from 'next/cache';
 
-export const refetchAction = async (tag: string) => {
+export async function refetchAction(tag: string) {
   revalidateTag(tag);
-};
+}

@@ -1,15 +1,15 @@
 const base = process.env.PAYPAL_API_URL || '';
 
-const handleResponse = async (res: Response) => {
+async function handleResponse(res: Response) {
   if (!res.ok) {
     const errorMessage = await res.text();
     throw new Error(errorMessage);
   }
 
   return res.json();
-};
+}
 
-export const generateAccessToken = async () => {
+export async function generateAccessToken() {
   const { PAYPAL_CLIENT_ID, PAYPAL_APP_SECRET } = process.env;
 
   const auth = Buffer.from(`${PAYPAL_CLIENT_ID}:${PAYPAL_APP_SECRET}`).toString(
@@ -28,7 +28,7 @@ export const generateAccessToken = async () => {
   const data = await handleResponse(res);
 
   return data.access_token;
-};
+}
 
 export const paypal = {
   createOrder: async (price: number) => {

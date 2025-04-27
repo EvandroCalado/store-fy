@@ -10,7 +10,7 @@ import { createOrder } from '@/actions/create-order';
 
 import { Button } from '../ui/button';
 
-export const OrderForm = () => {
+export function OrderForm() {
   const [isPending, startTransition] = useTransition();
 
   const router = useRouter();
@@ -33,4 +33,4 @@ export const OrderForm = () => {
       </Button>
     </form>
   );
-};
+}

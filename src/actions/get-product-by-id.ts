@@ -2,7 +2,7 @@
 
 import { prisma } from '@/db/prisma';
 
-export const getProductById = async (productId: string) => {
+export async function getProductById(productId: string) {
   const product = await prisma.product.findFirst({
     where: {
       id: productId,
@@ -10,4 +10,4 @@ export const getProductById = async (productId: string) => {
   });
 
   return product;
-};
+}

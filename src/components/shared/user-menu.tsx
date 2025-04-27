@@ -19,7 +19,7 @@ import {
   DropdownMenuTrigger,
 } from '../ui/dropdown-menu';
 
-export const UserMenu = () => {
+export function UserMenu() {
   const { data: session, update } = useSession();
 
   const firstInitial = session?.user?.name?.charAt(0);
@@ -109,4 +109,4 @@ export const UserMenu = () => {
       )}
     </>
   );
-};
+}

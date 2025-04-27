@@ -1,4 +1,4 @@
-export const roundToDecimal = (value: number | string) => {
+export function roundToDecimal(value: number | string) {
   if (typeof value === 'number') {
     return Math.round((value + Number.EPSILON) * 100) / 100;
   } else if (typeof value === 'string') {
@@ -6,4 +6,4 @@ export const roundToDecimal = (value: number | string) => {
   } else {
     throw new Error('Value is not a number or string');
   }
-};
+}

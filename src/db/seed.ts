@@ -1,7 +1,7 @@
 import { prisma } from './prisma';
 import { sampleData } from './sample-data';
 
-const main = async () => {
+async function main() {
   await prisma.product.deleteMany();
   await prisma.user.deleteMany();
   await prisma.account.deleteMany();
@@ -16,7 +16,7 @@ const main = async () => {
   });
 
   console.log('Database seeded successfully!');
-};
+}
 
 main()
   .catch(e => console.error(e))

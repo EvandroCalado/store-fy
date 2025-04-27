@@ -16,7 +16,7 @@ type CartSummaryProps = {
   cart?: Cart;
 };
 
-export const CartSummary = ({ cart }: CartSummaryProps) => {
+export function CartSummary({ cart }: CartSummaryProps) {
   const [isPending, startTransition] = useTransition();
 
   const router = useRouter();
@@ -58,4 +58,4 @@ export const CartSummary = ({ cart }: CartSummaryProps) => {
       </CardContent>
     </Card>
   );
-};
+}

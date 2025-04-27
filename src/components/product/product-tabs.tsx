@@ -6,7 +6,7 @@ type ProductTabsProps = {
   details: string;
 };
 
-export const ProductTabs = ({ details }: ProductTabsProps) => {
+export function ProductTabs({ details }: ProductTabsProps) {
   const htmlContent = marked.parse(details);
 
   return (
@@ -36,4 +36,4 @@ export const ProductTabs = ({ details }: ProductTabsProps) => {
       </Tabs>
     </div>
   );
-};
+}

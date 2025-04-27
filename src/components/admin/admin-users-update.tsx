@@ -36,7 +36,7 @@ type AdminUsersUpdateProps = {
   user: User;
 };
 
-export const AdminUsersUpdate = ({ user }: AdminUsersUpdateProps) => {
+export function AdminUsersUpdate({ user }: AdminUsersUpdateProps) {
   const router = useRouter();
 
   const form = useForm<UpdateUserSchema>({
@@ -137,4 +137,4 @@ export const AdminUsersUpdate = ({ user }: AdminUsersUpdateProps) => {
       </Form>
     </div>
   );
-};
+}

@@ -29,7 +29,7 @@ type AdminOrdersProps = {
   >[];
 };
 
-export const AdminOrders = ({ orders }: AdminOrdersProps) => {
+export function AdminOrders({ orders }: AdminOrdersProps) {
   return (
     <div className='flex-1 overflow-x-auto'>
       <Table>
@@ -106,4 +106,4 @@ export const AdminOrders = ({ orders }: AdminOrdersProps) => {
       </Table>
     </div>
   );
-};
+}

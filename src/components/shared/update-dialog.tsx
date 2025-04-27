@@ -23,11 +23,7 @@ type UpdateDialogProps = {
   isPaid?: boolean;
 };
 
-export const UpdateDialog = ({
-  orderId,
-  action,
-  isPaid,
-}: UpdateDialogProps) => {
+export function UpdateDialog({ orderId, action, isPaid }: UpdateDialogProps) {
   const [isOpen, setIsOpen] = useState(false);
   const [isPending, startTransition] = useTransition();
 
@@ -83,4 +79,4 @@ export const UpdateDialog = ({
       </AlertDialogContent>
     </AlertDialog>
   );
-};
+}

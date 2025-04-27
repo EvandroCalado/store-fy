@@ -17,7 +17,7 @@ type OrderItemsProps = {
   items: CartItem[];
 };
 
-export const OrderItems = ({ items }: OrderItemsProps) => {
+export function OrderItems({ items }: OrderItemsProps) {
   return (
     <Table>
       <TableHeader>
@@ -55,4 +55,4 @@ export const OrderItems = ({ items }: OrderItemsProps) => {
       </TableBody>
     </Table>
   );
-};
+}

@@ -9,10 +9,10 @@ import { paypal } from '@/utils/paypal';
 
 import { updateOrderToPaid } from './update-order-to-paid';
 
-export const approvePaypalOrder = async (
+export async function approvePaypalOrder(
   orderId: string,
   data: { orderID: string },
-) => {
+) {
   try {
     const order = await prisma.order.findFirst({
       where: {
@@ -55,4 +55,4 @@ export const approvePaypalOrder = async (
       message: formatErrors(error),
     };
   }
-};
+}

@@ -11,7 +11,7 @@ import { toast } from 'sonner';
 import { approvePaypalOrder } from '@/actions/approve-paypal-order';
 import { createPaypalOrder } from '@/actions/create-paypal-order';
 
-const PrintLoadingState = () => {
+function PrintLoadingState() {
   const [{ isPending, isRejected }] = usePayPalScriptReducer();
 
   if (isPending) {
@@ -29,7 +29,7 @@ const PrintLoadingState = () => {
       </div>
     );
   }
-};
+}
 
 type OrderPayPalPaymentProps = {
   paypalClientId: string;
@@ -38,12 +38,12 @@ type OrderPayPalPaymentProps = {
   orderId: string;
 };
 
-export const OrderPayPalPayment = ({
+export function OrderPayPalPayment({
   paypalClientId,
   isPaid,
   paymentMethod,
   orderId,
-}: OrderPayPalPaymentProps) => {
+}: OrderPayPalPaymentProps) {
   const handleCreatePayPalOrder = async () => {
     const res = await createPaypalOrder(orderId);
 
@@ -80,4 +80,4 @@ export const OrderPayPalPayment = ({
       )}
     </>
   );
-};
+}

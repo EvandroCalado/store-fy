@@ -10,7 +10,7 @@ const serialize = createSerializer({
   query: parseAsString.withDefault(''),
 });
 
-export const Search = () => {
+export function Search() {
   const router = useRouter();
 
   const handleSearch = (value: string) => {
@@ -26,4 +26,4 @@ export const Search = () => {
       className='max-w-xs'
     />
   );
-};
+}

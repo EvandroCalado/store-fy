@@ -19,7 +19,7 @@ type OrderPageParams = {
   params: Promise<{ id: string }>;
 };
 
-const OrderPage = async ({ params }: OrderPageParams) => {
+export default async function OrderPage({ params }: OrderPageParams) {
   const { id } = await params;
 
   const order = await getOrderById(id);
@@ -64,6 +64,4 @@ const OrderPage = async ({ params }: OrderPageParams) => {
       </Container>
     </>
   );
-};
-
-export default OrderPage;
+}

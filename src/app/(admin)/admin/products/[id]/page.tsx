@@ -13,9 +13,9 @@ type AdminProductsUpdatePageParams = {
   params: Promise<{ id: string }>;
 };
 
-const AdminProductsUpdatePage = async ({
+export default async function AdminProductsUpdatePage({
   params,
-}: AdminProductsUpdatePageParams) => {
+}: AdminProductsUpdatePageParams) {
   const { id } = await params;
 
   const product = await getProductById(id);
@@ -27,6 +27,4 @@ const AdminProductsUpdatePage = async ({
       <AdminProductsCreate type='update' product={product} productId={id} />
     </Container>
   );
-};
-
-export default AdminProductsUpdatePage;
+}

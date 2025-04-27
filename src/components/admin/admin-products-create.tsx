@@ -44,11 +44,11 @@ type AdminProductsCreateProps = {
   productId?: string;
 };
 
-export const AdminProductsCreate = ({
+export function AdminProductsCreate({
   type,
   product,
   productId,
-}: AdminProductsCreateProps) => {
+}: AdminProductsCreateProps) {
   const router = useRouter();
 
   const form = useForm<CreateProductSchema | UpdateProductSchema>({
@@ -381,4 +381,4 @@ export const AdminProductsCreate = ({
       </form>
     </Form>
   );
-};
+}

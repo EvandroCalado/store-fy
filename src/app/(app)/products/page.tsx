@@ -42,7 +42,9 @@ export const generateMetadata = async ({
   };
 };
 
-const ProductsPage = async ({ searchParams }: ProductsPageParams) => {
+export default async function ProductsPage({
+  searchParams,
+}: ProductsPageParams) {
   const { page, query, category, price, rating, sort } =
     await loadSearchParams(searchParams);
 
@@ -100,6 +102,4 @@ const ProductsPage = async ({ searchParams }: ProductsPageParams) => {
       </Container>
     </>
   );
-};
-
-export default ProductsPage;
+}

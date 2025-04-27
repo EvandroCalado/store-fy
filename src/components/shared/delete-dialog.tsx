@@ -23,11 +23,7 @@ type DeleteDialogProps = {
   isDelivered?: boolean;
 };
 
-export const DeleteDialog = ({
-  id,
-  action,
-  isDelivered,
-}: DeleteDialogProps) => {
+export function DeleteDialog({ id, action, isDelivered }: DeleteDialogProps) {
   const [isOpen, setIsOpen] = useState(false);
   const [isPending, startTransition] = useTransition();
 
@@ -83,4 +79,4 @@ export const DeleteDialog = ({
       </AlertDialogContent>
     </AlertDialog>
   );
-};
+}

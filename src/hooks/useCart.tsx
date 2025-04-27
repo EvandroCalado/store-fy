@@ -8,7 +8,7 @@ import { addItemToCart } from '@/actions/add-item-to-cart';
 import { removeItemFromCart } from '@/actions/remove-item-from-cart';
 import { CartItem } from '@/types/cart-item';
 
-export const useCart = () => {
+export function useCart() {
   const [isPending, startTransition] = useTransition();
 
   const router = useRouter();
@@ -59,4 +59,4 @@ export const useCart = () => {
     isPending,
     startTransition,
   };
-};
+}

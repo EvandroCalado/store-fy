@@ -31,7 +31,7 @@ import {
 } from '../ui/form';
 import { Input } from '../ui/input';
 
-export const SignUpForm = () => {
+export function SignUpForm() {
   const router = useRouter();
 
   const form = useForm<SignUpUser>({
@@ -168,4 +168,4 @@ export const SignUpForm = () => {
       </div>
     </Card>
   );
-};
+}

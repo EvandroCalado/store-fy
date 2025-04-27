@@ -2,7 +2,7 @@
 
 import { prisma } from '@/db/prisma';
 
-export const getOrderSummary = async () => {
+export async function getOrderSummary() {
   const ordersCount = await prisma.order.count();
   const productsCount = await prisma.product.count();
   const usersCount = await prisma.user.count();
@@ -44,4 +44,4 @@ export const getOrderSummary = async () => {
     salesByMonth,
     latestSales,
   };
-};
+}

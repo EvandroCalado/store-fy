@@ -7,12 +7,10 @@ export const metadata: Metadata = {
   title: 'Criar produto',
 };
 
-const AdminProductsCreatePage = () => {
+export default async function AdminProductsCreatePage() {
   return (
     <Container className='my-8'>
       <AdminProductsCreate type='create' />
     </Container>
   );
-};
-
-export default AdminProductsCreatePage;
+}

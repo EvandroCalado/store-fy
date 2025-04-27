@@ -9,7 +9,7 @@ import { formatErrors } from '@/utils/formatErrors';
 
 import { getMyCart } from './get-my-cart';
 
-export const removeItemFromCart = async (productId: string) => {
+export async function removeItemFromCart(productId: string) {
   try {
     const sessionCartId = (await cookies()).get('sessionCartId')?.value;
 
@@ -68,4 +68,4 @@ export const removeItemFromCart = async (productId: string) => {
       message: formatErrors(error),
     };
   }
-};
+}

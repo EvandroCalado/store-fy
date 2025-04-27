@@ -19,7 +19,7 @@ export const metadata: Metadata = {
   title: 'Finalizar compra',
 };
 
-const PlaceOrderPage = async () => {
+export default async function PlaceOrderPage() {
   const cart = await getMyCart();
   const session = await auth();
   const userId = session?.user?.id;
@@ -67,6 +67,4 @@ const PlaceOrderPage = async () => {
       </Container>
     </>
   );
-};
-
-export default PlaceOrderPage;
+}

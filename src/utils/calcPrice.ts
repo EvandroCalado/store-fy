@@ -2,7 +2,7 @@ import { CartItem } from '@/types/cart-item';
 
 import { roundToDecimal } from './round-to-decimal';
 
-export const calcPrice = (items: CartItem[]) => {
+export function calcPrice(items: CartItem[]) {
   const itemsPrice = roundToDecimal(
     items.reduce((acc, item) => {
       return acc + Number(item.price) * item.quantity;
@@ -19,4 +19,4 @@ export const calcPrice = (items: CartItem[]) => {
     taxPrice: Number(taxPrice.toFixed(2)),
     totalPrice: Number(totalPrice.toFixed(2)),
   };
-};
+}

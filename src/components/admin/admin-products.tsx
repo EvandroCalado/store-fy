@@ -21,7 +21,7 @@ type AdminProductsProps = {
   products: Product[];
 };
 
-export const AdminProducts = ({ products }: AdminProductsProps) => {
+export function AdminProducts({ products }: AdminProductsProps) {
   return (
     <div className='flex-1'>
       <Table>
@@ -67,4 +67,4 @@ export const AdminProducts = ({ products }: AdminProductsProps) => {
       </Table>
     </div>
   );
-};
+}

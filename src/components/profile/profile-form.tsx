@@ -23,7 +23,7 @@ import { Input } from '../ui/input';
 
 type UpdateProfile = z.infer<typeof updateProfileSchema>;
 
-export const ProfileForm = () => {
+export function ProfileForm() {
   const { data: session, update } = useSession();
 
   const form = useForm<UpdateProfile>({
@@ -104,4 +104,4 @@ export const ProfileForm = () => {
       </form>
     </Form>
   );
-};
+}

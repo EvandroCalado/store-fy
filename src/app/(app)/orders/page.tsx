@@ -18,7 +18,7 @@ type OrdersPageParams = {
   searchParams: Promise<SearchParams>;
 };
 
-const OrdersPage = async ({ searchParams }: OrdersPageParams) => {
+export default async function OrdersPage({ searchParams }: OrdersPageParams) {
   const { page } = await loadSearchParams(searchParams);
 
   const ordersData = await getMyOrders({ page });
@@ -36,6 +36,4 @@ const OrdersPage = async ({ searchParams }: OrdersPageParams) => {
       </Container>
     </>
   );
-};
-
-export default OrdersPage;
+}

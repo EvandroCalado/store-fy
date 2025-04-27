@@ -8,10 +8,10 @@ type updateOrderToPaidParams = {
   paymentResult?: PaymentResult;
 };
 
-export const updateOrderToPaid = async ({
+export async function updateOrderToPaid({
   orderId,
   paymentResult,
-}: updateOrderToPaidParams) => {
+}: updateOrderToPaidParams) {
   const order = await prisma.order.findFirst({
     where: {
       id: orderId,
@@ -67,4 +67,4 @@ export const updateOrderToPaid = async ({
   });
 
   if (!updatedOrder) throw new Error('Pedido não encontrado');
-};
+}

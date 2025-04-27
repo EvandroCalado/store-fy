@@ -16,7 +16,7 @@ type ProductCardProps = {
   product: Product;
 };
 
-export const ProductCard = ({ product }: ProductCardProps) => {
+export function ProductCard({ product }: ProductCardProps) {
   const [displayImage, setIsDisplayImage] = useState(product.images[0]);
 
   return (
@@ -62,4 +62,4 @@ export const ProductCard = ({ product }: ProductCardProps) => {
       </Link>
     </Card>
   );
-};
+}

@@ -6,7 +6,7 @@ import { usePathname } from 'next/navigation';
 import { cn } from '@/lib/utils';
 import { navLinks } from '@/utils/nav-links';
 
-export const Navbar = () => {
+export function Navbar() {
   const pathname = usePathname();
 
   return (
@@ -27,4 +27,4 @@ export const Navbar = () => {
       ))}
     </nav>
   );
-};
+}

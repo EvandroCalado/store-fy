@@ -1,6 +1,6 @@
 import { Loader } from 'lucide-react';
 
-const Loading = () => {
+export default async function Loading() {
   return (
     <div className='flex flex-1 flex-col items-center justify-center gap-5'>
       <Loader className='size-20 animate-spin' />
@@ -10,6 +10,4 @@ const Loading = () => {
       </h1>
     </div>
   );
-};
-
-export default Loading;
+}

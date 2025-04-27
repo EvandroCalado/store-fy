@@ -18,7 +18,9 @@ type ProductDetailsPageParams = {
   params: Promise<{ slug: string }>;
 };
 
-const ProductDetailsPage = async ({ params }: ProductDetailsPageParams) => {
+export default async function ProductDetailsPage({
+  params,
+}: ProductDetailsPageParams) {
   const { slug } = await params;
 
   const product = await getProductBySlug(slug);
@@ -39,6 +41,4 @@ const ProductDetailsPage = async ({ params }: ProductDetailsPageParams) => {
       </Container>
     </>
   );
-};
-
-export default ProductDetailsPage;
+}

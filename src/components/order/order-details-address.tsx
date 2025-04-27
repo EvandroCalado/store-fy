@@ -17,11 +17,11 @@ type OrderDetailsAddressProps = {
   deliveredAt: Date | null;
 };
 
-export const OrderDetailsAddress = ({
+export function OrderDetailsAddress({
   address,
   isDelivered,
   deliveredAt,
-}: OrderDetailsAddressProps) => {
+}: OrderDetailsAddressProps) {
   return (
     <Table>
       <TableHeader>
@@ -51,4 +51,4 @@ export const OrderDetailsAddress = ({
       </TableBody>
     </Table>
   );
-};
+}

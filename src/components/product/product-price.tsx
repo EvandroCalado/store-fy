@@ -6,11 +6,11 @@ type ProductPriceProps = {
   value: number;
 } & ComponentProps<'p'>;
 
-export const ProductPrice = ({
+export function ProductPrice({
   value,
   className,
   ...props
-}: ProductPriceProps) => {
+}: ProductPriceProps) {
   const formatted = new Intl.NumberFormat('pt-BR', {
     style: 'currency',
     currency: 'BRL',
@@ -21,4 +21,4 @@ export const ProductPrice = ({
       {formatted}
     </p>
   );
-};
+}

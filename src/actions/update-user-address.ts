@@ -6,7 +6,7 @@ import { shippingAddressSchema } from '@/schemas/shipping-address';
 import { ShippingAddress } from '@/types/shipping-address';
 import { formatErrors } from '@/utils/formatErrors';
 
-export const updateUserAddress = async (data: ShippingAddress) => {
+export async function updateUserAddress(data: ShippingAddress) {
   try {
     const session = await auth();
 
@@ -31,4 +31,4 @@ export const updateUserAddress = async (data: ShippingAddress) => {
       message: formatErrors(error),
     };
   }
-};
+}

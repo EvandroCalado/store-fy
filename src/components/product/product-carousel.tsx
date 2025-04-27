@@ -22,7 +22,7 @@ type ProductCarouselProps = {
   featuredProducts: Product[];
 };
 
-export const ProductCarousel = ({ featuredProducts }: ProductCarouselProps) => {
+export function ProductCarousel({ featuredProducts }: ProductCarouselProps) {
   if (featuredProducts.length <= 0) return null;
 
   return (
@@ -83,4 +83,4 @@ export const ProductCarousel = ({ featuredProducts }: ProductCarouselProps) => {
       </Carousel>
     </Container>
   );
-};
+}

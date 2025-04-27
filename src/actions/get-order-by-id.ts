@@ -2,7 +2,7 @@
 
 import { prisma } from '@/db/prisma';
 
-export const getOrderById = async (orderId: string) => {
+export async function getOrderById(orderId: string) {
   const order = await prisma.order.findFirst({
     where: {
       id: orderId,
@@ -19,4 +19,4 @@ export const getOrderById = async (orderId: string) => {
   });
 
   return order;
-};
+}

@@ -12,7 +12,7 @@ type LinkLoaderProps = {
   iconName?: IconName;
 };
 
-export const LinkLoader = ({ iconName = 'move-right' }: LinkLoaderProps) => {
+export function LinkLoader({ iconName = 'move-right' }: LinkLoaderProps) {
   const { pending } = useLinkStatus();
 
   const iconDictionary: { [key: string]: JSX.Element } = {
@@ -28,4 +28,4 @@ export const LinkLoader = ({ iconName = 'move-right' }: LinkLoaderProps) => {
       {pending ? <Loader className='animate-spin' /> : iconDictionary[iconName]}
     </>
   );
-};
+}

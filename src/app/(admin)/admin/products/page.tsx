@@ -21,7 +21,9 @@ type AdminProductsPageParams = {
   searchParams: Promise<SearchParams>;
 };
 
-const AdminProductsPage = async ({ searchParams }: AdminProductsPageParams) => {
+export default async function AdminProductsPag({
+  searchParams,
+}: AdminProductsPageParams) {
   const { page, query, category } = await loadSearchParams(searchParams);
 
   const data = await getAllProducts({ page, query, category, limit: 12 });
@@ -49,6 +51,4 @@ const AdminProductsPage = async ({ searchParams }: AdminProductsPageParams) => {
       />
     </Container>
   );
-};
-
-export default AdminProductsPage;
+}

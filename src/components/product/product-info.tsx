@@ -17,7 +17,7 @@ const cardsInfo = [
   },
 ];
 
-export const ProductInfo = () => {
+export function ProductInfo() {
   return (
     <div className='space-y-2 md:col-span-2'>
       {cardsInfo.map(card => (
@@ -36,4 +36,4 @@ export const ProductInfo = () => {
       ))}
     </div>
   );
-};
+}

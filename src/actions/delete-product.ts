@@ -5,7 +5,7 @@ import { revalidatePath } from 'next/cache';
 import { prisma } from '@/db/prisma';
 import { formatErrors } from '@/utils/formatErrors';
 
-export const deleteProduct = async (productId: string) => {
+export async function deleteProduct(productId: string) {
   try {
     const productExists = await prisma.product.findFirst({
       where: {
@@ -33,4 +33,4 @@ export const deleteProduct = async (productId: string) => {
       message: formatErrors(error),
     };
   }
-};
+}

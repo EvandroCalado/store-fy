@@ -18,7 +18,7 @@ import {
   SheetTrigger,
 } from '../ui/sheet';
 
-export const MenuMobile = () => {
+export function MenuMobile() {
   const pathname = usePathname();
 
   return (
@@ -57,4 +57,4 @@ export const MenuMobile = () => {
       </Sheet>
     </div>
   );
-};
+}

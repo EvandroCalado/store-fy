@@ -13,7 +13,7 @@ import { formatErrors } from '@/utils/formatErrors';
 
 import { getMyCart } from './get-my-cart';
 
-export const addItemToCart = async (cartItem: CartItem) => {
+export async function addItemToCart(cartItem: CartItem) {
   const cookieStore = await cookies();
 
   try {
@@ -115,4 +115,4 @@ export const addItemToCart = async (cartItem: CartItem) => {
       message: formatErrors(error),
     };
   }
-};
+}

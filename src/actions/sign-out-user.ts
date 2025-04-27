@@ -2,6 +2,6 @@
 
 import { signOut } from '@/auth';
 
-export const signOutUser = async () => {
+export async function signOutUser() {
   await signOut();
-};
+}

@@ -10,7 +10,7 @@ export const metadata: Metadata = {
   title: 'Carrinho',
 };
 
-const CartPage = async () => {
+export default async function CartPage() {
   const cart = await getMyCart();
 
   return (
@@ -23,6 +23,4 @@ const CartPage = async () => {
       </Container>
     </>
   );
-};
-
-export default CartPage;
+}

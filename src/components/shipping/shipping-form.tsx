@@ -30,7 +30,7 @@ export type ShippingFormProps = {
   address: ShippingAddress;
 };
 
-export const ShippingForm = ({ address }: ShippingFormProps) => {
+export function ShippingForm({ address }: ShippingFormProps) {
   const [isPending, startTransition] = useTransition();
 
   const router = useRouter();
@@ -178,4 +178,4 @@ export const ShippingForm = ({ address }: ShippingFormProps) => {
       </Form>
     </>
   );
-};
+}

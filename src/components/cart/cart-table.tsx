@@ -26,7 +26,7 @@ type CartTableProps = {
   cart?: Cart;
 };
 
-export const CartTable = ({ cart }: CartTableProps) => {
+export function CartTable({ cart }: CartTableProps) {
   const { handleAddToCart, handleRemoveFromCart, isPending, startTransition } =
     useCart();
 
@@ -104,4 +104,4 @@ export const CartTable = ({ cart }: CartTableProps) => {
       )}
     </>
   );
-};
+}

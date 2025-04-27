@@ -16,9 +16,7 @@ type OrderPaymentMethodProps = {
   paymentMethod: string;
 };
 
-export const OrderPaymentMethod = ({
-  paymentMethod,
-}: OrderPaymentMethodProps) => {
+export function OrderPaymentMethod({ paymentMethod }: OrderPaymentMethodProps) {
   return (
     <Table>
       <TableHeader>
@@ -47,4 +45,4 @@ export const OrderPaymentMethod = ({
       </TableBody>
     </Table>
   );
-};
+}

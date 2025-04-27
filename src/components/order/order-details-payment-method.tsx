@@ -16,11 +16,11 @@ type OrderDetailsPaymentMethodProps = {
   paidAt: Date | null;
 };
 
-export const OrderDetailsPaymentMethod = ({
+export function OrderDetailsPaymentMethod({
   paymentMethod,
   isPaid,
   paidAt,
-}: OrderDetailsPaymentMethodProps) => {
+}: OrderDetailsPaymentMethodProps) {
   return (
     <Table>
       <TableHeader>
@@ -45,4 +45,4 @@ export const OrderDetailsPaymentMethod = ({
       </TableBody>
     </Table>
   );
-};
+}

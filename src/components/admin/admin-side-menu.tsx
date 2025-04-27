@@ -23,7 +23,7 @@ import {
   useSidebar,
 } from '../ui/sidebar';
 
-export const AdminSideMenu = () => {
+export function AdminSideMenu() {
   const { setOpenMobile } = useSidebar();
   const path = usePathname();
 
@@ -101,4 +101,4 @@ export const AdminSideMenu = () => {
       </SidebarFooter>
     </Sidebar>
   );
-};
+}

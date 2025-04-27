@@ -14,7 +14,7 @@ type ProductPageProps = {
   cart?: Cart;
 };
 
-export const ProductDetails = ({ product, cart }: ProductPageProps) => {
+export function ProductDetails({ product, cart }: ProductPageProps) {
   return (
     <div className='space-y-8 md:col-span-3'>
       <div className='flex items-center gap-4'>
@@ -85,4 +85,4 @@ export const ProductDetails = ({ product, cart }: ProductPageProps) => {
       </div>
     </div>
   );
-};
+}

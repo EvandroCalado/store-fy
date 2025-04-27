@@ -14,7 +14,7 @@ export const metadata: Metadata = {
   title: 'Endereço de entrega',
 };
 
-const ShippingAddressPage = async () => {
+export default async function ShippingAddressPage() {
   const cart = await getMyCart();
 
   if (!cart || cart.items.length === 0) redirect('/');
@@ -34,6 +34,4 @@ const ShippingAddressPage = async () => {
       </Container>
     </>
   );
-};
-
-export default ShippingAddressPage;
+}

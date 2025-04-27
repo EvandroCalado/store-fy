@@ -14,11 +14,11 @@ type PaginationProps = {
   className?: string;
 };
 
-export const Pagination = ({
+export function Pagination({
   totalPages,
   refetchAction,
   className,
-}: PaginationProps) => {
+}: PaginationProps) {
   const [isPending, startTransition] = useTransition();
 
   const [page, setPage] = useQueryState(
@@ -59,4 +59,4 @@ export const Pagination = ({
       </Button>
     </div>
   );
-};
+}

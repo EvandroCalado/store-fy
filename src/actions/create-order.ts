@@ -11,7 +11,7 @@ import { formatErrors } from '@/utils/formatErrors';
 import { getMyCart } from './get-my-cart';
 import { getUserById } from './get-user-by-id';
 
-export const createOrder = async () => {
+export async function createOrder() {
   try {
     const session = await auth();
 
@@ -111,4 +111,4 @@ export const createOrder = async () => {
       message: formatErrors(error),
     };
   }
-};
+}

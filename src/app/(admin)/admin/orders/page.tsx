@@ -17,7 +17,9 @@ type AdminOrdersPageParams = {
   searchParams: Promise<SearchParams>;
 };
 
-const AdminOrdersPage = async ({ searchParams }: AdminOrdersPageParams) => {
+export default async function AdminOrdersPage({
+  searchParams,
+}: AdminOrdersPageParams) {
   const { page, query } = await loadSearchParams(searchParams);
 
   const orders = await getAllOrders({ page, limit: 12, query });
@@ -34,6 +36,4 @@ const AdminOrdersPage = async ({ searchParams }: AdminOrdersPageParams) => {
       />
     </Container>
   );
-};
-
-export default AdminOrdersPage;
+}

@@ -14,9 +14,7 @@ type ProductFilterPriceProps = {
   refetchAction: (tag: string) => Promise<void>;
 };
 
-export const ProductFilterPrice = ({
-  refetchAction,
-}: ProductFilterPriceProps) => {
+export function ProductFilterPrice({ refetchAction }: ProductFilterPriceProps) {
   const [isPending, startTransition] = useTransition();
 
   const [price, setPrice] = useQueryState(
@@ -59,4 +57,4 @@ export const ProductFilterPrice = ({
       </div>
     </div>
   );
-};
+}

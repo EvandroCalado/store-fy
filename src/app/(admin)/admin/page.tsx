@@ -14,7 +14,7 @@ export const metadata: Metadata = {
   title: 'Administração Painel',
 };
 
-const AdminPage = async () => {
+export default async function AdminPage() {
   const session = await auth();
 
   if (session?.user.role !== 'admin') {
@@ -56,6 +56,4 @@ const AdminPage = async () => {
       </div>
     </Container>
   );
-};
-
-export default AdminPage;
+}

@@ -4,11 +4,11 @@ import { AdminHeader } from '@/components/admin/admin-header';
 import { AdminSideMenu } from '@/components/admin/admin-side-menu';
 import { SidebarProvider } from '@/components/ui/sidebar';
 
-const AdminLayout = async ({
+export default async function AdminLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
-}>) => {
+}>) {
   const cookieStore = await cookies();
 
   const defaultOpen = cookieStore.get('sidebar_state')?.value === 'true';
@@ -25,6 +25,4 @@ const AdminLayout = async ({
       </main>
     </SidebarProvider>
   );
-};
-
-export default AdminLayout;
+}

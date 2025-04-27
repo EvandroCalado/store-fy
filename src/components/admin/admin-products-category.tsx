@@ -37,9 +37,9 @@ type AdminProductsCategoryProps = {
   refetchAction: (tag: string) => Promise<void>;
 };
 
-export const AdminProductsCategory = ({
+export function AdminProductsCategory({
   refetchAction,
-}: AdminProductsCategoryProps) => {
+}: AdminProductsCategoryProps) {
   const [category, setCategory] = useQueryState(
     'category',
     parseAsString.withDefault(''),
@@ -67,4 +67,4 @@ export const AdminProductsCategory = ({
       </SelectContent>
     </Select>
   );
-};
+}

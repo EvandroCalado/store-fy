@@ -5,7 +5,7 @@ import { revalidatePath } from 'next/cache';
 import { prisma } from '@/db/prisma';
 import { formatErrors } from '@/utils/formatErrors';
 
-export const deleteOrder = async (orderId: string) => {
+export async function deleteOrder(orderId: string) {
   try {
     await prisma.order.delete({
       where: {
@@ -25,4 +25,4 @@ export const deleteOrder = async (orderId: string) => {
       message: formatErrors(error),
     };
   }
-};
+}

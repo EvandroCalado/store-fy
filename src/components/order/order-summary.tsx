@@ -11,13 +11,13 @@ export type OrderSummaryProps = {
   hasButton?: boolean;
 };
 
-export const OrderSummary = ({
+export function OrderSummary({
   itemsPrice,
   taxPrice,
   shippingPrice,
   totalPrice,
   hasButton = true,
-}: OrderSummaryProps) => {
+}: OrderSummaryProps) {
   return (
     <Card className='gap-2 rounded-md p-5 shadow-none'>
       <CardHeader className='p-0'>
@@ -45,4 +45,4 @@ export const OrderSummary = ({
       </CardContent>
     </Card>
   );
-};
+}

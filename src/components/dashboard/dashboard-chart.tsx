@@ -36,7 +36,7 @@ const colors = [
   '#ff79cb',
 ];
 
-export const DashboardChart = ({ salesByMonth }: DashboardChartProps) => {
+export function DashboardChart({ salesByMonth }: DashboardChartProps) {
   const chartData = salesByMonth.map((item, index) => ({
     month: item.month,
     totalSales: item.totalSales,
@@ -129,4 +129,4 @@ export const DashboardChart = ({ salesByMonth }: DashboardChartProps) => {
       </CardContent>
     </Card>
   );
-};
+}

@@ -2,7 +2,7 @@
 
 import { prisma } from '@/db/prisma';
 
-export const getProductBySlug = async (slug: string) => {
+export async function getProductBySlug(slug: string) {
   const product = await prisma.product.findFirst({
     where: {
       slug,
@@ -10,4 +10,4 @@ export const getProductBySlug = async (slug: string) => {
   });
 
   return product;
-};
+}

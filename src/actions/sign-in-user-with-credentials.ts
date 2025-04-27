@@ -7,7 +7,7 @@ import { signInUserSchema } from '@/schemas/sign-in-user';
 import { SignInUser } from '@/types/sign-in-user';
 import { formatErrors } from '@/utils/formatErrors';
 
-export const signInUserWithCredentials = async (data: SignInUser) => {
+export async function signInUserWithCredentials(data: SignInUser) {
   try {
     const user = signInUserSchema.parse(data);
 
@@ -28,4 +28,4 @@ export const signInUserWithCredentials = async (data: SignInUser) => {
       message: formatErrors(error),
     };
   }
-};
+}

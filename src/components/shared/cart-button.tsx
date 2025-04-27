@@ -8,7 +8,7 @@ type CartButtonProps = {
   totalItems: number | undefined;
 };
 
-export const CartButton = ({ totalItems }: CartButtonProps) => {
+export function CartButton({ totalItems }: CartButtonProps) {
   return (
     <Button
       asChild
@@ -28,4 +28,4 @@ export const CartButton = ({ totalItems }: CartButtonProps) => {
       </Link>
     </Button>
   );
-};
+}

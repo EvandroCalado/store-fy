@@ -14,7 +14,7 @@ type ProductAddToCartProps = {
   cart?: Cart;
 };
 
-export const ProductAddToCart = ({ item, cart }: ProductAddToCartProps) => {
+export function ProductAddToCart({ item, cart }: ProductAddToCartProps) {
   const { handleAddToCart, handleRemoveFromCart, isPending } = useCart();
 
   const existItemInCart =
@@ -44,4 +44,4 @@ export const ProductAddToCart = ({ item, cart }: ProductAddToCartProps) => {
       Adicionar
     </Button>
   );
-};
+}

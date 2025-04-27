@@ -12,7 +12,7 @@ type SectionTitleProps = {
   title: string;
 };
 
-export const SectionTitle = ({ title }: SectionTitleProps) => {
+export function SectionTitle({ title }: SectionTitleProps) {
   return (
     <div className='flex h-40 w-full flex-col items-center justify-center overflow-hidden bg-[url("/bg/section-title.svg")]'>
       <Container className='relative space-y-4'>
@@ -32,4 +32,4 @@ export const SectionTitle = ({ title }: SectionTitleProps) => {
       </Container>
     </div>
   );
-};
+}

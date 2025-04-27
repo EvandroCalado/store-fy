@@ -2,11 +2,11 @@
 
 import { prisma } from '@/db/prisma';
 
-export const getAllCategories = async () => {
+export async function getAllCategories() {
   const categories = await prisma.product.groupBy({
     by: ['category'],
     _count: true,
   });
 
   return categories;
-};
+}

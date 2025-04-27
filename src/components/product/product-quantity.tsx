@@ -14,13 +14,13 @@ type ProductAddToCartProps = {
   className?: string;
 };
 
-export const ProductQuantity = ({
+export function ProductQuantity({
   handleAddToCart,
   handleRemoveFromCart,
   isPending,
   quantity = 0,
   className,
-}: ProductAddToCartProps) => {
+}: ProductAddToCartProps) {
   return (
     <div
       className={cn(
@@ -43,4 +43,4 @@ export const ProductQuantity = ({
       </Button>
     </div>
   );
-};
+}

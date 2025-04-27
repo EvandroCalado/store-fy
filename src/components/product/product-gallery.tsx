@@ -10,7 +10,7 @@ type ProductPageProps = {
   images: Product['images'];
 };
 
-export const ProductGallery = ({ images }: ProductPageProps) => {
+export function ProductGallery({ images }: ProductPageProps) {
   const [displayImage, setDisplayImage] = useState(images[0]);
 
   return (
@@ -42,4 +42,4 @@ export const ProductGallery = ({ images }: ProductPageProps) => {
       </div>
     </div>
   );
-};
+}

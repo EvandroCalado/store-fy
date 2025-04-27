@@ -5,7 +5,7 @@ import { OctagonAlertIcon } from 'lucide-react';
 import { LinkLoader } from '@/components/shared/link-loader';
 import { Button } from '@/components/ui/button';
 
-const NotFoundPage = () => {
+export default async function NotFoundPage() {
   return (
     <div className='flex flex-1 flex-col items-center justify-center gap-8 px-4'>
       <OctagonAlertIcon className='text-muted-foreground/20 size-32 animate-bounce stroke-1' />
@@ -27,6 +27,4 @@ const NotFoundPage = () => {
       </Button>
     </div>
   );
-};
-
-export default NotFoundPage;
+}

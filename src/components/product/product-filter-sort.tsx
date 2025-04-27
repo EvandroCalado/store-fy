@@ -21,9 +21,7 @@ type ProductFilterSortProps = {
   refetchAction: (tag: string) => Promise<void>;
 };
 
-export const ProductFilterSort = ({
-  refetchAction,
-}: ProductFilterSortProps) => {
+export function ProductFilterSort({ refetchAction }: ProductFilterSortProps) {
   const [sort, setSort] = useQueryState(
     'sort',
     parseAsString.withDefault('newest'),
@@ -64,4 +62,4 @@ export const ProductFilterSort = ({
       </SelectContent>
     </Select>
   );
-};
+}

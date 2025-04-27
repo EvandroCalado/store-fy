@@ -2,7 +2,7 @@
 
 import { prisma } from '@/db/prisma';
 
-export const getUserById = async (userId: string) => {
+export async function getUserById(userId: string) {
   const user = await prisma.user.findFirst({
     where: {
       id: userId,
@@ -12,4 +12,4 @@ export const getUserById = async (userId: string) => {
   if (!user) throw new Error('Usuário não encontrado');
 
   return user;
-};
+}

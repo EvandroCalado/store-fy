@@ -4,7 +4,7 @@ import { prisma } from '@/db/prisma';
 import { formatErrors } from '@/utils/formatErrors';
 import { paypal } from '@/utils/paypal';
 
-export const createPaypalOrder = async (orderId: string) => {
+export async function createPaypalOrder(orderId: string) {
   try {
     const order = await prisma.order.findFirst({
       where: {
@@ -41,4 +41,4 @@ export const createPaypalOrder = async (orderId: string) => {
       message: formatErrors(error),
     };
   }
-};
+}

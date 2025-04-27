@@ -9,7 +9,7 @@ export const metadata: Metadata = {
   title: 'Forma de pagamento',
 };
 
-const PaymentMethodPage = async () => {
+export default async function PaymentMethodPage() {
   return (
     <>
       <SectionTitle title='Forma de pagamento' />
@@ -20,6 +20,4 @@ const PaymentMethodPage = async () => {
       </Container>
     </>
   );
-};
-
-export default PaymentMethodPage;
+}

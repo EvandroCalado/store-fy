@@ -12,7 +12,7 @@ import { Navbar } from './navbar';
 import { Search } from './search';
 import { UserMenu } from './user-menu';
 
-export const Header = async () => {
+export async function Header() {
   const session = await auth();
   const cart = await getMyCart();
 
@@ -46,4 +46,4 @@ export const Header = async () => {
       </div>
     </header>
   );
-};
+}

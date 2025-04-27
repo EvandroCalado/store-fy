@@ -30,7 +30,7 @@ type PaymentFormProps = {
   preferredPaymentMethod: string | null;
 };
 
-export const PaymentForm = ({ preferredPaymentMethod }: PaymentFormProps) => {
+export function PaymentForm({ preferredPaymentMethod }: PaymentFormProps) {
   const [isPending, startTransition] = useTransition();
 
   const router = useRouter();
@@ -107,4 +107,4 @@ export const PaymentForm = ({ preferredPaymentMethod }: PaymentFormProps) => {
       </Form>
     </>
   );
-};
+}

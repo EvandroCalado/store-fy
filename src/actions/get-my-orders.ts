@@ -11,10 +11,10 @@ type GetMyOrdersParams = {
   limit?: number;
 };
 
-export const getMyOrders = async ({
+export async function getMyOrders({
   page,
   limit = CONSTANTS.PAGE_SIZE,
-}: GetMyOrdersParams) => {
+}: GetMyOrdersParams) {
   const session = await auth();
 
   if (!session?.user?.id) throw new Error('User not found');
@@ -45,4 +45,4 @@ export const getMyOrders = async ({
     orders: transformedOrders,
     totalPages: Math.ceil(count / limit),
   };
-};
+}

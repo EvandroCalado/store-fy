@@ -5,7 +5,7 @@ import { revalidatePath } from 'next/cache';
 import { prisma } from '@/db/prisma';
 import { formatErrors } from '@/utils/formatErrors';
 
-export const deliverOrder = async (orderId: string) => {
+export async function deliverOrder(orderId: string) {
   try {
     const order = await prisma.order.findFirst({
       where: {
@@ -39,4 +39,4 @@ export const deliverOrder = async (orderId: string) => {
       message: formatErrors(error),
     };
   }
-};
+}

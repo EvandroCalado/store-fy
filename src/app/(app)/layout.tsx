@@ -1,11 +1,11 @@
 import { Footer } from '@/components/shared/footer';
 import { Header } from '@/components/shared/header';
 
-const AppLayout = ({
+export default async function AppLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
-}>) => {
+}>) {
   return (
     <>
       <Header />
@@ -13,6 +13,4 @@ const AppLayout = ({
       <Footer />
     </>
   );
-};
-
-export default AppLayout;
+}

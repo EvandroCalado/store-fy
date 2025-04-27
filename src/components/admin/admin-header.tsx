@@ -4,7 +4,7 @@ import { DarkMode } from '../shared/dark-mode';
 import { SidebarTrigger } from '../ui/sidebar';
 import { AdminSearch } from './admin-search';
 
-export const AdminHeader = () => {
+export function AdminHeader() {
   return (
     <header className='flex items-center justify-between gap-4 border-b p-4'>
       <div className='flex items-center gap-4'>
@@ -19,4 +19,4 @@ export const AdminHeader = () => {
       <AdminSearch refetchAction={refetchAction} />
     </header>
   );
-};
+}

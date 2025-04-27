@@ -12,7 +12,11 @@ type GetAllOrderParams = {
 };
 
 export const getAllOrders = unstable_cache(
-  async ({ page, limit = CONSTANTS.PAGE_SIZE, query }: GetAllOrderParams) => {
+  async function ({
+    page,
+    limit = CONSTANTS.PAGE_SIZE,
+    query,
+  }: GetAllOrderParams) {
     const orders = await prisma.order.findMany({
       where: {
         user: {

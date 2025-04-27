@@ -13,7 +13,7 @@ type SignInPageParams = {
   searchParams: Promise<{ callbackUrl: string }>;
 };
 
-const SignUpPage = async ({ searchParams }: SignInPageParams) => {
+export default async function SignUpPage({ searchParams }: SignInPageParams) {
   const { callbackUrl } = await searchParams;
 
   const session = await auth();
@@ -26,6 +26,4 @@ const SignUpPage = async ({ searchParams }: SignInPageParams) => {
       <SignUpForm />
     </>
   );
-};
-
-export default SignUpPage;
+}

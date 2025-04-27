@@ -2,7 +2,7 @@
 
 import { prisma } from '@/db/prisma';
 
-export const getFeaturedProducts = async () => {
+export async function getFeaturedProducts() {
   const products = await prisma.product.findMany({
     where: {
       isFeatured: true,
@@ -14,4 +14,4 @@ export const getFeaturedProducts = async () => {
   });
 
   return products;
-};
+}

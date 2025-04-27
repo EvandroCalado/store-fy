@@ -12,7 +12,11 @@ type GetAllUsersParams = {
 };
 
 export const getAllUsers = unstable_cache(
-  async ({ page, limit = CONSTANTS.PAGE_SIZE, query }: GetAllUsersParams) => {
+  async function ({
+    page,
+    limit = CONSTANTS.PAGE_SIZE,
+    query,
+  }: GetAllUsersParams) {
     const users = await prisma.user.findMany({
       where: {
         name: {

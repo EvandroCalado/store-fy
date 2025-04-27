@@ -23,11 +23,11 @@ type DeliverDialogProps = {
   isDelivered?: boolean;
 };
 
-export const DeliverDialog = ({
+export function DeliverDialog({
   orderId,
   action,
   isDelivered,
-}: DeliverDialogProps) => {
+}: DeliverDialogProps) {
   const [isOpen, setIsOpen] = useState(false);
   const [isPending, startTransition] = useTransition();
 
@@ -83,4 +83,4 @@ export const DeliverDialog = ({
       </AlertDialogContent>
     </AlertDialog>
   );
-};
+}

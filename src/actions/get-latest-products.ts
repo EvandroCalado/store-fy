@@ -3,7 +3,7 @@
 import { prisma } from '@/db/prisma';
 import { CONSTANTS } from '@/utils/constants';
 
-export const getLatestProducts = async () => {
+export async function getLatestProducts() {
   const products = await prisma.product.findMany({
     take: CONSTANTS.LATEST_PRODUCTS_LIMIT,
     orderBy: {
@@ -12,4 +12,4 @@ export const getLatestProducts = async () => {
   });
 
   return products;
-};
+}

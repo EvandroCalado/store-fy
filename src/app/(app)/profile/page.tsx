@@ -11,7 +11,7 @@ export const metadata: Metadata = {
   title: 'Perfil',
 };
 
-const ProfilePage = async () => {
+export default async function ProfilePage() {
   const session = await auth();
 
   return (
@@ -23,6 +23,4 @@ const ProfilePage = async () => {
       </Container>
     </SessionProvider>
   );
-};
-
-export default ProfilePage;
+}

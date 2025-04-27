@@ -2,7 +2,7 @@
 import { PrismaClientKnownRequestError } from '@prisma/client/runtime/library';
 import { ZodError } from 'zod';
 
-export const formatErrors = (error: any) => {
+export function formatErrors(error: any) {
   if (error instanceof ZodError) {
     const fieldErrors = Object.keys(error.errors).map(
       (field: string) => (error.errors as any)[field].message,
@@ -29,4 +29,4 @@ export const formatErrors = (error: any) => {
   return typeof error.message === 'string'
     ? error.message
     : JSON.stringify(error.message);
-};
+}

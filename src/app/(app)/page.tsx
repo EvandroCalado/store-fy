@@ -9,7 +9,7 @@ export const metadata = {
   title: 'Home',
 };
 
-const HomePage = async () => {
+export default async function HomePage() {
   const products = await getLatestProducts();
   const featuredProducts = await getFeaturedProducts();
 
@@ -21,6 +21,4 @@ const HomePage = async () => {
       <ProductGrid products={products} title='Produtos Em Destaque' />
     </>
   );
-};
-
-export default HomePage;
+}
