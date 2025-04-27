@@ -67,7 +67,7 @@ export default async function ProductsPage({
       <SectionTitle title='Produtos' />
 
       <Container className='my-8 grid grid-cols-1 gap-5 sm:grid-cols-5'>
-        <div className='min-w-[165px] space-y-8'>
+        <div className='min-w-[150px] space-y-8'>
           <ProductFilterCategory
             categories={categories}
             refetchAction={refetchAction}
@@ -88,7 +88,7 @@ export default async function ProductsPage({
             <ProductFilterSort refetchAction={refetchAction} />
           </div>
 
-          <div className='grid grid-cols-1 gap-4 md:grid-cols-2 xl:grid-cols-3'>
+          <div className='grid grid-cols-1 items-center gap-4 self-center md:grid-cols-2 xl:grid-cols-3'>
             {data.products.map(product => (
               <ProductCard product={product} key={product.slug} />
             ))}
