@@ -38,13 +38,26 @@ export const ProductFilterSort = ({
   };
 
   return (
-    <Select value={sort} onValueChange={handleOnChanger}>
+    <Select
+      value={sort}
+      onValueChange={handleOnChanger}
+      aria-label='Filtrar Categoria'
+    >
       <SelectTrigger>
-        <SelectValue placeholder='Filtrar Categoria' />
+        <SelectValue
+          placeholder='Filtrar Categoria'
+          title='Filtrar Categoria'
+          aria-label='Filtrar Categoria'
+        />
       </SelectTrigger>
       <SelectContent>
         {sortOptions.map(sort => (
-          <SelectItem key={sort.value} value={sort.value}>
+          <SelectItem
+            key={sort.value}
+            value={sort.value}
+            title={sort.name}
+            aria-label={sort.name}
+          >
             {sort.name}
           </SelectItem>
         ))}

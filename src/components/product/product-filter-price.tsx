@@ -43,12 +43,19 @@ export const ProductFilterPrice = ({
       <Slider
         max={10000}
         step={100}
+        title='Selecionar o Preço'
+        aria-label='Selecionar o Preço'
         defaultValue={[price]}
         onValueChange={handleOnChange}
+        className='cursor-pointer'
       />
       <div className='flex items-center justify-between text-xs font-semibold'>
-        <span>{formatCurrency(price)}</span>
-        <span>{formatCurrency(maxPrice)}</span>
+        <span title='Preço selecionado' aria-label='Preço selecionado'>
+          {formatCurrency(price)}
+        </span>
+        <span title='Preço máximo' aria-label='Preço máximo'>
+          {formatCurrency(maxPrice)}
+        </span>
       </div>
     </div>
   );

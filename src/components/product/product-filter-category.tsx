@@ -56,6 +56,8 @@ export const ProductFilterCategory = ({
             id={item.category}
             checked={category === item.category}
             onCheckedChange={checked => handleOnChange(checked, item)}
+            title={item.category}
+            aria-label={item.category}
             className='cursor-pointer'
           />
           <Label htmlFor={item.category} className='cursor-pointer'>

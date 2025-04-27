@@ -60,6 +60,8 @@ export const ProductFilterRating = ({
             id={item.label}
             checked={item.value === rating}
             onCheckedChange={checked => handleOnChange(checked, item)}
+            title={item.label}
+            aria-label={item.label}
             className='cursor-pointer'
           />
           <Label htmlFor={item.label} className='cursor-pointer'>
