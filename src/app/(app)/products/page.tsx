@@ -46,7 +46,7 @@ const ProductsPage = async ({ searchParams }: ProductsPageParams) => {
     <>
       <SectionTitle title='Produtos' />
 
-      <Container className='my-8 grid grid-cols-1 sm:grid-cols-5 md:gap-5'>
+      <Container className='my-8 grid grid-cols-1 gap-5 sm:grid-cols-5'>
         <div className='min-w-[165px] space-y-8'>
           <ProductFilterCategory
             categories={categories}
