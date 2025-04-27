@@ -1,7 +1,7 @@
 import Image from 'next/image';
 import Link from 'next/link';
 
-import { Container } from './container';
+import { Container } from '../container';
 
 export function Footer() {
   const year = new Date().getFullYear();

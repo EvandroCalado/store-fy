@@ -5,8 +5,9 @@ import {
   BreadcrumbItem,
   BreadcrumbLink,
   BreadcrumbList,
-} from '../ui/breadcrumb';
-import { Container } from './container';
+} from '@/components/ui/breadcrumb';
+
+import { Container } from '../container';
 
 type SectionTitleProps = {
   title: string;
