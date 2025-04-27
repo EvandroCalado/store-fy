@@ -8,6 +8,7 @@ import Link from 'next/link';
 import { Product } from '@/types/product';
 import { generateReviewStars } from '@/utils/generate-review-stars';
 
+import { GlobalLoader } from '../shared/global-loader';
 import { Badge } from '../ui/badge';
 import { Card, CardContent, CardHeader } from '../ui/card';
 import { ProductPrice } from './product-price';
@@ -24,7 +25,9 @@ export function ProductCard({ product }: ProductCardProps) {
       key={product.slug}
       className='animate-fade-in bg-background min-w-[320px] border-none shadow-none transition-all duration-150'
     >
-      <Link href={`/product/${product.slug}`}>
+      <Link href={`/product/${product.slug}`} className='relative'>
+        <GlobalLoader />
+
         <CardHeader>
           <Image
             src={displayImage}

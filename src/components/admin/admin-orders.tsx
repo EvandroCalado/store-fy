@@ -1,5 +1,7 @@
 import Link from 'next/link';
 
+import { Search } from 'lucide-react';
+
 import { deleteOrder } from '@/actions/delete-order';
 import { deliverOrder } from '@/actions/deliver-order';
 import { updateOrderToPaidCOD } from '@/actions/update-order-to-paid-COD';
@@ -9,7 +11,6 @@ import { formatDate } from '@/utils/formatDate';
 
 import { DeleteDialog } from '../shared/delete-dialog';
 import { DeliverDialog } from '../shared/deliver-dialog';
-import { LinkLoader } from '../shared/link-loader';
 import { UpdateDialog } from '../shared/update-dialog';
 import { Button } from '../ui/button';
 import {
@@ -80,7 +81,7 @@ export function AdminOrders({ orders }: AdminOrdersProps) {
                     href={`/order/${order.id}`}
                     className='flex items-center justify-center gap-1'
                   >
-                    <LinkLoader iconName='search' />
+                    <Search />
                   </Link>
                 </Button>
 

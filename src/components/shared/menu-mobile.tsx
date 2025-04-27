@@ -17,6 +17,7 @@ import {
   SheetTitle,
   SheetTrigger,
 } from '../ui/sheet';
+import { GlobalLoader } from './global-loader';
 
 export function MenuMobile() {
   const pathname = usePathname();
@@ -49,6 +50,7 @@ export function MenuMobile() {
                   },
                 )}
               >
+                <GlobalLoader />
                 {link.name}
               </Link>
             ))}
