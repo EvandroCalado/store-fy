@@ -6,17 +6,17 @@ import { Checkbox } from '../ui/checkbox';
 import { Label } from '../ui/label';
 import { ProductFilterTitle } from './product-filter-title';
 
-type ProductCategoryFilterProps = {
+type ProductFilterCategoryProps = {
   categories: {
     category: string;
   }[];
   refetchAction: (tag: string) => Promise<void>;
 };
 
-export const ProductCategoryFilter = ({
+export const ProductFilterCategory = ({
   categories,
   refetchAction,
-}: ProductCategoryFilterProps) => {
+}: ProductFilterCategoryProps) => {
   const [category, setCategory] = useQueryState(
     'category',
     parseAsString.withDefault(''),
