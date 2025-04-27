@@ -19,19 +19,19 @@ export const Pagination = ({
   refetchAction,
   className,
 }: PaginationProps) => {
-  const [page, setPage] = useQueryState('page', parseAsInteger.withDefault(1));
-
   const [isPending, startTransition] = useTransition();
+  const [page, setPage] = useQueryState(
+    'page',
+    parseAsInteger.withDefault(1).withOptions({ startTransition }),
+  );
 
   if (totalPages <= 1) return null;
 
   const handleClick = (value: number) => {
-    startTransition(() => {
-      setPage(value);
+    setPage(value);
 
-      setTimeout(() => {
-        refetchAction('products');
-      });
+    setTimeout(() => {
+      refetchAction('products');
     });
   };
 
