@@ -8,7 +8,8 @@ import { getAllProducts } from '@/actions/get-all-products';
 import { refetchAction } from '@/actions/refetch-action';
 import { loadSearchParams } from '@/app/search-params';
 import { ProductCard } from '@/components/product/product-card';
-import { ProductCategoryFilter } from '@/components/product/product-category-filter';
+import { ProductFilterCategory } from '@/components/product/product-filter-category';
+import { ProductFilterSort } from '@/components/product/product-filter-sort';
 import { ProductPriceFilter } from '@/components/product/product-price-filter';
 import { ProductRatingFilter } from '@/components/product/product-rating-filter';
 import { Container } from '@/components/shared/container';
@@ -47,7 +48,7 @@ const ProductsPage = async ({ searchParams }: ProductsPageParams) => {
 
       <Container className='my-8 grid grid-cols-1 sm:grid-cols-5 md:gap-5'>
         <div className='min-w-[165px] space-y-8'>
-          <ProductCategoryFilter
+          <ProductFilterCategory
             categories={categories}
             refetchAction={refetchAction}
           />
@@ -55,7 +56,18 @@ const ProductsPage = async ({ searchParams }: ProductsPageParams) => {
           <ProductRatingFilter refetchAction={refetchAction} />
         </div>
 
-        <div className='col-span-4 flex flex-col'>
+        <div className='col-span-4 flex flex-col space-y-4'>
+          <div className='flex items-center justify-between'>
+            <span className='text-muted-foreground flex items-center gap-2'>
+              <strong className='text-foreground text-xl'>
+                {data.products.length}
+              </strong>
+              Produtos na Lista
+            </span>
+
+            <ProductFilterSort refetchAction={refetchAction} />
+          </div>
+
           <div className='grid grid-cols-1 gap-4 md:grid-cols-2 xl:grid-cols-3'>
             {data.products.map(product => (
               <ProductCard product={product} key={product.slug} />
