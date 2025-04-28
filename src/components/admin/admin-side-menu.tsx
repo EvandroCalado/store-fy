@@ -1,6 +1,6 @@
 'use client';
 
-import Link, { useLinkStatus } from 'next/link';
+import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 
 import { LogOut, SidebarCloseIcon } from 'lucide-react';
@@ -25,7 +25,6 @@ import {
 } from '../ui/sidebar';
 
 export function AdminSideMenu() {
-  const { pending } = useLinkStatus();
   const { setOpenMobile } = useSidebar();
   const path = usePathname();
 
@@ -75,9 +74,8 @@ export function AdminSideMenu() {
                     tooltip={link.name}
                   >
                     <Link href={link.href} className='relative'>
-                      <link.icon />
+                      <Loader children={<link.icon />} />
                       <span>{link.name}</span>
-                      <Loader className='absolute right-2' />
                     </Link>
                   </SidebarMenuButton>
                 </SidebarMenuItem>

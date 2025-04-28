@@ -1,11 +1,12 @@
 import Link from 'next/link';
 
 import { User } from '@prisma/client';
+import { Search } from 'lucide-react';
 
 import { deleteUser } from '@/actions/delete-user';
 
 import { DeleteDialog } from '../shared/delete-dialog';
-import { LinkLoader } from '../shared/link-loader';
+import { GlobalLoader } from '../shared/global-loader';
 import { Badge } from '../ui/badge';
 import { Button } from '../ui/button';
 import {
@@ -61,7 +62,8 @@ export function AdminUsers({ users }: AdminUsersProps) {
                     href={`/admin/users/${user.id}`}
                     className='flex items-center justify-center gap-1'
                   >
-                    <LinkLoader iconName='search' />
+                    <GlobalLoader />
+                    <Search />
                   </Link>
                 </Button>
 

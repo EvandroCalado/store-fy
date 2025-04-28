@@ -2,7 +2,7 @@ import Link from 'next/link';
 
 import { OctagonAlertIcon } from 'lucide-react';
 
-import { LinkLoader } from '@/components/shared/link-loader';
+import { GlobalLoader } from '@/components/shared/global-loader';
 import { Button } from '@/components/ui/button';
 
 export default async function NotFoundPage() {
@@ -21,7 +21,7 @@ export default async function NotFoundPage() {
 
       <Button asChild>
         <Link href='/'>
-          <LinkLoader />
+          <GlobalLoader />
           <p>Voltar para home</p>
         </Link>
       </Button>

@@ -2,6 +2,8 @@ import Link from 'next/link';
 
 import { cn } from '@/lib/utils';
 
+import { GlobalLoader } from '../global-loader';
+
 export function Logo({ className }: { className?: string }) {
   return (
     <Link
@@ -10,6 +12,7 @@ export function Logo({ className }: { className?: string }) {
       title='Ir para home'
       aria-label='Ir para home'
     >
+      <GlobalLoader />
       <h1 className='text-3xl tracking-tight'>
         <span>Store</span>
         <span className='text-primary font-bold'>Fy</span>

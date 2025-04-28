@@ -1,11 +1,13 @@
 import Link from 'next/link';
 
+import { Edit } from 'lucide-react';
+
 import { deleteProduct } from '@/actions/delete-product';
 import { Product } from '@/types/product';
 import { formatCurrency } from '@/utils/formatCurrency';
 
 import { DeleteDialog } from '../shared/delete-dialog';
-import { LinkLoader } from '../shared/link-loader';
+import { GlobalLoader } from '../shared/global-loader';
 import { Button } from '../ui/button';
 import {
   Table,
@@ -55,7 +57,8 @@ export function AdminProducts({ products }: AdminProductsProps) {
                   asChild
                 >
                   <Link href={`/admin/products/${product.id}`}>
-                    <LinkLoader iconName='edit' />
+                    <GlobalLoader />
+                    <Edit />
                   </Link>
                 </Button>
 

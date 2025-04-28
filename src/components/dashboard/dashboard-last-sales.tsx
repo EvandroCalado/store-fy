@@ -4,7 +4,6 @@ import { Order } from '@/types/order';
 import { formatCurrency } from '@/utils/formatCurrency';
 import { formatDate } from '@/utils/formatDate';
 
-import { LinkLoader } from '../shared/link-loader';
 import { Button } from '../ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '../ui/card';
 import {
@@ -55,7 +54,6 @@ export function DashboardLastSales({ latestSales }: DashboardLastSalesProps) {
                       className='flex items-center gap-2'
                     >
                       Detalhes
-                      <LinkLoader />
                     </Link>
                   </Button>
                 </TableCell>

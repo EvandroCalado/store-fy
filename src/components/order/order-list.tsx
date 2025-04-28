@@ -4,7 +4,7 @@ import { Order } from '@/types/order';
 import { formatCurrency } from '@/utils/formatCurrency';
 import { formatDate } from '@/utils/formatDate';
 
-import { LinkLoader } from '../shared/link-loader';
+import { GlobalLoader } from '../shared/global-loader';
 import { Badge } from '../ui/badge';
 import { Button } from '../ui/button';
 import {
@@ -72,8 +72,8 @@ export function OrderList({ orders }: OrderListProps) {
                     href={`/order/${order.id}`}
                     className='flex items-center gap-2'
                   >
+                    <GlobalLoader />
                     Detalhes
-                    <LinkLoader />
                   </Link>
                 </Button>
               </TableCell>

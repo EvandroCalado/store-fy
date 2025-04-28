@@ -25,7 +25,7 @@ export function ProductCard({ product }: ProductCardProps) {
       key={product.slug}
       className='animate-fade-in bg-background min-w-[320px] border-none shadow-none transition-all duration-150'
     >
-      <Link href={`/product/${product.slug}`} className='relative'>
+      <Link href={`/product/${product.slug}`}>
         <GlobalLoader />
 
         <CardHeader>

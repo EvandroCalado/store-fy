@@ -1,6 +1,7 @@
 import { Metadata } from 'next';
 import Link from 'next/link';
 
+import { Plus } from 'lucide-react';
 import { SearchParams } from 'nuqs/server';
 
 import { getAllProducts } from '@/actions/get-all-products';
@@ -9,7 +10,7 @@ import { loadSearchParams } from '@/app/search-params';
 import { AdminProducts } from '@/components/admin/admin-products';
 import { AdminProductsCategory } from '@/components/admin/admin-products-category';
 import { Container } from '@/components/shared/container';
-import { LinkLoader } from '@/components/shared/link-loader';
+import { GlobalLoader } from '@/components/shared/global-loader';
 import { Pagination } from '@/components/shared/pagination';
 import { Button } from '@/components/ui/button';
 
@@ -38,7 +39,8 @@ export default async function AdminProductsPag({
 
         <Button asChild>
           <Link href='/admin/products/create'>
-            <LinkLoader iconName='plus' />
+            <GlobalLoader />
+            <Plus />
             Criar produto
           </Link>
         </Button>
