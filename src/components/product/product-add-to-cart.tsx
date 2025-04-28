@@ -1,6 +1,6 @@
 'use client';
 
-import { Loader2, ShoppingBag } from 'lucide-react';
+import { Loader, ShoppingBag } from 'lucide-react';
 
 import { useCart } from '@/hooks/useCart';
 import { Cart } from '@/types/cart';
@@ -36,7 +36,7 @@ export function ProductAddToCart({ item, cart }: ProductAddToCartProps) {
     >
       {isPending ? (
         <>
-          <Loader2 className='size-4 animate-spin' />
+          <Loader className='size-4 animate-spin' />
         </>
       ) : (
         <ShoppingBag />

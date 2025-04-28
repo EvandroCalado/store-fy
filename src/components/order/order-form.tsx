@@ -4,10 +4,11 @@ import { useTransition } from 'react';
 
 import { useRouter } from 'next/navigation';
 
-import { Check, Loader2 } from 'lucide-react';
+import { Check } from 'lucide-react';
 
 import { createOrder } from '@/actions/create-order';
 
+import { TransitionLoader } from '../shared/transition-loader';
 import { Button } from '../ui/button';
 
 export function OrderForm() {
@@ -26,11 +27,15 @@ export function OrderForm() {
   };
 
   return (
-    <form onSubmit={handleSubmit} className='w-full'>
-      <Button type='submit' className='w-full' disabled={isPending}>
-        {isPending ? <Loader2 className='animate-spin' /> : <Check />}
-        <span>Finalizar pedido</span>
-      </Button>
-    </form>
+    <>
+      <TransitionLoader isPending={isPending} />
+
+      <form onSubmit={handleSubmit} className='w-full'>
+        <Button type='submit' className='w-full' disabled={isPending}>
+          <Check />
+          <span>Finalizar pedido</span>
+        </Button>
+      </form>
+    </>
   );
 }

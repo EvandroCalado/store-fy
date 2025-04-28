@@ -5,7 +5,7 @@ import { useTransition } from 'react';
 import { useRouter } from 'next/navigation';
 
 import { zodResolver } from '@hookform/resolvers/zod';
-import { ArrowRight, Loader2 } from 'lucide-react';
+import { MoveRight } from 'lucide-react';
 import { useForm } from 'react-hook-form';
 import { toast } from 'sonner';
 import { z } from 'zod';
@@ -15,6 +15,7 @@ import { shippingAddressSchema } from '@/schemas/shipping-address';
 import { ShippingAddress } from '@/types/shipping-address';
 import { SHIPPING_ADDRESS_DEFAULT_VALUES } from '@/utils/constants';
 
+import { TransitionLoader } from '../shared/transition-loader';
 import { Button } from '../ui/button';
 import {
   Form,
@@ -55,6 +56,8 @@ export function ShippingForm({ address }: ShippingFormProps) {
 
   return (
     <>
+      <TransitionLoader isPending={isPending} />
+
       <h2 className='text-muted-foreground mb-5 text-xl font-semibold'>
         Informações de entrega
       </h2>
@@ -171,8 +174,8 @@ export function ShippingForm({ address }: ShippingFormProps) {
             />
           </div>
           <Button type='submit' disabled={isPending}>
-            {isPending ? <Loader2 className='animate-spin' /> : <ArrowRight />}
             Continuar
+            <MoveRight />
           </Button>
         </form>
       </Form>

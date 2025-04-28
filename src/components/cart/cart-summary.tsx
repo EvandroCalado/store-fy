@@ -4,11 +4,12 @@ import { useTransition } from 'react';
 
 import { useRouter } from 'next/navigation';
 
-import { ArrowRight, Loader2 } from 'lucide-react';
+import { MoveRight } from 'lucide-react';
 
 import { Cart } from '@/types/cart';
 import { formatCurrency } from '@/utils/formatCurrency';
 
+import { TransitionLoader } from '../shared/transition-loader';
 import { Button } from '../ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '../ui/card';
 
@@ -25,6 +26,8 @@ export function CartSummary({ cart }: CartSummaryProps) {
 
   return (
     <Card className='h-fit'>
+      <TransitionLoader isPending={isPending} />
+
       <CardHeader>
         <CardTitle>Resumo do pedido</CardTitle>
       </CardHeader>
@@ -48,12 +51,8 @@ export function CartSummary({ cart }: CartSummaryProps) {
             startTransition(() => router.push('/shipping-address'));
           }}
         >
-          {isPending ? (
-            <Loader2 className='size-4 animate-spin' />
-          ) : (
-            <ArrowRight className='size-4' />
-          )}
           Finalizar
+          <MoveRight className='size-4' />
         </Button>
       </CardContent>
     </Card>

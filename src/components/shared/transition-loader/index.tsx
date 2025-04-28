@@ -4,11 +4,11 @@ import { LoaderIcon } from 'lucide-react';
 
 import { cn } from '@/lib/utils';
 
-type PaginationLoaderProps = {
+type TransitionLoaderProps = {
   isPending: boolean;
 };
 
-export function PaginationLoader({ isPending }: PaginationLoaderProps) {
+export function TransitionLoader({ isPending }: TransitionLoaderProps) {
   return (
     <>
       {isPending && (
