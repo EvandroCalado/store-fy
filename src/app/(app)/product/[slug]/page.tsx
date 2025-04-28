@@ -37,7 +37,7 @@ export default async function ProductDetailsPage({
         <ProductGallery images={product.images} />
         <ProductDetails product={product} cart={cart} />
         <ProductInfo />
-        <ProductTabs details={product.details} />
+        <ProductTabs product={product} />
       </Container>
     </>
   );
