@@ -7,6 +7,8 @@ import { parseAsInteger, useQueryState } from 'nuqs';
 import { Button } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
 
+import { PaginationLoader } from './pagination-loader';
+
 type PaginationProps = {
   totalPages: number;
   refetchAction: (tag: string) => Promise<void>;
@@ -37,6 +39,7 @@ export function Pagination({
 
   return (
     <div className={cn('flex items-center gap-2', className)}>
+      {<PaginationLoader isPending={isPending} />}
       <Button
         variant='outline'
         disabled={page <= 1 || isPending}
