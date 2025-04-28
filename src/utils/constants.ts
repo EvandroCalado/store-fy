@@ -41,3 +41,9 @@ export const PRODUCT_DEFAULT = {
   numReviews: 0,
   banner: null,
 };
+
+export const REVIEW_DEFAULT = {
+  rating: 0,
+  title: '',
+  description: '',
+};
