@@ -12,7 +12,7 @@ export function GlobalLoader() {
   return (
     <div
       className={cn('fixed inset-0 -z-10 flex items-center justify-center', {
-        'bg-background/80 z-10': pending,
+        'bg-background/90 z-10': pending,
       })}
     >
       {pending && (
