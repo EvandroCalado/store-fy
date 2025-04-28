@@ -26,6 +26,7 @@ model Product {
   updatedAt   DateTime @updatedAt @map("updated_at")
 
   OrderItem OrderItem[]
+  Review    Review[]
 
   @@map("products")
 }
@@ -77,6 +78,7 @@ model User {
   sessions Session[]
   Cart     Cart[]
   Order    Order[]
+  Review   Review[]
 
   @@map("users")
 }
@@ -126,7 +128,7 @@ model Order {
 
   OrderItem OrderItem[]
 
-  user User? @relation(fields: [userId], references: [id], onDelete: Cascade)
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   @@map("orders")
 }
@@ -142,8 +144,26 @@ model OrderItem {
   createdAt DateTime @default(now()) @map("created_at")
   updatedAt DateTime @updatedAt @map("updated_at")
 
-  order   Order?   @relation(fields: [orderId], references: [id], onDelete: Cascade)
-  product Product? @relation(fields: [productId], references: [id], onDelete: Cascade)
+  order   Order   @relation(fields: [orderId], references: [id], onDelete: Cascade)
+  product Product @relation(fields: [productId], references: [id], onDelete: Cascade)
 
   @@id([orderId, productId])
+}
+
+model Review {
+  id                 String   @id @default(cuid())
+  userId             String   @map("user_id")
+  productId          String   @map("product_id")
+  rating             Int
+  title              String
+  description        String
+  isVerifiedPurchase Boolean  @default(false) @map("is_verified_purchase")
+  comment            String
+  createdAt          DateTime @default(now()) @map("created_at")
+  updatedAt          DateTime @updatedAt @map("updated_at")
+
+  user    User    @relation(fields: [userId], references: [id], onDelete: Cascade)
+  product Product @relation(fields: [productId], references: [id], onDelete: Cascade)
+
+  @@map("reviews")
 }
