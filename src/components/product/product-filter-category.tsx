@@ -2,12 +2,12 @@
 
 import { useTransition } from 'react';
 
-import { Loader } from 'lucide-react';
 import { parseAsString, useQueryState } from 'nuqs';
 
 import { Checkbox } from '../ui/checkbox';
 import { Label } from '../ui/label';
 import { ProductFilterTitle } from './product-filter-title';
+import { ProductLoader } from './product-loader';
 
 type ProductFilterCategoryProps = {
   categories: {
@@ -46,9 +46,8 @@ export function ProductFilterCategory({
 
   return (
     <div className='space-y-4'>
-      <ProductFilterTitle>
-        Categorias {isPending && <Loader className='size-4 animate-spin' />}
-      </ProductFilterTitle>
+      {isPending && <ProductLoader />}
+      <ProductFilterTitle>Categorias</ProductFilterTitle>
 
       {categories.map(item => (
         <div key={item.category} className='flex items-center gap-2'>
