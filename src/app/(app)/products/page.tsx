@@ -8,6 +8,7 @@ import { refetchAction } from '@/actions/refetch-action';
 import { loadSearchParams } from '@/app/search-params';
 import { ProductCard } from '@/components/product/product-card';
 import { ProductFilterCategory } from '@/components/product/product-filter-category';
+import { ProductFilterClean } from '@/components/product/product-filter-clean';
 import { ProductFilterPrice } from '@/components/product/product-filter-price';
 import { ProductFilterRating } from '@/components/product/product-filter-rating';
 import { ProductFilterSort } from '@/components/product/product-filter-sort';
@@ -74,6 +75,7 @@ export default async function ProductsPage({
           />
           <ProductFilterPrice refetchAction={refetchAction} />
           <ProductFilterRating refetchAction={refetchAction} />
+          <ProductFilterClean />
         </div>
 
         <div className='col-span-4 flex flex-col space-y-4'>
