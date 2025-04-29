@@ -24,8 +24,6 @@ export function UserMenu() {
 
   const firstInitial = session?.user?.name?.charAt(0);
 
-  console.log('session', session);
-
   useEffect(() => {
     const interval = setInterval(
       () => {
