@@ -58,7 +58,8 @@ export function ProductCard({ product }: ProductCardProps) {
             )}
 
             <p className='text-xs tracking-tight'>
-              {product.rating} {generateReviewStars(Number(product.rating))}
+              {product.rating.toFixed(1)}
+              {generateReviewStars(Number(product.rating))}
             </p>
           </div>
         </CardContent>
