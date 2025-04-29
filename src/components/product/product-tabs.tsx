@@ -26,7 +26,7 @@ export async function ProductTabs({ product }: ProductTabsProps) {
     limit: 10,
   });
 
-  const reviewByUser = await getReviewByUser(product.id);
+  const reviewFromCurrentUser = await getReviewByUser(product.id);
 
   return (
     <div className='flex items-center justify-center md:col-span-5 xl:col-span-8'>
@@ -56,7 +56,7 @@ export async function ProductTabs({ product }: ProductTabsProps) {
             userId={userId}
             productId={product.id}
             productSlug={product.slug}
-            review={reviewByUser}
+            reviewFromCurrentUser={reviewFromCurrentUser}
             reviews={data.reviews}
           />
           <Pagination

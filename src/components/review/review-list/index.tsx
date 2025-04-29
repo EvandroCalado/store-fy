@@ -11,7 +11,7 @@ type ReviewListProps = {
   userId: string;
   productId: string;
   productSlug: string;
-  review: Review | null;
+  reviewFromCurrentUser: Review | null;
   reviews: Review[];
 };
 
@@ -19,22 +19,25 @@ export function ReviewList({
   userId,
   productId,
   productSlug,
-  review,
+  reviewFromCurrentUser,
   reviews,
 }: ReviewListProps) {
   return (
     <div className='my-4 space-y-8'>
       {/* if logged in and has no review */}
-      {userId && review === null && (
+      {userId && reviewFromCurrentUser === null && (
         <ReviewForm userId={userId} productId={productId} />
       )}
 
       {/* if logged in and has review */}
-      {userId && review !== null && (
+      {userId && reviewFromCurrentUser !== null && (
         <div className='space-y-4'>
           <h2 className='text-lg font-semibold'>Sua Avaliação</h2>
 
-          <ReviewCard key={review.title} review={review} />
+          <ReviewCard
+            key={reviewFromCurrentUser.title}
+            review={reviewFromCurrentUser}
+          />
         </div>
       )}
 
