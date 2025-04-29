@@ -47,7 +47,7 @@ export function AdminProducts({ products }: AdminProductsProps) {
               <TableCell>{formatCurrency(product.price)}</TableCell>
               <TableCell className='capitalize'>{product.category}</TableCell>
               <TableCell>{product.stock}</TableCell>
-              <TableCell>{product.rating}</TableCell>
+              <TableCell>{product.rating.toFixed(1)}</TableCell>
               <TableCell className='flex items-center justify-end gap-2'>
                 <Button
                   variant='outline'
