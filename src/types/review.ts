@@ -8,5 +8,6 @@ export type Review = z.infer<typeof createReviewSchema> & {
   updatedAt: Date;
   user?: {
     name: string;
+    image: string | null;
   };
 };
