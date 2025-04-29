@@ -1,9 +1,13 @@
 import { marked } from 'marked';
 
+import { refetchAction } from '@/actions/refetch-action';
+import { getAllReviews } from '@/actions/review/get-all-reviews';
+import { getReviewByUser } from '@/actions/review/get-review-by-user';
 import { auth } from '@/auth';
 import { Product } from '@/types/product';
 
 import { ReviewList } from '../review/review-list';
+import { Pagination } from '../shared/pagination';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '../ui/tabs';
 
 type ProductTabsProps = {
@@ -15,6 +19,14 @@ export async function ProductTabs({ product }: ProductTabsProps) {
 
   const session = await auth();
   const userId = session?.user?.id ?? '';
+
+  const data = await getAllReviews({
+    productId: product.id,
+    page: 1,
+    limit: 10,
+  });
+
+  const reviewByUser = await getReviewByUser(product.id);
 
   return (
     <div className='flex items-center justify-center md:col-span-5 xl:col-span-8'>
@@ -44,6 +56,12 @@ export async function ProductTabs({ product }: ProductTabsProps) {
             userId={userId}
             productId={product.id}
             productSlug={product.slug}
+            review={reviewByUser}
+            reviews={data.reviews}
+          />
+          <Pagination
+            totalPages={data.totalPages}
+            refetchAction={refetchAction}
           />
         </TabsContent>
       </Tabs>

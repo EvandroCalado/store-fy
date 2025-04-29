@@ -1,37 +1,45 @@
 'use client';
 
-import { useState } from 'react';
-
 import Link from 'next/link';
 
 import { Review } from '@/types/review';
 
+import { ReviewCard } from '../review-card';
 import { ReviewForm } from '../review-form';
 
 type ReviewListProps = {
   userId: string;
   productId: string;
   productSlug: string;
+  review: Review | null;
+  reviews: Review[];
 };
 
 export function ReviewList({
   userId,
   productId,
   productSlug,
+  review,
+  reviews,
 }: ReviewListProps) {
-  const [reviews, setReviews] = useState<Review[]>([]);
-
   return (
-    <div className='my-4 space-y-4'>
-      {/* empty */}
-      {reviews.length === 0 && (
+    <div className='my-4 space-y-8'>
+      {/* if logged in and has no review */}
+      {userId && review === null && (
         <ReviewForm userId={userId} productId={productId} />
       )}
 
+      {/* if logged in and has review */}
+      {userId && review !== null && (
+        <div className='space-y-4'>
+          <h2 className='text-lg font-semibold'>Sua Avaliação</h2>
+
+          <ReviewCard key={review.title} review={review} />
+        </div>
+      )}
+
       {/* if logged out */}
-      {userId ? (
-        <div>Review</div>
-      ) : (
+      {!userId && (
         <div className='text-muted-foreground flex items-center justify-center'>
           Por favor
           <Link
@@ -44,8 +52,16 @@ export function ReviewList({
         </div>
       )}
 
-      {/* if logged in and has reviews */}
-      {reviews.length >= 1 && <div>Reviews</div>}
+      {/* reviews */}
+      {reviews.length >= 1 && (
+        <div className='space-y-4'>
+          <h2 className='text-lg font-semibold'>Avaliações</h2>
+
+          {reviews.map(review => (
+            <ReviewCard key={review.id} review={review} />
+          ))}
+        </div>
+      )}
     </div>
   );
 }
