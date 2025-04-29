@@ -34,10 +34,13 @@ export function ReviewList({
         <div className='space-y-4'>
           <h2 className='text-lg font-semibold'>Sua Avaliação</h2>
 
-          <ReviewCard
-            key={reviewFromCurrentUser.title}
-            review={reviewFromCurrentUser}
-          />
+          <div className='flex justify-between gap-2'>
+            <ReviewCard
+              key={reviewFromCurrentUser.title}
+              review={reviewFromCurrentUser}
+            />
+            <ReviewForm userId={userId} productId={productId} label='Editar' />
+          </div>
         </div>
       )}
 

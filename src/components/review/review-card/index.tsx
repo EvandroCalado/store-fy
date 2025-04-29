@@ -11,7 +11,7 @@ type ReviewCardProps = {
 
 export function ReviewCard({ review }: ReviewCardProps) {
   return (
-    <div className='flex gap-4'>
+    <div className='flex w-full gap-4'>
       <Avatar className='size-16'>
         <AvatarImage src={review.user?.image ?? undefined} />
         <AvatarFallback>{review.user?.name?.charAt(0)}</AvatarFallback>
