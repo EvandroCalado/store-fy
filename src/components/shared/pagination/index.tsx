@@ -7,8 +7,6 @@ import { parseAsInteger, useQueryState } from 'nuqs';
 import { Button } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
 
-import { TransitionLoader } from '../transition-loader';
-
 type PaginationProps = {
   totalPages: number;
   refetchAction: (tag: string) => Promise<void>;
@@ -39,7 +37,6 @@ export function Pagination({
 
   return (
     <div className={cn('flex items-center gap-2', className)}>
-      {<TransitionLoader isPending={isPending} />}
       <Button
         variant='outline'
         disabled={page <= 1 || isPending}
@@ -48,7 +45,7 @@ export function Pagination({
         Anterior
       </Button>
 
-      <div className='mx-2 text-sm'>
+      <div className='mx-2 flex w-10 items-center justify-center text-sm'>
         {page} de {totalPages}
       </div>
 

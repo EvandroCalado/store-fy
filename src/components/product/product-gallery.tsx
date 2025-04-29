@@ -26,7 +26,7 @@ export function ProductGallery({ images }: ProductPageProps) {
               height={500}
               priority
               sizes='(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw'
-              className='h-20 w-20 cursor-pointer rounded-lg object-cover'
+              className='animate-fade-in h-20 w-20 cursor-pointer rounded-lg object-cover'
               onClick={() => setDisplayImage(image)}
             />
           ))}
@@ -37,7 +37,7 @@ export function ProductGallery({ images }: ProductPageProps) {
           width={500}
           height={500}
           priority
-          className='mx-auto h-[400px] w-full rounded-lg object-cover md:w-[500px] xl:w-[345px]'
+          className='animate-fade-in mx-auto h-[400px] w-full rounded-lg object-cover md:w-[500px] xl:w-[345px]'
         />
       </div>
     </div>

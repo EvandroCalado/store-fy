@@ -2,6 +2,7 @@
 
 import { useTransition } from 'react';
 
+import { Loader } from 'lucide-react';
 import { parseAsInteger, useQueryState } from 'nuqs';
 
 import { generateReviewStars } from '@/utils/generate-review-stars';
@@ -9,7 +10,6 @@ import { generateReviewStars } from '@/utils/generate-review-stars';
 import { Checkbox } from '../ui/checkbox';
 import { Label } from '../ui/label';
 import { ProductFilterTitle } from './product-filter-title';
-import { ProductLoader } from './product-loader';
 
 const ratingOptions = [
   { label: '1 estrela', value: 1 },
@@ -50,8 +50,9 @@ export function ProductFilterRating({
 
   return (
     <div className='space-y-4'>
-      {isPending && <ProductLoader />}
-      <ProductFilterTitle>Avaliações</ProductFilterTitle>
+      <ProductFilterTitle>
+        Avaliações {isPending && <Loader className='size-4 animate-spin' />}
+      </ProductFilterTitle>
 
       {ratingOptions.map(item => (
         <div key={item.value} className='flex items-center gap-2'>

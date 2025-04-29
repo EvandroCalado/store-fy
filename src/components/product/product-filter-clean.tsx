@@ -5,7 +5,7 @@ import { useSearchParams } from 'next/navigation';
 
 import { X } from 'lucide-react';
 
-import { GlobalLoader } from '../shared/global-loader';
+import { Loader } from '../shared/loader';
 import { Button } from '../ui/button';
 
 export function ProductFilterClean() {
@@ -23,9 +23,10 @@ export function ProductFilterClean() {
   return (
     <Button asChild variant='secondary'>
       <Link href='/products' className='text-muted-foreground'>
-        <GlobalLoader />
         Limpar Filtros
-        <X />
+        <Loader>
+          <X />
+        </Loader>
       </Link>
     </Button>
   );

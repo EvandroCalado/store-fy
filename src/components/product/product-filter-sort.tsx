@@ -1,5 +1,8 @@
 'use client';
 
+import { useTransition } from 'react';
+
+import { Loader } from 'lucide-react';
 import { parseAsString, useQueryState } from 'nuqs';
 
 import {
@@ -22,9 +25,11 @@ type ProductFilterSortProps = {
 };
 
 export function ProductFilterSort({ refetchAction }: ProductFilterSortProps) {
+  const [isPending, startTransition] = useTransition();
+
   const [sort, setSort] = useQueryState(
     'sort',
-    parseAsString.withDefault('newest'),
+    parseAsString.withDefault('newest').withOptions({ startTransition }),
   );
 
   const handleOnChanger = (value: string) => {
@@ -41,7 +46,7 @@ export function ProductFilterSort({ refetchAction }: ProductFilterSortProps) {
       onValueChange={handleOnChanger}
       aria-label='Filtrar Categoria'
     >
-      <SelectTrigger>
+      <SelectTrigger className='w-36 [&>span]:flex-1 [&>span]:justify-center'>
         <SelectValue
           placeholder='Filtrar Categoria'
           title='Filtrar Categoria'
@@ -56,7 +61,7 @@ export function ProductFilterSort({ refetchAction }: ProductFilterSortProps) {
             title={sort.name}
             aria-label={sort.name}
           >
-            {sort.name}
+            {isPending ? <Loader className='size-4 animate-spin' /> : sort.name}
           </SelectItem>
         ))}
       </SelectContent>
