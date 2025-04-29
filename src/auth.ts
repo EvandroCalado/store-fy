@@ -45,6 +45,7 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
           id: user.id,
           name: user.name,
           email: user.email,
+          image: user.image,
           role: user.role,
         };
       },
@@ -58,10 +59,12 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
         session.user.id = token.sub;
         session.user.role = token.role;
         session.user.name = token.name;
+        session.user.image = token.image;
       }
 
       if (trigger === 'update') {
         session.user.name = user.name;
+        session.user.image = user.image;
       }
 
       return session;

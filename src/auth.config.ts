@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import { cookies } from 'next/headers';
 
 import type { NextAuthConfig } from 'next-auth';
@@ -8,14 +7,15 @@ import { prisma } from './db/prisma';
 export default {
   providers: [],
   callbacks: {
-    async jwt({ token, user, trigger, session }: any) {
+    async jwt({ token, user, trigger, session }) {
       // Assign user fields to token
       if (user) {
         token.id = user.id;
         token.role = user.role;
+        token.image = user.image;
 
         // If user has no name then use the email
-        if (user.name === 'NO_NAME') {
+        if (user.name === 'NO_NAME' && user.email) {
           token.name = user.email.split('@')[0];
 
           // Update database to reflect the token name
@@ -57,6 +57,7 @@ export default {
       // Handle session updates
       if (trigger === 'update' && session?.user.name) {
         token.name = session.user.name;
+        token.image = session.user.image;
       }
 
       return token;
