@@ -74,7 +74,9 @@ export function AdminSideMenu() {
                     tooltip={link.name}
                   >
                     <Link href={link.href} className='relative'>
-                      <Loader children={<link.icon />} />
+                      <Loader>
+                        <link.icon />
+                      </Loader>
                       <span>{link.name}</span>
                     </Link>
                   </SidebarMenuButton>

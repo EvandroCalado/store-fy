@@ -71,7 +71,10 @@ export function ProductCarousel({ featuredProducts }: ProductCarouselProps) {
                     asChild
                   >
                     <Link key={product.id} href={`/product/${product.slug}`}>
-                      Comprar <Loader children={<MoveRightIcon />} />
+                      Comprar
+                      <Loader>
+                        <MoveRightIcon />
+                      </Loader>
                     </Link>
                   </Button>
                 </div>
