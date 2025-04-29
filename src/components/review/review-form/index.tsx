@@ -3,11 +3,12 @@
 import { useState } from 'react';
 
 import { zodResolver } from '@hookform/resolvers/zod';
-import { PencilLine } from 'lucide-react';
+import { Loader, PencilLine } from 'lucide-react';
 import { useForm } from 'react-hook-form';
+import { toast } from 'sonner';
 import { z } from 'zod';
 
-import { Loader } from '@/components/shared/loader';
+import { createReview } from '@/actions/review/create-review';
 import { Button } from '@/components/ui/button';
 import {
   Dialog,
@@ -16,7 +17,6 @@ import {
   DialogFooter,
   DialogHeader,
   DialogTitle,
-  DialogTrigger,
 } from '@/components/ui/dialog';
 import {
   Form,
@@ -58,15 +58,32 @@ export function ReviewForm({
     defaultValues: REVIEW_DEFAULT,
   });
 
-  const onSubmit = (data: ReviewForm) => {
+  async function handleOpenForm() {
+    form.setValue('userId', userId);
+    form.setValue('productId', productId);
+
+    setOpen(true);
+  }
+
+  async function onSubmit(data: ReviewForm) {
     console.log(data);
-  };
+
+    const res = await createReview({ ...data, productId });
+
+    if (!res.success) {
+      toast.error(res.message);
+      return;
+    }
+
+    setOpen(false);
+
+    toast.success(res.message);
+    setOpen(false);
+  }
 
   return (
     <Dialog open={open} onOpenChange={setOpen}>
-      <DialogTrigger asChild>
-        <Button>Avalie o produto</Button>
-      </DialogTrigger>
+      <Button onClick={handleOpenForm}>Avalie o produto</Button>
 
       <DialogContent>
         <DialogHeader>
