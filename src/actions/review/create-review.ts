@@ -37,6 +37,24 @@ export async function createReview(data: ReviewForm) {
       },
     });
 
+    const existisProductInOrders = await prisma.order.findFirst({
+      where: {
+        userId: review.userId,
+        OrderItem: {
+          some: {
+            productId: review.productId,
+          },
+        },
+      },
+    });
+
+    if (!existisProductInOrders) {
+      return {
+        success: false,
+        message: 'Você não pode avaliar um produto que não comprou',
+      };
+    }
+
     await prisma.$transaction(async tx => {
       if (reviewExists) {
         await tx.review.update({
