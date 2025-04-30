@@ -11,7 +11,6 @@ import {
 } from '@stripe/react-stripe-js';
 import { loadStripe } from '@stripe/stripe-js';
 import { CreditCard, Loader } from 'lucide-react';
-import { useTheme } from 'next-themes';
 
 import { Button } from '@/components/ui/button';
 import { CONSTANTS } from '@/utils/constants';
@@ -33,8 +32,6 @@ export function OrderStripePayment({
   const stripePromise = loadStripe(
     process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY as string,
   );
-
-  const { theme } = useTheme();
 
   function StripeForm() {
     const [isLoading, setIsLoading] = useState(false);
@@ -100,7 +97,7 @@ export function OrderStripePayment({
       options={{
         clientSecret,
         appearance: {
-          theme: theme === 'dark' ? 'night' : 'stripe',
+          theme: 'stripe',
         },
       }}
       stripe={stripePromise}
