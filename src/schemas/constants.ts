@@ -19,4 +19,5 @@ export const constantsSchema = z.object({
     .min(1, 'Page size must be at least 1')
     .transform(value => Number(value)),
   USER_ROLES: z.array(z.string().trim()),
+  SENDER_EMAIL: z.string().email('Invalid email'),
 });
