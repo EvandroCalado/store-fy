@@ -1,11 +1,14 @@
 import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 
+import Stripe from 'stripe';
+
 import { getOrderById } from '@/actions/get-order-by-id';
 import { OrderDetailsAddress } from '@/components/order/order-details-address';
 import { OrderDetailsPaymentMethod } from '@/components/order/order-details-payment-method';
 import { OrderItems } from '@/components/order/order-items';
 import { OrderPayPalPayment } from '@/components/order/order-paypal-payment';
+import { OrderStripePayment } from '@/components/order/order-stripe-payment';
 import { OrderSummary } from '@/components/order/order-summary';
 import { Container } from '@/components/shared/container';
 import { SectionTitle } from '@/components/shared/section-title';
@@ -27,6 +30,25 @@ export default async function OrderPage({ params }: OrderPageParams) {
   if (!order) notFound();
 
   const paypalClientId = process.env.PAYPAL_CLIENT_ID || '';
+
+  let client_secret = null;
+
+  if (order.paymentMethod === ' Stripe' && !order.isPaid) {
+    try {
+      const stripe = new Stripe(process.env.STRIPE_SECRET_KEY as string);
+
+      const paymentIntent = await stripe.paymentIntents.create({
+        amount: Math.round(order.totalPrice) * 100,
+        currency: 'BRL',
+        metadata: { orderId: order.id },
+        automatic_payment_methods: { enabled: true },
+      });
+
+      client_secret = paymentIntent.client_secret;
+    } catch (error) {
+      console.error('Erro ao criar PaymentIntent:', error);
+    }
+  }
 
   return (
     <>
@@ -59,6 +81,13 @@ export default async function OrderPage({ params }: OrderPageParams) {
               paymentMethod={order.paymentMethod}
               orderId={order.id}
             />
+            {
+              <OrderStripePayment
+                totalPrice={order.totalPrice}
+                orderId={order.id}
+                clientSecret={client_secret || ''}
+              />
+            }
           </div>
         </div>
       </Container>
