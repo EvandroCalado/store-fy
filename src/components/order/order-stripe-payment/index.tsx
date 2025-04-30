@@ -10,6 +10,7 @@ import {
   useStripe,
 } from '@stripe/react-stripe-js';
 import { loadStripe } from '@stripe/stripe-js';
+import { CreditCard, Loader } from 'lucide-react';
 import { useTheme } from 'next-themes';
 
 import { Button } from '@/components/ui/button';
@@ -67,9 +68,7 @@ export function OrderStripePayment({
             setErrorMessage('Um erro desconhecido ocorreu.');
           }
         })
-        .finally(() => {
-          setIsLoading(false);
-        });
+        .finally(() => setIsLoading(false));
     }
 
     return (
@@ -89,7 +88,8 @@ export function OrderStripePayment({
           size={'lg'}
           disabled={stripe === null || elements === null || isLoading}
         >
-          {isLoading ? 'Carregando...' : `Pagar ${formatCurrency(totalPrice)}`}
+          {isLoading ? <Loader className='animate-spin' /> : <CreditCard />}
+          {`Pagar ${formatCurrency(totalPrice)}`}
         </Button>
       </form>
     );
