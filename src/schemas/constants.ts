@@ -10,7 +10,7 @@ export const constantsSchema = z.object({
     .string()
     .min(1, 'Latest products limit must be at least 1')
     .transform(value => Number(value)),
-  PAYMENT_METHODS: z.array(z.string()),
+  PAYMENT_METHODS: z.array(z.string().trim()),
   DEFAULT_PAYMENT_METHOD: z
     .string()
     .min(3, 'Default payment method must be at least 3 characters long'),
@@ -18,5 +18,5 @@ export const constantsSchema = z.object({
     .string()
     .min(1, 'Page size must be at least 1')
     .transform(value => Number(value)),
-  USER_ROLES: z.array(z.string()),
+  USER_ROLES: z.array(z.string().trim()),
 });
