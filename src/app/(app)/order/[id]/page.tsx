@@ -33,7 +33,7 @@ export default async function OrderPage({ params }: OrderPageParams) {
 
   let client_secret = null;
 
-  if (order.paymentMethod === ' Stripe' && !order.isPaid) {
+  if (order.paymentMethod === 'Stripe' && !order.isPaid) {
     try {
       const stripe = new Stripe(process.env.STRIPE_SECRET_KEY as string);
 
