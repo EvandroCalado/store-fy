@@ -1,36 +1,113 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Store-FY
 
-## Getting Started
+Uma aplicação de e-commerce moderna construída com Next.js 15, React 19 e TypeScript.
 
-First, run the development server:
+## 🚀 Tecnologias Principais
 
+- **Next.js 15** - Framework React para renderização híbrida
+- **React 19** - Biblioteca JavaScript para construção de interfaces
+- **TypeScript** - Superset JavaScript com tipagem estática
+- **Prisma** - ORM para banco de dados
+- **Tailwind CSS** - Framework CSS utilitário
+- **NextAuth.js** - Autenticação completa
+- **Stripe** - Processamento de pagamentos
+- **PayPal** - Integração com PayPal
+- **UploadThing** - Upload de arquivos
+
+## 📋 Pré-requisitos
+
+- Node.js (versão 18 ou superior)
+- pnpm (gerenciador de pacotes)
+- Banco de dados PostgreSQL
+
+## 🔧 Instalação
+
+1. Clone o repositório:
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+git clone https://github.com/EvandroCalado/store-fy.git
+cd store-fy
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+2. Instale as dependências:
+```bash
+pnpm install
+```
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+3. Configure as variáveis de ambiente:
+Crie um arquivo `.env` na raiz do projeto com as seguintes variáveis:
+```env
+DATABASE_URL="sua_url_do_banco_de_dados"
+NEXTAUTH_SECRET="seu_secret_para_autenticação"
+NEXTAUTH_URL="http://localhost:3000"
+STRIPE_SECRET_KEY="sua_chave_secreta_do_stripe"
+STRIPE_WEBHOOK_SECRET="seu_webhook_secret_do_stripe"
+UPLOADTHING_SECRET="seu_secret_do_uploadthing"
+UPLOADTHING_APP_ID="seu_app_id_do_uploadthing"
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+4. Execute as migrações do banco de dados:
+```bash
+pnpm prisma migrate dev
+```
 
-## Learn More
+## 🚀 Executando o Projeto
 
-To learn more about Next.js, take a look at the following resources:
+Para desenvolvimento:
+```bash
+pnpm dev
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Para produção:
+```bash
+pnpm build
+pnpm start
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## 🧪 Testes
 
-## Deploy on Vercel
+Para executar os testes:
+```bash
+pnpm test
+```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Para executar os testes em modo watch:
+```bash
+pnpm test:watch
+```
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## 📦 Estrutura do Projeto
+
+```
+src/
+├── actions/     # Ações do servidor
+├── app/         # Rotas e páginas
+├── components/  # Componentes React
+├── db/          # Configuração do banco de dados
+├── hooks/       # Hooks personalizados
+├── lib/         # Utilitários e configurações
+├── schemas/     # Schemas de validação
+├── styles/      # Estilos globais
+├── tests/       # Testes
+├── types/       # Definições de tipos
+└── utils/       # Funções utilitárias
+```
+
+## 🔒 Autenticação
+
+O projeto utiliza NextAuth.js para autenticação, suportando:
+- Autenticação por email/senha
+- Autenticação social (Google, GitHub, etc.)
+
+## 💳 Pagamentos
+
+Integração com:
+- Stripe para pagamentos com cartão de crédito
+- PayPal para pagamentos alternativos
+
+## 📝 Licença
+
+Este projeto está sob a licença MIT. Veja o arquivo [LICENSE](LICENSE) para mais detalhes.
+
+## 🤝 Contribuição
+
+Contribuições são bem-vindas! Por favor, leia o guia de contribuição antes de enviar um pull request.
