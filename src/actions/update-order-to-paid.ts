@@ -1,6 +1,7 @@
 'use server';
 
 import { prisma } from '@/db/prisma';
+import { sendEmailReceipt } from '@/email';
 import { PaymentResult } from '@/types/payment-result';
 
 type updateOrderToPaidParams = {
@@ -67,4 +68,13 @@ export async function updateOrderToPaid({
   });
 
   if (!updatedOrder) throw new Error('Pedido não encontrado');
+
+  console.log(updatedOrder.user.email);
+
+  sendEmailReceipt({
+    order: {
+      ...updatedOrder,
+      orderItems: updatedOrder.OrderItem,
+    },
+  });
 }

@@ -18,8 +18,8 @@ import {
 
 type DashboardLastSalesProps = {
   latestSales: Omit<
-    Order & { user: { name: string | null } | null },
-    'shippingAddress'
+    Order,
+    'shippingAddress' | 'orderItems' | 'paymentResult'
   >[];
 };
 

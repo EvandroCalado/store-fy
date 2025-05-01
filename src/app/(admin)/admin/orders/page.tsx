@@ -22,15 +22,15 @@ export default async function AdminOrdersPage({
 }: AdminOrdersPageParams) {
   const { page, query } = await loadSearchParams(searchParams);
 
-  const orders = await getAllOrders({ page, limit: 12, query });
+  const data = await getAllOrders({ page, limit: 12, query });
 
   return (
     <Container className='my-8 flex flex-1 flex-col space-y-4'>
       <h1 className='text-xl font-semibold'>Pedidos</h1>
 
-      <AdminOrders orders={orders.data} />
+      <AdminOrders orders={data.orders} />
       <Pagination
-        totalPages={orders.totalPages}
+        totalPages={data.totalPages}
         refetchAction={refetchAction}
         className='ml-auto'
       />

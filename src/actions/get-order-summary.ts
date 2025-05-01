@@ -31,6 +31,7 @@ export async function getOrderSummary() {
       user: {
         select: {
           name: true,
+          email: true,
         },
       },
     },

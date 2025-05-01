@@ -24,10 +24,7 @@ import {
 } from '../ui/table';
 
 type AdminOrdersProps = {
-  orders: Omit<
-    Order & { user: { name: string | null } | null },
-    'shippingAddress'
-  >[];
+  orders: Omit<Order, 'shippingAddress' | 'orderItems' | 'paymentResult'>[];
 };
 
 export function AdminOrders({ orders }: AdminOrdersProps) {

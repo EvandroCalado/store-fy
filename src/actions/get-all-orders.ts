@@ -33,6 +33,7 @@ export const getAllOrders = unstable_cache(
         user: {
           select: {
             name: true,
+            email: true,
           },
         },
       },
@@ -43,7 +44,7 @@ export const getAllOrders = unstable_cache(
     const count = await prisma.order.count();
 
     return {
-      data: orders,
+      orders,
       totalPages: Math.ceil(count / limit),
     };
   },

@@ -2,8 +2,6 @@
 
 import { auth } from '@/auth';
 import { prisma } from '@/db/prisma';
-import { Order } from '@/types/order';
-import { ShippingAddress } from '@/types/shipping-address';
 import { CONSTANTS } from '@/utils/constants';
 
 type GetMyOrdersParams = {
@@ -30,11 +28,6 @@ export async function getMyOrders({
     skip: (page - 1) * limit,
   });
 
-  const transformedOrders: Order[] = orders.map(order => ({
-    ...order,
-    shippingAddress: order.shippingAddress as ShippingAddress,
-  }));
-
   const count = await prisma.order.count({
     where: {
       userId: session?.user?.id,
@@ -42,7 +35,7 @@ export async function getMyOrders({
   });
 
   return {
-    orders: transformedOrders,
+    orders,
     totalPages: Math.ceil(count / limit),
   };
 }

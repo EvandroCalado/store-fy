@@ -44,7 +44,7 @@ export function OrderDetailsAddress({
                 Entregue em {deliveredAt && formatDate(deliveredAt).dateTime}
               </Badge>
             ) : (
-              <Badge variant='destructive'>Aguardando pagamento</Badge>
+              <Badge variant='destructive'>Aguardando</Badge>
             )}
           </TableCell>
         </TableRow>

@@ -81,13 +81,11 @@ export default async function OrderPage({ params }: OrderPageParams) {
               paymentMethod={order.paymentMethod}
               orderId={order.id}
             />
-            {
-              <OrderStripePayment
-                totalPrice={order.totalPrice}
-                orderId={order.id}
-                clientSecret={client_secret || ''}
-              />
-            }
+            <OrderStripePayment
+              totalPrice={order.totalPrice}
+              orderId={order.id}
+              clientSecret={client_secret || ''}
+            />
           </div>
         </div>
       </Container>

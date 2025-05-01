@@ -18,7 +18,10 @@ import {
 } from '../ui/table';
 
 type OrderListProps = {
-  orders: Order[];
+  orders: Omit<
+    Order,
+    'shippingAddress' | 'orderItems' | 'paymentResult' | 'user'
+  >[];
 };
 
 export function OrderList({ orders }: OrderListProps) {
@@ -46,23 +49,23 @@ export function OrderList({ orders }: OrderListProps) {
               <TableCell>{formatCurrency(order.totalPrice)}</TableCell>
               <TableCell>
                 {order.isPaid && order.paidAt ? (
-                  <Badge variant='secondary' className='w-44'>
+                  <Badge variant='secondary'>
                     {formatDate(order.paidAt).dateTime}
                   </Badge>
                 ) : (
-                  <Badge variant='destructive' className='w-44'>
-                    Aguardando pagamento
+                  <Badge variant='destructive' className='w-28'>
+                    Aguardando
                   </Badge>
                 )}
               </TableCell>
               <TableCell>
                 {order.isDelivered && order.deliveredAt ? (
-                  <Badge variant='secondary' className='w-44'>
+                  <Badge variant='secondary'>
                     {formatDate(order.deliveredAt).dateTime}
                   </Badge>
                 ) : (
-                  <Badge variant='destructive' className='w-44'>
-                    Aguardando entrega
+                  <Badge variant='destructive' className='w-28'>
+                    Aguardando
                   </Badge>
                 )}
               </TableCell>

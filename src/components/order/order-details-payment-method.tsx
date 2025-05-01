@@ -38,7 +38,7 @@ export function OrderDetailsPaymentMethod({
                 Pago em {paidAt && formatDate(paidAt).dateTime}
               </Badge>
             ) : (
-              <Badge variant='destructive'>Aguardando pagamento</Badge>
+              <Badge variant='destructive'>Aguardando</Badge>
             )}
           </TableCell>
         </TableRow>
