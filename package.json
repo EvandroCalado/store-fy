@@ -9,7 +9,9 @@
     "lint": "next lint",
     "postinstall": "prisma generate",
     "test": "jest",
-    "test:watch": "jest --watch"
+    "test:watch": "jest --watch",
+    "typecheck": "tsc --project tsconfig.json --noEmit",
+    "email": "cp .env ./node_modules/react-email && email dev --dir src/email --port 3001"
   },
   "dependencies": {
     "@hookform/resolvers": "^5.0.1",
