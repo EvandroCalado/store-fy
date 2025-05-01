@@ -3,6 +3,7 @@ import { z } from 'zod';
 import { currencySchema } from './currency';
 
 export const insertOrderItemSchema = z.object({
+  orderId: z.string().min(1, 'Id da Pedido é obrigatório'),
   productId: z.string().min(1, 'Id do Produto é obrigatório'),
   slug: z.string().min(1, 'Slug é obrigatório'),
   image: z.string().min(1, 'Imagem é obrigatório'),
