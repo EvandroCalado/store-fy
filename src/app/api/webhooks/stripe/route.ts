@@ -14,11 +14,13 @@ export async function POST(req: NextRequest) {
   if (event.type === 'charge.succeeded') {
     const { object } = event.data;
 
+    console.log(object.billing_details.email);
+
     await updateOrderToPaid({
       orderId: object.metadata.orderId,
       paymentResult: {
         id: object.id,
-        status: 'COMPLETE',
+        status: 'COMPLETED',
         email_address: object.billing_details.email!,
         pricePaid: (object.amount / 100).toFixed(2),
       },
