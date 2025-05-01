@@ -1,10 +1,12 @@
 'use client';
 
+import { useRef } from 'react';
+
 import Link from 'next/link';
 
-import confetti from 'canvas-confetti';
 import { MoveRight } from 'lucide-react';
 
+import { Confetti, ConfettiRef } from '@/components/magicui/confetti';
 import { Loader } from '@/components/shared/loader';
 import { Button } from '@/components/ui/button';
 
@@ -13,38 +15,7 @@ type PaymentSuccessProps = {
 };
 
 export function PaymentSuccess({ id }: PaymentSuccessProps) {
-  const handleClick = () => {
-    const duration = 5 * 1000;
-    const animationEnd = Date.now() + duration;
-    const defaults = { startVelocity: 30, spread: 360, ticks: 60, zIndex: 0 };
-
-    const randomInRange = (min: number, max: number) =>
-      Math.random() * (max - min) + min;
-
-    const interval = window.setInterval(() => {
-      const timeLeft = animationEnd - Date.now();
-
-      if (timeLeft <= 0) {
-        return clearInterval(interval);
-      }
-
-      const particleCount = 50 * (timeLeft / duration);
-      confetti({
-        ...defaults,
-        particleCount,
-        origin: { x: randomInRange(0.1, 0.3), y: Math.random() - 0.2 },
-      });
-      confetti({
-        ...defaults,
-        particleCount,
-        origin: { x: randomInRange(0.7, 0.9), y: Math.random() - 0.2 },
-      });
-    }, 250);
-  };
-
-  setTimeout(() => {
-    handleClick();
-  }, 500);
+  const confettiRef = useRef<ConfettiRef>(null);
 
   return (
     <div className='flex max-w-sm flex-col items-center justify-center gap-4'>
@@ -62,6 +33,14 @@ export function PaymentSuccess({ id }: PaymentSuccessProps) {
           </Loader>
         </Link>
       </Button>
+
+      <Confetti
+        ref={confettiRef}
+        className='absolute top-0 left-0 -z-10 size-full'
+        onMouseEnter={() => {
+          confettiRef.current?.fire({});
+        }}
+      />
     </div>
   );
 }
